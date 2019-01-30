@@ -12,7 +12,7 @@ import com.gdn.rentalan.di.component.DaggerFragmentComponent
 import com.gdn.rentalan.di.module.FragmentModule
 import com.gdn.rentalan.models.Category
 import com.gdn.rentalan.models.CategoryResponse
-import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 
 class CategoryFragment : Fragment(), CategoryContract.View, CategoryListAdapter.onItemClickListener {
@@ -32,7 +32,7 @@ class CategoryFragment : Fragment(), CategoryContract.View, CategoryListAdapter.
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_list, container, false)
+        rootView = inflater.inflate(R.layout.fragment_category, container, false)
         return rootView
     }
 

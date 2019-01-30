@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Rentalan</string>
 
     <!-- Fragment tags -->
     <string name="fragment_about_tag">About Fragment</string>

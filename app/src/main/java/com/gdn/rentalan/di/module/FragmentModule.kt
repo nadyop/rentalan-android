@@ -21,11 +21,6 @@ class FragmentModule {
         return CategoryListPresenter()
     }
 
-//    @Provides
-//    fun provideListPresenter(): ListContract.Presenter {
-//        return ListPresenter()
-//    }
-
     @Provides
     fun provideApiService(): ApiInterface {
         return ApiInterface.create()
