@@ -8,7 +8,7 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.di.component.DaggerActivityComponent
 import com.gdn.rentalan.di.module.ActivityModule
 import com.gdn.rentalan.ui.about.AboutFragment
-import com.gdn.rentalan.ui.list.ListFragment
+import com.gdn.rentalan.ui.category.CategoryFragment
 import javax.inject.Inject
 
 class MainActivity: AppCompatActivity(), MainContract.View {
@@ -45,7 +45,7 @@ class MainActivity: AppCompatActivity(), MainContract.View {
         supportFragmentManager.beginTransaction()
                 .disallowAddToBackStack()
                 .setCustomAnimations(AnimType.SLIDE.getAnimPair().first, AnimType.SLIDE.getAnimPair().second)
-                .replace(R.id.frame, ListFragment().newInstance(), ListFragment.TAG)
+                .replace(R.id.frame, CategoryFragment().newInstance(), CategoryFragment.TAG)
                 .commit()
     }
 
@@ -96,9 +96,9 @@ class MainActivity: AppCompatActivity(), MainContract.View {
         FADE;
 
         fun getAnimPair(): Pair<Int, Int> {
-            when(this) {
-                SLIDE -> return Pair(R.anim.slide_left, R.anim.slide_right)
-                FADE -> return Pair(R.anim.fade_in, R.anim.fade_out)
+            return when(this) {
+                SLIDE -> Pair(R.anim.slide_left, R.anim.slide_right)
+                FADE -> Pair(R.anim.fade_in, R.anim.fade_out)
             }
 
             return Pair(R.anim.slide_left, R.anim.slide_right)

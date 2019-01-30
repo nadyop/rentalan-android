@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.list
+package com.gdn.rentalan.ui.category
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
@@ -9,15 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.gdn.rentalan.R
-import com.gdn.rentalan.models.Post
+import com.gdn.rentalan.models.Category
 
-class ListAdapter(private val context: Context, private val list: MutableList<Post>,
-                  fragment: Fragment): RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class CategoryListAdapter(private val context: Context, private val list: MutableList<Category>,
+                          fragment: Fragment) : RecyclerView.Adapter<CategoryListAdapter.ListViewHolder>() {
 
-    private val listener: ListAdapter.onItemClickListener
+    private val listener: CategoryListAdapter.onItemClickListener
 
     init {
-        this.listener = fragment as ListAdapter.onItemClickListener
+        this.listener = fragment as CategoryListAdapter.onItemClickListener
     }
 
 
@@ -26,34 +26,26 @@ class ListAdapter(private val context: Context, private val list: MutableList<Po
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val post = list[position]
+        val category = list[position]
 
-        holder.title?.text = post.title
-        holder.body?.text = post.body
+        holder.title?.text = category.name
+        holder.body?.text = category.description
 
-        holder.layout.setOnClickListener {
-            listener.itemDetail(post.id.toString())
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
-        return ListAdapter.ListViewHolder(itemView)
+        return CategoryListAdapter.ListViewHolder(itemView)
     }
 
-    fun removeAt(position: Int) {
-        list.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    class ListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var layout = itemView.findViewById<ConstraintLayout>(R.id.item_layout)
         val title = itemView.findViewById<TextView>(R.id.item_title)
         val body = itemView.findViewById<TextView>(R.id.item_body)
     }
 
     interface onItemClickListener {
-        fun itemRemoveClick(post: Post)
-        fun itemDetail(postId : String)
+        fun itemRemoveClick(post: Category)
+        fun itemDetail(postId: String)
     }
 }

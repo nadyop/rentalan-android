@@ -8,5 +8,4 @@ import dagger.Component
 interface ApplicationComponent {
 
     fun inject(application: ApplicationBase)
-
 }
