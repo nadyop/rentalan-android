@@ -3,11 +3,9 @@ package com.gdn.rentalan.ui.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
-import android.view.MenuItem
 import com.gdn.rentalan.R
 import com.gdn.rentalan.di.component.DaggerActivityComponent
 import com.gdn.rentalan.di.module.ActivityModule
-import com.gdn.rentalan.ui.about.AboutFragment
 import com.gdn.rentalan.ui.category.CategoryFragment
 import javax.inject.Inject
 
@@ -24,28 +22,11 @@ class MainActivity: AppCompatActivity(), MainContract.View {
         presenter.attach(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        test()
-    }
-
-    override fun showAboutFragment() {
-        if (supportFragmentManager.findFragmentByTag(AboutFragment.TAG) == null) {
-            supportFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-                    .setCustomAnimations(AnimType.FADE.getAnimPair().first, AnimType.FADE.getAnimPair().second)
-                    .replace(R.id.frame, AboutFragment().newInstance(), AboutFragment.TAG)
-                    .commit()
-        } else {
-            // Maybe an animation like shake hello text
-        }
-    }
-
-    override fun showListFragment() {
+    override fun showCategoryFragment() {
         supportFragmentManager.beginTransaction()
                 .disallowAddToBackStack()
                 .setCustomAnimations(AnimType.SLIDE.getAnimPair().first, AnimType.SLIDE.getAnimPair().second)
-                .replace(R.id.frame, CategoryFragment().newInstance(), CategoryFragment.TAG)
+                .replace(R.id.container_main, CategoryFragment().newInstance(), CategoryFragment.TAG)
                 .commit()
     }
 
@@ -54,29 +35,8 @@ class MainActivity: AppCompatActivity(), MainContract.View {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId) {
-            R.id.nav_item_info -> {
-                presenter.onDrawerOptionAboutClick()
-                return true
-            }
-            else -> {
-
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onBackPressed() {
-        val fragmentManager = supportFragmentManager
-        val fragment = fragmentManager.findFragmentByTag(AboutFragment.TAG)
-
-        if (fragment == null) {
-            super.onBackPressed()
-        } else {
-            supportFragmentManager.popBackStack()
-        }
+        finish()
     }
 
     private fun injectDependency() {
@@ -85,10 +45,6 @@ class MainActivity: AppCompatActivity(), MainContract.View {
                 .build()
 
         activityComponent.inject(this)
-    }
-
-    private fun test() {
-        //hello.setText("Hello world with kotlin extensions")
     }
 
     enum class AnimType() {

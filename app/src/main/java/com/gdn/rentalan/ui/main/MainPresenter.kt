@@ -17,10 +17,6 @@ class MainPresenter: MainContract.Presenter {
 
     override fun attach(view: MainContract.View) {
         this.view = view
-        view.showListFragment() // as default
-    }
-
-    override fun onDrawerOptionAboutClick() {
-        view.showAboutFragment()
+        view.showCategoryFragment() // as default
     }
 }
