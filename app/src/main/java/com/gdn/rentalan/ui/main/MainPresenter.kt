@@ -1,6 +1,12 @@
 package com.gdn.rentalan.ui.main
 
 import io.reactivex.disposables.CompositeDisposable
+import android.R
+import android.app.PendingIntent.getActivity
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import com.gdn.rentalan.ui.category.CategoryFragment
+
 
 class MainPresenter: MainContract.Presenter {
 
@@ -16,7 +22,8 @@ class MainPresenter: MainContract.Presenter {
     }
 
     override fun attach(view: MainContract.View) {
+
         this.view = view
-        view.showCategoryFragment() // as default
+        view.addFragment(CategoryFragment()) // as default
     }
 }
