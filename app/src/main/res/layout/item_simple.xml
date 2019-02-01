@@ -12,12 +12,29 @@
             android:layout_marginStart="@dimen/spacing_smaller"
             android:layout_marginEnd="@dimen/spacing_smaller">
 
-        <TextView
+        <android.support.constraint.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Kamera"
                 android:textStyle="bold"
-                android:text="Kamera"/>
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Kamera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_title"
+                tools:layout_editor_absoluteY="0dp"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <TextView
                 android:id="@+id/tv_description"
