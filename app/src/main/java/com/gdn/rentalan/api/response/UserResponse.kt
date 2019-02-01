@@ -1,12 +1,12 @@
-package com.gdn.rentalan.models
+package com.gdn.rentalan.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoryResponse(
+data class UserResponse(
 
 	@field:SerializedName("code")
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<Category>? = null
+	val data: List<User>? = null
 )

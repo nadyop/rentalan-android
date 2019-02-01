@@ -1,21 +1,21 @@
-package com.gdn.rentalan.ui.category
+package com.gdn.rentalan.ui.user
 
 import com.gdn.rentalan.api.ApiInterface
-import com.gdn.rentalan.api.response.Category
-import com.gdn.rentalan.api.response.CategoryResponse
+import com.gdn.rentalan.api.response.User
+import com.gdn.rentalan.api.response.UserResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class CategoryListPresenter : CategoryContract.Presenter {
+class UserListPresenter : UserContract.Presenter {
     private val subscriptions = CompositeDisposable()
     private val api: ApiInterface = ApiInterface.create()
-    private lateinit var view: CategoryContract.View
+    private lateinit var view: UserContract.View
 
     override fun loadData() {
-        val subscribe = api.getCategoryList().subscribeOn(Schedulers.io())
+        val subscribe = api.getUserList().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ list: CategoryResponse? ->
+                .subscribe({ list: UserResponse? ->
                     view.showProgress(false)
                     list?.let { view.loadDataSuccess(it) }
                 }, { error ->
@@ -26,7 +26,7 @@ class CategoryListPresenter : CategoryContract.Presenter {
         subscriptions.add(subscribe)
     }
 
-    override fun deleteItem(item: Category) {
+    override fun deleteItem(item: User) {
     }
 
     override fun subscribe() {
@@ -37,7 +37,7 @@ class CategoryListPresenter : CategoryContract.Presenter {
         subscriptions.clear()
     }
 
-    override fun attach(view: CategoryContract.View) {
+    override fun attach(view: UserContract.View) {
         this.view = view
     }
 }

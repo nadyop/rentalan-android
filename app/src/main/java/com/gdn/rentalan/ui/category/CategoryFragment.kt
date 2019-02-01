@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.di.component.DaggerFragmentComponent
 import com.gdn.rentalan.di.module.FragmentModule
-import com.gdn.rentalan.models.Category
-import com.gdn.rentalan.models.CategoryResponse
+import com.gdn.rentalan.api.response.Category
+import com.gdn.rentalan.api.response.CategoryResponse
 import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 

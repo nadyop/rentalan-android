@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.category
+package com.gdn.rentalan.ui.user
 
 import android.content.Context
 import android.databinding.DataBindingUtil
@@ -8,16 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
+import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.ItemSimpleBinding
-import com.gdn.rentalan.api.response.Category
 
-class CategoryListAdapter(private val context: Context, private val list: MutableList<Category>,
-                          fragment: Fragment) : RecyclerView.Adapter<CategoryListAdapter.ListViewHolder>() {
+class UserListAdapter(private val context: Context, private val list: MutableList<User>,
+                      fragment: Fragment) : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
 
-    private val listener: CategoryListAdapter.onItemClickListener
+    private val listener: UserListAdapter.onItemClickListener
 
     init {
-        this.listener = fragment as CategoryListAdapter.onItemClickListener
+        this.listener = fragment as UserListAdapter.onItemClickListener
     }
 
 
@@ -26,17 +26,17 @@ class CategoryListAdapter(private val context: Context, private val list: Mutabl
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val category = list[position]
+        val user = list[position]
 
         holder.itemCategoryBinding.let {
-            it?.tvTitle?.text = category.name
-            it?.tvDescription?.text = category.description
+            it?.tvTitle?.text = user.sureName
+            it?.tvDescription?.text = user.city
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_simple, parent, false)
-        return CategoryListAdapter.ListViewHolder(itemView)
+        return UserListAdapter.ListViewHolder(itemView)
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,7 +44,7 @@ class CategoryListAdapter(private val context: Context, private val list: Mutabl
     }
 
     interface onItemClickListener {
-        fun itemRemoveClick(post: Category)
+        fun itemRemoveClick(post: User)
         fun itemDetail(postId: String)
     }
 }

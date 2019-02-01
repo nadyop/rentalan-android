@@ -1,4 +1,4 @@
-package com.gdn.rentalan.models
+package com.gdn.rentalan.api.response
 
 import com.google.gson.annotations.SerializedName
 
