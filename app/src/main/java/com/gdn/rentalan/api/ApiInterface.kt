@@ -18,6 +18,10 @@ interface ApiInterface {
     @GET("user?status=all")
     fun getUserList(): Observable<UserResponse>
 
+    //    product
+//    @GET("product?status=active")
+//    fun getProductList(): Observable<ProductResponse>
+
     companion object Factory {
         fun create(): ApiInterface {
             val retrofit = retrofit2.Retrofit.Builder()

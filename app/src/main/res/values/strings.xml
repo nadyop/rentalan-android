@@ -8,4 +8,33 @@
     <string name="category">Kategori</string>
     <string name="product">Barang</string>
     <string name="user">Pengguna</string>
+
+    <!--activity detail-->
+    <string name="user_detail">Detail Pengguna</string>
+    <string name="user_face">Pas Photo</string>
+    <string name="user_self">Foto Selfie</string>
+    <string name="user_ktp">Foto KTP</string>
+    <string name="user_profile_info">Informasi Profil</string>
+    <string name="email">E-mail</string>
+    <string name="username">Username</string>
+    <string name="phone">No. HP</string>
+    <string name="gender">Gender</string>
+    <string name="birth">Tgl Lahir</string>
+    <string name="user_address_info">Informasi Alamat</string>
+    <string name="address">Alamat</string>
+    <string name="city">Kota</string>
+    <string name="province">Provinsi</string>
+
+    <string name="correction">Koreksi</string>
+    <string name="active">Aktifkan</string>
+
+    <string name="category_detail">Detail Kategori</string>
+
+    <string name="product_detail">Detail Barang</string>
+    <string name="product_name">Nama</string>
+    <string name="product_description">Deskripsi Barang</string>
+    <string name="product_per_day">/hari</string>
+    <string name="product_stock">stok</string>
+    <string name="product_late_charge">Denda</string>
+    <string name="product_dp">DP</string>
 </resources>

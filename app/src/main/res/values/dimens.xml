@@ -62,4 +62,7 @@
     <dimen name="card_view_footer_action_corner_radius">0dp</dimen>
 
     <dimen name="elevation_shadow">16dp</dimen>
+
+    <dimen name="image_width_medium">150dp</dimen>
+    <dimen name="image_width_large">200dp</dimen>
 </resources>
