@@ -39,7 +39,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:textSize="@dimen/twenty"
+                            android:textSize="@dimen/text_size_super_large"
                             android:textAllCaps="true"
                             android:textStyle="bold"
                             android:layout_marginTop="@dimen/spacing_smaller"

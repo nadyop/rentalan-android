@@ -39,12 +39,6 @@
     <color name="notification_alert_default_icon_color">@color/orange_1_100</color>
     <color name="notification_border_default_color">#d5d5d5</color>
 
-    <!-- order detail footer -->
-    <!--<color name="order_detail_footer_action_button_bgcolor">@color/blue_1_100</color>-->
-    <!--<color name="order_detail_footer_action_button_textcolor">@color/white_1_100</color>-->
-
-    <!-- order confirmation -->
-
     <!-- form -->
     <color name="hint_color">@color/black_1_25</color>
     <color name="disabled_color">@color/black_1_25</color>
