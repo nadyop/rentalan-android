@@ -55,8 +55,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         supportFragmentManager
                 .beginTransaction()
                 .disallowAddToBackStack()
-                .setCustomAnimations(AnimType.SLIDE.getAnimPair().first, AnimType.SLIDE.getAnimPair().second)
-                .replace(R.id.container_main, fragment, fragment.javaClass.getSimpleName())
+                .replace(R.id.container_main, fragment, fragment.javaClass.simpleName)
                 .commit()
     }
 

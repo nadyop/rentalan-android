@@ -69,4 +69,6 @@
     <string name="product_stock">Stok</string>
     <string name="product_late_charge">Denda</string>
     <string name="product_dp">Uang Muka</string>
+
+    <string name="no_data">Data tidak tersedia</string>
 </resources>

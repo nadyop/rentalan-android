@@ -32,7 +32,7 @@ class UserFragment : Fragment(), UserContract.View, UserListAdapter.onItemClickL
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_category, container, false)
+        rootView = inflater.inflate(R.layout.fragment_user, container, false)
         return rootView
     }
 
