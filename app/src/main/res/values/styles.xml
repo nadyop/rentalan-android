@@ -43,4 +43,13 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/separator_color</item>
     </style>
+
+    <style name="Dialog.NoTitle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Dialog.FullScreen" parent="Dialog.NoTitle">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
 </resources>

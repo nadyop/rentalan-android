@@ -8,13 +8,14 @@ import android.view.Menu
 import com.gdn.rentalan.R
 import com.gdn.rentalan.di.component.DaggerActivityComponent
 import com.gdn.rentalan.di.module.ActivityModule
+import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.product.ProductFragment
 import com.gdn.rentalan.ui.user.UserFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
     lateinit var presenter: MainContract.Presenter
@@ -28,6 +29,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         val fragment = CategoryFragment()
         addFragment(fragment)
         presenter.attach(this)
+    }
+
+    private fun injectDependency() {
+        val activityComponent = DaggerActivityComponent.builder()
+                .activityModule(ActivityModule(this))
+                .build()
+
+        activityComponent.inject(this)
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -66,27 +75,5 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onBackPressed() {
         finish()
-    }
-
-    private fun injectDependency() {
-        val activityComponent = DaggerActivityComponent.builder()
-                .activityModule(ActivityModule(this))
-                .build()
-
-        activityComponent.inject(this)
-    }
-
-    enum class AnimType() {
-        SLIDE,
-        FADE;
-
-        fun getAnimPair(): Pair<Int, Int> {
-            return when (this) {
-                SLIDE -> Pair(R.anim.slide_left, R.anim.slide_right)
-                FADE -> Pair(R.anim.fade_in, R.anim.fade_out)
-            }
-
-            return Pair(R.anim.slide_left, R.anim.slide_right)
-        }
     }
 }

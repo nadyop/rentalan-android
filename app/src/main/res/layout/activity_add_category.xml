@@ -19,11 +19,11 @@
             android:id="@+id/categoryInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/black_1_50"
             android:layout_margin="@dimen/spacing_small">
 
             <EditText
-                android:id="@+id/et_category"
+                android:id="@+id/et_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/spacing_extra_smaller"
@@ -31,6 +31,25 @@
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:textSize="@dimen/abc_text_size_small_material"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/categoryDescInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black_1_50"
+                android:layout_margin="@dimen/spacing_small">
+
+            <EditText
+                    android:id="@+id/et_category_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/spacing_extra_smaller"
+                    android:hint="@string/description"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="@dimen/abc_text_size_small_material"/>
 
         </android.support.design.widget.TextInputLayout>
 

@@ -9,9 +9,11 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar"
-            app:title="@string/user"/>
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                app:title="@string/user"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

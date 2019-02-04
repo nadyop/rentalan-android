@@ -1,18 +1,17 @@
 package com.gdn.rentalan.ui.category
 
-import com.gdn.rentalan.api.ApiInterface
-import com.gdn.rentalan.api.response.Category
 import com.gdn.rentalan.api.response.CategoryResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class CategoryListPresenter : CategoryContract.Presenter {
-    private val subscriptions = CompositeDisposable()
-    private val api: ApiInterface = ApiInterface.create()
+
     private lateinit var view: CategoryContract.View
+    private lateinit var subscriptions: CompositeDisposable
 
     override fun loadData() {
+//        view.showProgress(true)
         val subscribe = api.getCategoryList().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: CategoryResponse? ->
@@ -26,11 +25,8 @@ class CategoryListPresenter : CategoryContract.Presenter {
         subscriptions.add(subscribe)
     }
 
-    override fun deleteItem(item: Category) {
-    }
-
     override fun subscribe() {
-
+        subscriptions = CompositeDisposable()
     }
 
     override fun unsubscribe() {

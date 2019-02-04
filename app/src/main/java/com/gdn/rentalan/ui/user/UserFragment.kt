@@ -12,23 +12,28 @@ import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.api.response.UserResponse
 import com.gdn.rentalan.di.component.DaggerFragmentComponent
 import com.gdn.rentalan.di.module.FragmentModule
+import com.gdn.rentalan.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 
-class UserFragment : Fragment(), UserContract.View, UserListAdapter.onItemClickListener {
+class UserFragment : Fragment(), UserContract.View {
 
     @Inject
     lateinit var presenter: UserContract.Presenter
 
     private lateinit var rootView: View
 
-    fun newInstance(): UserFragment {
-        return UserFragment()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectDependency()
+    }
+
+    private fun injectDependency() {
+        val listComponent = DaggerFragmentComponent.builder()
+                .fragmentModule(FragmentModule())
+                .build()
+
+        listComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,27 +68,11 @@ class UserFragment : Fragment(), UserContract.View, UserListAdapter.onItemClickL
     override fun loadDataSuccess(list: UserResponse) {
         val adapter = activity?.let {
             list.data?.toMutableList()?.let { users ->
-                UserListAdapter(it, users, this)
+                UserListAdapter(it, users)
             }
         }
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
-    }
-
-    override fun itemRemoveClick(post: User) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun itemDetail(postId: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private fun injectDependency() {
-        val listComponent = DaggerFragmentComponent.builder()
-                .fragmentModule(FragmentModule())
-                .build()
-
-        listComponent.inject(this)
     }
 
     private fun initView() {

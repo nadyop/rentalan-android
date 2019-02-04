@@ -24,6 +24,5 @@ class MainPresenter: MainContract.Presenter {
     override fun attach(view: MainContract.View) {
 
         this.view = view
-        view.addFragment(CategoryFragment()) // as default
     }
 }
