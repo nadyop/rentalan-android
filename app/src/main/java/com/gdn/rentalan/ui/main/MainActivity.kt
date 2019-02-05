@@ -3,31 +3,41 @@ package com.gdn.rentalan.ui.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import com.gdn.rentalan.R
-import com.gdn.rentalan.di.component.DaggerActivityComponent
-import com.gdn.rentalan.di.module.ActivityModule
+import com.gdn.rentalan.ui.base.BaseActivity
+import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.product.ProductFragment
-import com.gdn.rentalan.ui.user.UserFragment
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInjector {
+
+    @Inject
+    internal lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var presenter: MainContract.Presenter
 
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return this.fragmentInjector
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        injectDependency()
+
+        AndroidInjection.inject(this)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val fragment = CategoryFragment()
         addFragment(fragment)
-        presenter.attach(this)
+        presenter.attach()
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -43,7 +53,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_user -> {
-                val fragment = UserFragment()
+                val fragment = CategoryFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -66,27 +76,5 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onBackPressed() {
         finish()
-    }
-
-    private fun injectDependency() {
-        val activityComponent = DaggerActivityComponent.builder()
-                .activityModule(ActivityModule(this))
-                .build()
-
-        activityComponent.inject(this)
-    }
-
-    enum class AnimType() {
-        SLIDE,
-        FADE;
-
-        fun getAnimPair(): Pair<Int, Int> {
-            return when (this) {
-                SLIDE -> Pair(R.anim.slide_left, R.anim.slide_right)
-                FADE -> Pair(R.anim.fade_in, R.anim.fade_out)
-            }
-
-            return Pair(R.anim.slide_left, R.anim.slide_right)
-        }
     }
 }

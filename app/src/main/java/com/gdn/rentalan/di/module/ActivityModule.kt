@@ -1,22 +1,22 @@
 package com.gdn.rentalan.di.module
 
-import android.app.Activity
-import com.gdn.rentalan.ui.main.MainContract
-import com.gdn.rentalan.ui.main.MainPresenter
+import com.gdn.rentalan.di.module.feature.CategoryModule
+import com.gdn.rentalan.di.module.feature.MainModule
+import com.gdn.rentalan.di.scope.ActivityScope
+import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.main.MainActivity
 import dagger.Module
-import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 
 @Module
-class ActivityModule(private var activity: Activity) {
+abstract class ActivityModule {
 
-    @Provides
-    fun provideActivity(): Activity {
-        return activity
-    }
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    abstract fun provideMainActivity(): MainActivity
 
-    @Provides
-    fun providePresenter(): MainContract.Presenter {
-        return MainPresenter()
-    }
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [CategoryModule::class])
+    abstract fun provideCategoryFragment(): CategoryFragment
 
 }

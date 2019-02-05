@@ -9,6 +9,5 @@ class MainContract {
         fun addFragment(fragment: Fragment)
     }
 
-    interface Presenter: BaseContract.Presenter<MainContract.View> {
-    }
+    interface Presenter: BaseContract.Presenter
 }
