@@ -25,7 +25,7 @@ interface ApiInterface {
 
     //    product
     @GET("product?status=waiting")
-    fun getProductListWaiting(): Observable<Product>
+    fun getProductListWaiting(): Observable<RestListResponse<Product>>
 
     @GET("product?status=active")
     fun getProductListActive(): Observable<Product>

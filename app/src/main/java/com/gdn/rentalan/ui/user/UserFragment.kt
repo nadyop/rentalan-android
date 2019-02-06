@@ -10,6 +10,7 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.FragmentCategoryBinding
+import com.gdn.rentalan.databinding.FragmentUserBinding
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
@@ -20,7 +21,7 @@ class UserFragment : BaseFragment(), UserContract.View {
 
     @Inject
     lateinit var presenter: UserContract.Presenter
-    private lateinit var binding: FragmentCategoryBinding
+    private lateinit var binding: FragmentUserBinding
     private var refreshList: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class UserFragment : BaseFragment(), UserContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
         return binding.root
     }
 
@@ -42,9 +43,6 @@ class UserFragment : BaseFragment(), UserContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         initView()
-        binding.btAdd.setOnClickListener {
-            activity?.let { Router.goToCategoryAdd(it) }
-        }
     }
 
 
@@ -66,8 +64,8 @@ class UserFragment : BaseFragment(), UserContract.View {
 
     override fun fetchDataSuccess(list: RestListResponse<User>) {
         val adapter = activity?.let {
-            list.data?.toMutableList()?.let { categories ->
-                UserListAdapter(it, categories, this)
+            list.data?.toMutableList()?.let { users ->
+                UserListAdapter(it, users, this)
             }
         }
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -75,7 +73,7 @@ class UserFragment : BaseFragment(), UserContract.View {
     }
 
     companion object {
-        val TAG: String = "CategoryFragment"
+        val TAG: String = "UserFragment"
     }
 
 }
