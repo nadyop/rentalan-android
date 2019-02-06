@@ -3,6 +3,7 @@ package com.gdn.rentalan.ui.category
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,4 +35,5 @@ class CategoryListAdapter(private val context: Context, private val list: Mutabl
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
     }
+
 }

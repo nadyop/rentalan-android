@@ -8,8 +8,8 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
-class ApplicationModule(private val appBase: ApplicationBase, private val api: ApiInterface) {
+@Module(includes = [WebServiceModule::class])
+class ApplicationModule(private val appBase: ApplicationBase) {
 
     @Provides
     @Singleton

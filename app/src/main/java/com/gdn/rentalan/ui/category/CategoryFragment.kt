@@ -3,34 +3,35 @@ package com.gdn.rentalan.ui.category
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
-import com.gdn.rentalan.api.response.CategoryResponse
+import com.gdn.rentalan.api.RestListResponse
+import com.gdn.rentalan.api.response.Category
 import com.gdn.rentalan.databinding.FragmentCategoryBinding
-import com.gdn.rentalan.di.component.DaggerFragmentComponent
-import com.gdn.rentalan.di.module.FragmentModule
+import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.util.Router
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_category.view.*
 import javax.inject.Inject
 
+class CategoryFragment : BaseFragment(), CategoryContract.View {
 
 class CategoryFragment : BaseFragment(), CategoryContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     lateinit var presenter: CategoryContract.Presenter
     private lateinit var binding: FragmentCategoryBinding
-    private lateinit var bindingActivity: AddCategoryActivity
-    private var categoryActivity: AddCategoryActivity? = null
+    private var refreshList: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectDependency()
+        AndroidSupportInjection.inject(this)
     }
 
     private fun injectDependency() {
@@ -46,23 +47,23 @@ class CategoryFragment : BaseFragment(), CategoryContract.View, SwipeRefreshLayo
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.refresh.setOnRefreshListener(this)
-        presenter.attach(this)
-        presenter.subscribe()
-        initView()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        refreshList = true
     }
 
-    override fun onRefresh() {
-        view?.refresh.let {
-            presenter.loadData()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.attachView(this)
+        initView()
+        binding.btAdd.setOnClickListener {
+            activity?.let { Router.goToCategoryAdd(it) }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        presenter.unsubscribe()
+
+    private fun initView() {
+        presenter.fetchData()
     }
 
     override fun showProgress(show: Boolean) {
@@ -74,10 +75,10 @@ class CategoryFragment : BaseFragment(), CategoryContract.View, SwipeRefreshLayo
     }
 
     override fun showErrorMessage(error: String) {
-        Log.e("Error", error)
+        binding.tvNoData.visibility = View.VISIBLE
     }
 
-    override fun loadDataSuccess(list: CategoryResponse) {
+    override fun fetchDataSuccess(list: RestListResponse<Category>) {
         val adapter = activity?.let {
             list.data?.toMutableList()?.let { categories ->
                 CategoryListAdapter(it, categories)
@@ -87,21 +88,8 @@ class CategoryFragment : BaseFragment(), CategoryContract.View, SwipeRefreshLayo
         recyclerView.adapter = adapter
     }
 
-    private fun initView() {
-        presenter.loadData()
-        this.showAddCategory()
-    }
-
-    override fun showAddCategory() {
-        val itemCategory = String
-
-        binding.btAdd.setOnClickListener {
-            val intent = Intent(context, AddCategoryActivity::class.java)
-            context?.startActivity(intent)
-        }
-    }
-
     companion object {
-        val TAG: String = "ListFragment"
+        val TAG: String = "CategoryFragment"
     }
+
 }

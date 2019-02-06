@@ -4,117 +4,118 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white_4_100"
-        android:orientation="vertical">
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_4_100"
+            android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar"
-            app:navigationIcon="@drawable/ic_left"
-            app:title="@string/rent"
-            app:titleTextColor="@color/white"/>
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                app:navigationIcon="@drawable/ic_left"
+                app:title="@string/rent"
+                app:titleTextColor="@color/white"/>
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/ll_product_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/spacing_small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/startInputLayout"
+                    android:id="@+id/ll_product_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_small"
-                    android:textColorHint="@color/colorPrimary">
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/spacing_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
-                        android:id="@+id/et_start_date"
+                <android.support.design.widget.TextInputLayout
+                        android:id="@+id/startInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/spacing_extra_smaller"
-                        android:hint="@string/date_start"
-                        android:imeOptions="actionNext"
-                        android:inputType="date"
-                        android:textSize="@dimen/abc_text_size_small_material"/>
+                        android:layout_margin="@dimen/spacing_small"
+                        android:textColorHint="@color/colorPrimary">
+
+                    <EditText
+                            android:id="@+id/et_start_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/spacing_extra_smaller"
+                            android:hint="@string/date_start"
+                            android:imeOptions="actionNext"
+                            android:inputType="date"
+                            android:textSize="@dimen/abc_text_size_small_material"/>
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/endInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_small"
-                    android:textColorHint="@color/colorPrimary">
-
-                    <EditText
-                        android:id="@+id/et_end_date"
+                        android:id="@+id/endInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/spacing_extra_smaller"
-                        android:hint="@string/date_end"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textSize="@dimen/abc_text_size_small_material"/>
+                        android:layout_margin="@dimen/spacing_small"
+                        android:textColorHint="@color/colorPrimary">
+
+                    <EditText
+                            android:id="@+id/et_end_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/spacing_extra_smaller"
+                            android:hint="@string/date_end"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/abc_text_size_small_material"/>
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/countInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_small"
-                    android:textColorHint="@color/colorPrimary">
-
-                    <EditText
-                        android:id="@+id/et_count"
+                        android:id="@+id/countInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/spacing_extra_smaller"
-                        android:hint="@string/sum"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textSize="@dimen/abc_text_size_small_material"/>
+                        android:layout_margin="@dimen/spacing_small"
+                        android:textColorHint="@color/colorPrimary">
+
+                    <EditText
+                            android:id="@+id/et_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/spacing_extra_smaller"
+                            android:hint="@string/sum"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/abc_text_size_small_material"/>
 
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
-                    android:layout_marginRight="@dimen/spacing_super_larger"
-                    android:textSize="@dimen/text_size_normal"
-                    android:text="@string/total"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="@dimen/spacing_super_larger"
+                        android:textSize="@dimen/text_size_normal"
+                        android:text="@string/total"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
-                    android:textStyle="bold"
-                    android:layout_marginRight="@dimen/spacing_super_larger"
-                    android:textSize="@dimen/text_size_larger"
-                    android:text="50000"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textStyle="bold"
+                        android:layout_marginRight="@dimen/spacing_super_larger"
+                        android:textSize="@dimen/text_size_larger"
+                        android:text="50000"/>
 
                 <Button
-                    android:id="@+id/bt_rent"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/spacing_larger"
-                    android:background="@color/colorAccent"
-                    android:text="@string/rent"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                        android:id="@+id/bt_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="@dimen/spacing_larger"
+                        android:background="@color/colorAccent"
+                        android:text="@string/rent"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"/>
             </LinearLayout>
 
         </ScrollView>

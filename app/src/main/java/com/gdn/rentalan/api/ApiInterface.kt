@@ -2,21 +2,18 @@ package com.gdn.rentalan.api
 
 import com.gdn.rentalan.api.request.*
 import com.gdn.rentalan.api.response.*
-import com.gdn.rentalan.util.Constants
 import io.reactivex.Observable
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ApiInterface {
 
     //    category
     @GET("category")
-    fun getCategoryList(): Observable<CategoryResponse>
+    fun getCategoryList(): Observable<RestListResponse<Category>>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @GET("category")
-    fun getCategoryDetail(@Query("categoryId") categoryId: String): Observable<CategoryResponse>
+    fun getCategoryDetail(@Query("categoryId") categoryId: String): Observable<Category>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("category")
@@ -28,10 +25,10 @@ interface ApiInterface {
 
     //    product
     @GET("product?status=waiting")
-    fun getProductListWaiting(): Observable<ProductResponse>
+    fun getProductListWaiting(): Observable<Product>
 
     @GET("product?status=active")
-    fun getProductListActive(): Observable<ProductResponse>
+    fun getProductListActive(): Observable<Product>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("product")
@@ -46,13 +43,13 @@ interface ApiInterface {
     fun verifProduct(@Query("productId") productId: String): Observable<RestCommonResponse>
 
     @GET("product")
-    fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<ProductResponse>
+    fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<Product>
 
     @GET("product")
-    fun getProductDetail(@Query("productId") productId: String): Observable<ProductResponse>
+    fun getProductDetail(@Query("productId") productId: String): Observable<Product>
 
     @GET("product")
-    fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode") cityCode: String): Observable<ProductResponse>
+    fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode") cityCode: String): Observable<Product>
 
     //    rent
     @Headers("Accept: application/json", "Content-Type: application/json")
@@ -60,7 +57,7 @@ interface ApiInterface {
     fun rentProduct(@Query("userId") userId: String, @Body rentRequest: RentRequest): Observable<RestCommonResponse>
 
     @GET("rent/transaction")
-    fun getTransactionList(@Query("userId") userId: String): Observable<TransactionResponse>
+    fun getTransactionList(@Query("userId") userId: String): Observable<Transaction>
 
     @POST("rent/accept")
     fun acceptRentProduct(@Query("transactionId") transactionId: String): Observable<RestCommonResponse>
@@ -78,10 +75,10 @@ interface ApiInterface {
     fun verifUser(@Query("userId") userId: String, @Body userRequest: UserRequest): Observable<RestCommonResponse>
 
     @GET("user")
-    fun getUserDetail(@Query("userId") userId: String): Observable<UserResponse>
+    fun getUserDetail(@Query("userId") userId: String): Observable<User>
 
     @GET("user?status=all")
-    fun getUserList(): Observable<UserResponse>
+    fun getUserList(): Observable<User>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user")
@@ -89,21 +86,9 @@ interface ApiInterface {
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/login")
-    fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
+    fun login(@Body loginRequest: LoginRequest): Observable<Login>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/change-password")
     fun changePassword(@Query("userId") userId: String, @Body passwordRequest: PasswordRequest): Observable<RestCommonResponse>
-
-    companion object Factory {
-        fun create(): ApiInterface {
-            val retrofit = retrofit2.Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(Constants.BASE_URL)
-                    .build()
-
-            return retrofit.create(ApiInterface::class.java)
-        }
-    }
 }

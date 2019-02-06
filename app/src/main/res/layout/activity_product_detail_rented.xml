@@ -4,106 +4,107 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white_4_100"
-        android:orientation="vertical">
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_4_100"
+            android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_left"
-            app:title="@string/product_detail"/>
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                app:titleTextColor="@color/white"
+                app:navigationIcon="@drawable/ic_left"
+                app:title="@string/product_detail"/>
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/cl_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:id="@+id/cl_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/ll_photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/white"
-                    android:paddingBottom="@dimen/spacing_small"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/iv_product"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/image_width_large"
-                        tools:ignore="ContentDescription"
-                        android:src="@drawable/blibli"/>
-
-                    <LinearLayout
-                        android:weightSum="2"
+                        android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/spacing_normal"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:background="@color/white"
+                        android:paddingBottom="@dimen/spacing_small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                            android:id="@+id/iv_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_width_large"
+                            tools:ignore="ContentDescription"
+                            android:src="@drawable/blibli"/>
+
+                    <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_normal"
+                            android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_product_name"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_size_super_large"
-                            android:text="@string/product_name"/>
+                                android:id="@+id/tv_product_name"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_size_super_large"
+                                android:text="@string/product_name"/>
 
                         <TextView
-                            android:id="@+id/tv_product_price_day"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/spacing_extra_smaller"
-                            android:text="@string/product_per_day"/>
+                                android:id="@+id/tv_product_price_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/spacing_extra_smaller"
+                                android:text="@string/product_per_day"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_small"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/spacing_smaller"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_photo"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:orientation="horizontal" android:id="@+id/constraintLayout">
-
-                    <TextView
-                        android:id="@+id/tv_user_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/user"
+                        android:padding="@dimen/spacing_small"
+                        android:background="@color/white"
+                        android:layout_marginTop="@dimen/spacing_smaller"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_photo"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:orientation="horizontal" android:id="@+id/constraintLayout">
 
                     <TextView
-                        android:id="@+id/tv_city"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/city"
-                        app:layout_constraintStart_toEndOf="@+id/tv_user_name"
-                        app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/user"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
-                        android:id="@+id/tv_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phone"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                            android:id="@+id/tv_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/city"
+                            app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                            android:id="@+id/tv_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/phone"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+                            app:layout_constraintStart_toStartOf="parent"/>
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -116,118 +117,118 @@
                           android:id="@+id/tv_description_label"/>
 
                 <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
 
                     <TableRow
-                        android:id="@+id/tr_category"
-                        android:padding="@dimen/spacing_normal">
+                            android:id="@+id/tr_category"
+                            android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_category_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/category"/>
+                                android:id="@+id/tv_category_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/category"/>
 
                         <TextView
-                            android:id="@+id/tv_category"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_category"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
                     </TableRow>
 
                     <View
-                        android:id="@+id/v_separator"
-                        style="@style/Separator"/>
+                            android:id="@+id/v_separator"
+                            style="@style/Separator"/>
 
                     <TableRow
-                        android:id="@+id/tr_description"
-                        android:padding="@dimen/spacing_normal">
+                            android:id="@+id/tr_description"
+                            android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_description_label_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/description"/>
+                                android:id="@+id/tv_description_label_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/description"/>
 
                         <TextView
-                            android:id="@+id/tv_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
                     </TableRow>
 
                     <View
-                        android:id="@+id/v_separator1"
-                        style="@style/Separator"/>
+                            android:id="@+id/v_separator1"
+                            style="@style/Separator"/>
 
                     <TableRow
-                        android:id="@+id/tr_dp"
-                        android:padding="@dimen/spacing_normal">
+                            android:id="@+id/tr_dp"
+                            android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_dp_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/product_dp"/>
+                                android:id="@+id/tv_dp_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_dp"/>
 
                         <TextView
-                            android:id="@+id/tv_dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
                     </TableRow>
 
                     <View
-                        android:id="@+id/v_separator2"
-                        style="@style/Separator"/>
+                            android:id="@+id/v_separator2"
+                            style="@style/Separator"/>
 
                     <TableRow
-                        android:id="@+id/tr_late_charge"
-                        android:padding="@dimen/spacing_normal">
+                            android:id="@+id/tr_late_charge"
+                            android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_late_charge_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/product_late_charge"/>
+                                android:id="@+id/tv_late_charge_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_late_charge"/>
 
                         <TextView
-                            android:id="@+id/tv_late_charge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:singleLine="false"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_late_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:singleLine="false"
+                                android:text="Kamera"/>
                     </TableRow>
                 </TableLayout>
             </android.support.constraint.ConstraintLayout>
@@ -235,26 +236,26 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@+id/ll_action"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_extra_larger"
-            android:visibility="gone"
-            android:background="@drawable/outliner_shadow"
-            android:orientation="horizontal"
-            tools:visibility="visible">
+                android:id="@+id/ll_action"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_extra_larger"
+                android:visibility="gone"
+                android:background="@drawable/outliner_shadow"
+                android:orientation="horizontal"
+                tools:visibility="visible">
 
             <TextView
-                android:id="@+id/tv_active"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/product_rent"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:background="@color/white_1_100"/>
+                    android:id="@+id/tv_active"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/product_rent"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:background="@color/white_1_100"/>
 
         </LinearLayout>
     </LinearLayout>

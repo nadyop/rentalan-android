@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Product(
 
 	@field:SerializedName("productImages")
-	val productImages: List<String?>? = null,
+	val productImages: List<String>? = null,
 
 	@field:SerializedName("downPayment")
 	val downPayment: Int? = null,

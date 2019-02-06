@@ -1,28 +1,6 @@
 package com.gdn.rentalan.ui.main
 
-import io.reactivex.disposables.CompositeDisposable
-import android.R
-import android.app.PendingIntent.getActivity
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.base.BasePresenter
+import javax.inject.Inject
 
-
-class MainPresenter: MainContract.Presenter {
-
-    private val subscriptions = CompositeDisposable()
-    private lateinit var view: MainContract.View
-
-    override fun subscribe() {
-
-    }
-
-    override fun unsubscribe() {
-        subscriptions.clear()
-    }
-
-    override fun attach(view: MainContract.View) {
-
-        this.view = view
-    }
-}
+class MainPresenter @Inject constructor(): BasePresenter(), MainContract.Presenter
