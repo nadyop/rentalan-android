@@ -4,213 +4,213 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/ll_info_verify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/state_in_progress"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar"
-            app:title="@string/me"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/not_account_verified"/>
-
-        <TextView
-            android:id="@+id/bt_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:text="@string/edit"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
-        <TableLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
+            android:background="@color/state_in_progress"
+            android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                app:title="@string/me"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/not_account_verified"/>
+
+        <TextView
+                android:id="@+id/bt_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:text="@string/edit"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
 
             <TableRow
-                android:id="@+id/tr_surename"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_surename"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_surename_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/product_name"/>
+                        android:id="@+id/tv_surename_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/product_name"/>
 
                 <TextView
-                    android:id="@+id/tv_surename"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_surename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="Kamera"/>
             </TableRow>
 
             <View
-                android:id="@+id/v_separator"
-                style="@style/Separator"/>
+                    android:id="@+id/v_separator"
+                    style="@style/Separator"/>
 
             <TableRow
-                android:id="@+id/tr_email"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_email"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_email_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/email"/>
+                        android:id="@+id/tv_email_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/email"/>
 
                 <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="Kamera"/>
             </TableRow>
 
             <TableRow
-                android:id="@+id/tr_address"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_address"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_address_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/address"/>
+                        android:id="@+id/tv_address_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/address"/>
 
                 <TextView
-                    android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="Kamera"/>
             </TableRow>
 
             <TableRow
-                android:id="@+id/tr_province"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_province"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_province_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/province"/>
+                        android:id="@+id/tv_province_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/province"/>
 
                 <TextView
-                    android:id="@+id/tv_province"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:singleLine="false"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_province"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:singleLine="false"
+                        android:text="Kamera"/>
             </TableRow>
             <TableRow
-                android:id="@+id/tr_city"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_city"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_city_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/city"/>
+                        android:id="@+id/tv_city_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/city"/>
 
                 <TextView
-                    android:id="@+id/tv_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:singleLine="false"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:singleLine="false"
+                        android:text="Kamera"/>
             </TableRow>
             <TableRow
-                android:id="@+id/tr_gender"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_gender"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_gender_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/gender"/>
+                        android:id="@+id/tv_gender_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/gender"/>
 
                 <TextView
-                    android:id="@+id/tv_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:singleLine="false"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:singleLine="false"
+                        android:text="Kamera"/>
             </TableRow>
             <TableRow
-                android:id="@+id/tr_birth"
-                android:padding="@dimen/spacing_normal">
+                    android:id="@+id/tr_birth"
+                    android:padding="@dimen/spacing_normal">
 
                 <TextView
-                    android:id="@+id/tv_birth_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/birth"/>
+                        android:id="@+id/tv_birth_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/birth"/>
 
                 <TextView
-                    android:id="@+id/tv_birth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:singleLine="false"
-                    android:text="Kamera"/>
+                        android:id="@+id/tv_birth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:singleLine="false"
+                        android:text="Kamera"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
