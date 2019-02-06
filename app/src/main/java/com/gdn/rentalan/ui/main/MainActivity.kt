@@ -12,6 +12,7 @@ import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.product.ProductFragment
+import com.gdn.rentalan.ui.user.UserFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -65,7 +66,7 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_user -> {
-                val fragment = CategoryFragment()
+                val fragment = UserFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }

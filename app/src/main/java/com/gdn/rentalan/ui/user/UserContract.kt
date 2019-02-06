@@ -7,11 +7,11 @@ import com.gdn.rentalan.ui.base.BaseContract
 class UserContract {
 
     interface View:  BaseContract.View {
-        fun loadDataSuccess(list: RestListResponse<User>)
+        fun fetchDataSuccess(list: RestListResponse<User>)
     }
 
-    interface Presenter: BaseContract.Presenter{
-        fun loadData()
-        fun deleteItem(item: RestListResponse<User>)
+    interface Presenter: BaseContract.Presenter {
+        fun fetchData()
+        fun attachView(view: View)
     }
 }

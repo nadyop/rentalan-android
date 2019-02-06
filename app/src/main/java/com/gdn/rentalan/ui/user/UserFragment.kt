@@ -1,81 +1,81 @@
 package com.gdn.rentalan.ui.user
 
-//class UserFragment : Fragment(), UserContract.View, UserListAdapter.onItemClickListener {
-//
-//    @Inject
-//    lateinit var presenter: UserContract.Presenter
-//
-//    private lateinit var rootView: View
-//
-//    fun newInstance(): UserFragment {
-//        return UserFragment()
-//    }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        injectDependency()
-//    }
-//
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        rootView = inflater.inflate(R.layout.fragment_user, container, false)
-//        return rootView
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        presenter.attach(this)
-//        presenter.subscribe()
-//        initView()
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        presenter.unsubscribe()
-//    }
-//
-//    override fun showProgress(show: Boolean) {
-//        if (show) {
-//            progressBar.visibility = View.VISIBLE
-//        } else {
-//            progressBar.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun showErrorMessage(error: String) {
-//        Log.e("Error", error)
-//    }
-//
-//    override fun loadDataSuccess(list: UserResponse) {
-//        val adapter = activity?.let {
-//            list.data?.toMutableList()?.let { users ->
-//                UserListAdapter(it, users, this)
-//            }
-//        }
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-//        recyclerView.adapter = adapter
-//    }
-//
-//    override fun itemRemoveClick(post: User) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun itemDetail(postId: String) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    private fun injectDependency() {
-//        val listComponent = DaggerFragmentComponent.builder()
-//                .fragmentModule(FragmentModule())
-//                .build()
-//
-//        listComponent.inject(this)
-//    }
-//
-//    private fun initView() {
-//        presenter.loadData()
-//    }
-//
-//    companion object {
-//        val TAG: String = "ListFragment"
-//    }
-//}
+import android.databinding.DataBindingUtil
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.gdn.rentalan.R
+import com.gdn.rentalan.api.RestListResponse
+import com.gdn.rentalan.api.response.User
+import com.gdn.rentalan.databinding.FragmentCategoryBinding
+import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.util.Router
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_user.*
+import javax.inject.Inject
+
+class UserFragment : BaseFragment(), UserContract.View {
+
+    @Inject
+    lateinit var presenter: UserContract.Presenter
+    private lateinit var binding: FragmentCategoryBinding
+    private var refreshList: Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AndroidSupportInjection.inject(this)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        refreshList = true
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.attachView(this)
+        initView()
+        binding.btAdd.setOnClickListener {
+            activity?.let { Router.goToCategoryAdd(it) }
+        }
+    }
+
+
+    private fun initView() {
+        presenter.fetchData()
+    }
+
+    override fun showProgress(show: Boolean) {
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+        } else {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun showErrorMessage(error: String) {
+        binding.tvNoData.visibility = View.VISIBLE
+    }
+
+    override fun fetchDataSuccess(list: RestListResponse<User>) {
+        val adapter = activity?.let {
+            list.data?.toMutableList()?.let { categories ->
+                UserListAdapter(it, categories, this)
+            }
+        }
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = adapter
+    }
+
+    companion object {
+        val TAG: String = "CategoryFragment"
+    }
+
+}

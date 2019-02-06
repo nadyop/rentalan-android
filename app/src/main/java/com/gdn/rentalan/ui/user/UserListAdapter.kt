@@ -12,14 +12,7 @@ import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.ItemSimpleBinding
 
 class UserListAdapter(private val context: Context, private val list: MutableList<User>,
-                      fragment: Fragment) : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
-
-    private val listener: UserListAdapter.onItemClickListener
-
-    init {
-        this.listener = fragment as UserListAdapter.onItemClickListener
-    }
-
+                          fragment: Fragment) : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -43,8 +36,4 @@ class UserListAdapter(private val context: Context, private val list: MutableLis
         val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
     }
 
-    interface onItemClickListener {
-        fun itemRemoveClick(post: User)
-        fun itemDetail(postId: String)
-    }
 }

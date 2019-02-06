@@ -78,7 +78,7 @@ interface ApiInterface {
     fun getUserDetail(@Query("userId") userId: String): Observable<User>
 
     @GET("user?status=all")
-    fun getUserList(): Observable<User>
+    fun getUserList(): Observable<RestListResponse<User>>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user")

@@ -12,9 +12,9 @@
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/Toolbar"
-                app:title="@string/user"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:title="@string/user"/>
 
         <ProgressBar
                 android:id="@+id/progressBar"
@@ -26,18 +26,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/toolbar"/>
 
-        <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+        <TextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:text="@string/no_data"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                android:layout_weight="1">
+                app:layout_constraintTop_toTopOf="@+id/toolbar"/>
 
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-        </ScrollView>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/icon_size_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
