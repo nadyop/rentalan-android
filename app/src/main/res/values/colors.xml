@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/blue_1_100</color>
+    <color name="colorPrimaryDark">@color/blue_4_100</color>
+    <color name="colorAccent">@color/blue_2_100</color>
+
+    <color name="black">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="Blue">#0095da</color>
+    <color name="NaviBlue">#0f6ec2</color>
+    <color name="green">#4CAF50</color>
+    <color name="dark_sky_blue">#3498db</color>
+    <color name="orange">#f7931e</color>
+    <color name="pink">#F50057</color>
+    <color name="lightgreen">#00BFA5</color>
+    <color name="red">#FF0000</color>
+    <color name="piechartGreen">#7ecb6a</color>
+    <color name="piechartRed">#c54f39</color>
+    <color name="piechartYellow">#e9d024</color>
+    <color name="piechartBlue">#5588c5</color>
+    <color name="yellow">#FFD700</color>
+    <color name="grey">#70000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="lightgrey">#BDBDBD</color>
+    <color name="greyish_brown">#4a4a4a</color>
+    <color name="light_grey">#333333</color>
+    <color name="light_silver">#DADADA</color>
+    <color name="filter_color">#eeeeee</color>
+    <color name="greyish_silver">#f5f5f5</color>
+    <color name="rate_us_blue">#0096d9</color>
+    <color name="light_green">#2ad587</color>
+    <color name="silver_grey">#CCCCCC</color>
+    <color name="track_green">#c0eed9</color>
+
+    <!-- notification alert -->
+    <color name="alert_green_bgcolor">@color/green_3_100</color>
+    <color name="alert_red_bgcolor">@color/red_3_100</color>
+    <color name="alert_yellow_bgcolor">@color/yellow_3_100</color>
+    <color name="notification_alert_default_icon_color">@color/orange_1_100</color>
+    <color name="notification_border_default_color">#d5d5d5</color>
+
+    <!-- form -->
+    <color name="hint_color">@color/black_1_25</color>
+    <color name="disabled_color">@color/black_1_25</color>
+    <color name="separator_color">@color/black_1_12</color>
+
+    <color name="state_basic">@color/blue_2_100</color>
+    <color name="state_in_progress">@color/orange_2_100</color>
+    <color name="state_done">@color/green_2_100</color>
+    <color name="state_error">@color/red_2_100</color>
+
+    <color name="main_bgcolor_grey">@color/white_2_100</color>
+    <color name="main_bgcolor_white">@color/white_1_100</color>
+
+    <color name="action_button_blue">@color/blue_1_100</color>
+    <color name="action_button_red">@color/red_2_100</color>
+
+    <color name="button_text_disabled">@color/black_1_25</color>
+    <color name="button_text_enabled">@color/white_1_100</color>
+    <color name="button_ghost_text_enabled">@color/blue_1_100</color>
+
+    <!-- NEW CONVENTION: MASTER COLOR -->
+
+    <color name="white_1_100">#FFFFFF</color>
+    <color name="white_1_60">#99FFFFFF</color>
+    <color name="white_1_50">#80FFFFFF</color>
+    <color name="white_1_0">#00FFFFFF</color>
+
+    <color name="white_2_100">#F2F2F2</color>
+    <color name="white_3_100">#FAFAFA</color>
+    <color name="white_4_100">#cccccc</color>
+
+    <color name="gray_1_100">#DADADA</color>
+
+    <color name="black_1_100">#FF333333</color>
+    <color name="black_1_60">#99333333</color>
+    <color name="black_1_50">#80333333</color>
+    <color name="black_1_25">#40333333</color>
+    <color name="black_1_12">#1F333333</color>
+
+    <color name="black_1_50_solid">#FF999999</color>
+    <color name="black_1_12_solid">#e7e7e7</color>
+
+    <color name="black_2_100">#000000</color>
+
+    <color name="blue_1_100">#3498DB</color>
+    <color name="blue_2_100">#00B2CF</color>
+    <color name="blue_3_100">#E5F4FB</color>
+    <color name="blue_4_100">#0096d9</color>
+
+    <color name="green_1_100">#00B35E</color>
+    <color name="green_2_100">#89C747</color>
+    <color name="green_3_100">#F3F9EC</color>
+
+    <color name="red_1_100">#FF0000</color>
+    <color name="red_2_100">#FB4157</color>
+    <color name="red_3_100">#FFEFF1</color>
+    <color name="orange_1_100">#F7931E</color>
+    <color name="orange_2_100">#f0AD4E</color>
+    <color name="yellow_3_100">#FFFEE7</color>
+
+    <!--Merchant Rating-->
+    <color name="rating_range_90_100">#89c747</color>
+    <color name="rating_range_80_89">#efc857</color>
+    <color name="rating_range_75_79">#ff8c06</color>
+    <color name="rating_range_1_74">#f8011e</color>
 </resources>

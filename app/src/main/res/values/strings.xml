@@ -1,14 +1,74 @@
 <resources>
     <string name="app_name">Rentalan</string>
 
+    <!-- app -->
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="not_have_account">Belum punya akun?</string>
+    <string name="have_account">Sudah punya akun?</string>
+    <string name="register">Daftar</string>
+    <string name="next">Lanjut</string>
+    <string name="otp">Kode Verifikasi</string>
+    <string name="otp_check">Silahkan periksa email untuk mendapatkan kode verifikasi</string>
+    <string name="self_data">Data Diri</string>
+    <string name="fill_in_self_data">Lengkapi data diri anda untuk dapat melanjutkan pendaftaran</string>
+    <string name="search">Cari...</string>
+    <string name="fill_data">Lengkapi data diri untuk dapat melakukan transaksi</string>
+    <string name="account_created">Akun sukses dibuat</string>
+    <string name="not_account_verified">Akun belum diverifikasi</string>
+    <string name="account_verified">Akun telah terverifikasi</string>
+    <string name="edit">Edit</string>
+    <string name="save">Simpan</string>
+    <string name="rent">Pinjam</string>
+    <string name="add_product">Tambah Barang</string>
+    <string name="image">Gambar</string>
+    <string name="date_start">Mulai Tanggal</string>
+    <string name="date_end">Hingga Tanggal</string>
+    <string name="sum">Jumlah</string>
+    <string name="total">Total :</string>
+    <string name="me">Akun</string>
+
     <!-- Fragment tags -->
-    <string name="fragment_about_tag">About Fragment</string>
     <string name="fragment_list_tag">List Fragment</string>
 
-    <!-- About text -->
-    <string name="info">Info</string>
-    <string name="about_text">
-        Hello.\n\nI\'m Ogulcan Orhan, mobile application developer.\n\nThis is an example application that shows how to use MVP with Dagger2 and Retrofit in Kotlin.
-        It fetches data from typicode api (https://jsonplaceholder.typicode.com)\n\nPlease check the source code for further information.\n\nThank you.\n\nOgulcan
-    </string>
+    <!-- main menu -->
+    <string name="category">Kategori</string>
+    <string name="product">Barang</string>
+    <string name="user">Pengguna</string>
+
+    <!--activity detail-->
+    <string name="user_detail">Detail Pengguna</string>
+    <string name="user_face">Pas Photo</string>
+    <string name="user_self">Foto Selfie</string>
+    <string name="user_ktp">Foto KTP</string>
+    <string name="user_profile_info">Informasi Profil</string>
+    <string name="email">E-mail</string>
+    <string name="surename">Nama Lengkap</string>
+    <string name="username">Username</string>
+    <string name="phone">No. HP</string>
+    <string name="gender">Gender</string>
+    <string name="birth">Tgl Lahir</string>
+    <string name="user_address_info">Informasi Alamat</string>
+    <string name="address">Alamat</string>
+    <string name="city">Kota</string>
+    <string name="province">Provinsi</string>
+
+    <string name="correction">Koreksi</string>
+    <string name="active">Aktifkan</string>
+
+    <string name="category_detail">Detail Kategori</string>
+
+    <string name="product_rent">Barang Dipinjam</string>
+    <string name="product_return">Barang Dikembalikan</string>
+    <string name="product_detail">Detail Barang</string>
+    <string name="product_name">Nama</string>
+    <string name="product_description">Deskripsi Barang</string>
+    <string name="description">Deskripsi</string>
+    <string name="product_per_day">/hari</string>
+    <string name="product_per_day_price">Harga (/hari)</string>
+    <string name="product_stock">Stok</string>
+    <string name="product_late_charge">Denda</string>
+    <string name="product_dp">Uang Muka</string>
+
+    <string name="no_data">Data tidak tersedia</string>
 </resources>

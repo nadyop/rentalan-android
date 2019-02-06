@@ -6,7 +6,7 @@
 
     <application
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_rentalan"
             android:label="@string/app_name"
             android:name=".ApplicationBase"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.category.CategoryAddActivity"/>
     </application>
 
 </manifest>

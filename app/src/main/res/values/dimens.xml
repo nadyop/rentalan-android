@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+    <dimen name="button_action_text_size">@dimen/text_size_larger</dimen>
+    <dimen name="button_action_half_text_size">@dimen/text_size_smaller</dimen>
+
+    <dimen name="text_size_form_input">20sp</dimen>
+
+    <!-- FONT SIZE -->
+    <dimen name="text_size_extra_super_larger">38sp</dimen>
+    <dimen name="text_size_extra_larger">30sp</dimen>
+    <dimen name="text_size_super_larger">24sp</dimen>
+    <dimen name="text_size_super_large">20sp</dimen>
+    <dimen name="text_size_larger">18sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_smaller">10sp</dimen>
+
+    <!-- SPACING SIZE -->
+    <dimen name="spacing_extra_larger">35dp</dimen>
+    <dimen name="spacing_super_larger">28dp</dimen>
+    <dimen name="spacing_larger">24dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_small">12dp</dimen>
+    <dimen name="spacing_smaller">8dp</dimen>
+    <dimen name="spacing_super_smaller">4dp</dimen>
+    <dimen name="spacing_extra_smaller">2dp</dimen>
+    <dimen name="spacing_zero">0dp</dimen>
+
+    <dimen name="icon_size_large">50dp</dimen>
+    <dimen name="icon_size_normal">32dp</dimen>
+    <dimen name="icon_size_small">24dp</dimen>
+    <dimen name="icon_size_smaller">16dp</dimen>
+    <dimen name="icon_size_super_small">12dp</dimen>
+
+    <dimen name="button_size_large">48dp</dimen>
+    <dimen name="button_size_normal">40dp</dimen>
+
+    <dimen name="card_view_footer_action_elevation">0dp</dimen>
+    <dimen name="card_view_footer_action_corner_radius">0dp</dimen>
+
+    <dimen name="elevation_shadow">16dp</dimen>
+
+    <dimen name="image_width_medium">150dp</dimen>
+    <dimen name="image_width_large">200dp</dimen>
+</resources>

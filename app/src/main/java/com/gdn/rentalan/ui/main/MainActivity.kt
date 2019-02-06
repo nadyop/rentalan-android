@@ -1,51 +1,96 @@
 package com.gdn.rentalan.ui.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
+import android.view.View
 import com.gdn.rentalan.R
-import com.gdn.rentalan.di.component.DaggerActivityComponent
-import com.gdn.rentalan.di.module.ActivityModule
-import com.gdn.rentalan.ui.about.AboutFragment
+import com.gdn.rentalan.ui.base.BaseActivity
+import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.product.ProductFragment
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 
-class MainActivity: AppCompatActivity(), MainContract.View {
+class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInjector {
+
+    @Inject
+    internal lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var presenter: MainContract.Presenter
 
+    private val CATEGORY_FRAGMENT_INDEX = 1
+    private val USER_FRAGMENT_INDEX = 2
+    private val PRODUCT_FRAGMENT_INDEX = 3
+
+    private var currentFragmentIndex = CATEGORY_FRAGMENT_INDEX
+    private var tabIndex = 0
+    private var mFragmentManager: FragmentManager? = null
+
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return this.fragmentInjector
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        injectDependency()
 
-        presenter.attach(this)
+        AndroidInjection.inject(this)
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        val fragment = CategoryFragment()
+        addFragment(fragment)
+        presenter.attach()
     }
 
-    override fun onResume() {
-        super.onResume()
-        test()
-    }
-
-    override fun showAboutFragment() {
-        if (supportFragmentManager.findFragmentByTag(AboutFragment.TAG) == null) {
-            supportFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-                    .setCustomAnimations(AnimType.FADE.getAnimPair().first, AnimType.FADE.getAnimPair().second)
-                    .replace(R.id.frame, AboutFragment().newInstance(), AboutFragment.TAG)
-                    .commit()
-        } else {
-            // Maybe an animation like shake hello text
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_category -> {
+                inflateCategoryFragmentIntoMainActivity(tabIndex)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_product -> {
+                val fragment = ProductFragment()
+                addFragment(fragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_user -> {
+                val fragment = CategoryFragment()
+                addFragment(fragment)
+                return@OnNavigationItemSelectedListener true
+            }
         }
+        false
     }
 
-    override fun showListFragment() {
-        supportFragmentManager.beginTransaction()
+    private fun inflateCategoryFragmentIntoMainActivity(tabIndex: Int) {
+        currentFragmentIndex = CATEGORY_FRAGMENT_INDEX
+        val fragment = CategoryFragment()
+        addFragment(fragment)
+
+        val data = Bundle()
+        data.putInt("DEFAULT_TAB", tabIndex)
+        val xfragmentTransaction = mFragmentManager?.beginTransaction()
+        xfragmentTransaction?.replace(R.id.container_main, fragment, fragment.javaClass.simpleName)
+        fragment.arguments = data
+        xfragmentTransaction?.commit()
+    }
+
+    override fun addFragment(fragment: Fragment) {
+        supportFragmentManager
+                .beginTransaction()
                 .disallowAddToBackStack()
-                .setCustomAnimations(AnimType.SLIDE.getAnimPair().first, AnimType.SLIDE.getAnimPair().second)
-                .replace(R.id.frame, CategoryFragment().newInstance(), CategoryFragment.TAG)
+                .replace(R.id.container_main, fragment, fragment.javaClass.simpleName)
                 .commit()
     }
 
@@ -54,54 +99,11 @@ class MainActivity: AppCompatActivity(), MainContract.View {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId) {
-            R.id.nav_item_info -> {
-                presenter.onDrawerOptionAboutClick()
-                return true
-            }
-            else -> {
-
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onBackPressed() {
-        val fragmentManager = supportFragmentManager
-        val fragment = fragmentManager.findFragmentByTag(AboutFragment.TAG)
-
-        if (fragment == null) {
-            super.onBackPressed()
-        } else {
-            supportFragmentManager.popBackStack()
-        }
+        finish()
     }
 
-    private fun injectDependency() {
-        val activityComponent = DaggerActivityComponent.builder()
-                .activityModule(ActivityModule(this))
-                .build()
-
-        activityComponent.inject(this)
-    }
-
-    private fun test() {
-        //hello.setText("Hello world with kotlin extensions")
-    }
-
-    enum class AnimType() {
-        SLIDE,
-        FADE;
-
-        fun getAnimPair(): Pair<Int, Int> {
-            return when(this) {
-                SLIDE -> Pair(R.anim.slide_left, R.anim.slide_right)
-                FADE -> Pair(R.anim.fade_in, R.anim.fade_out)
-            }
-
-            return Pair(R.anim.slide_left, R.anim.slide_right)
-        }
+    override fun showProgress(show: Boolean) {
+        Log.d(javaClass.simpleName, "showprogress")
     }
 }
