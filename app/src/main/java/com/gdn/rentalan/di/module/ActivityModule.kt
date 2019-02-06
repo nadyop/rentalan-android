@@ -8,6 +8,7 @@ import com.gdn.rentalan.di.scope.ActivityScope
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.main.MainActivity
+import com.gdn.rentalan.ui.product.ProductDetailActivity
 import com.gdn.rentalan.ui.product.ProductFragment
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.Module
@@ -35,5 +36,9 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun provideProductFragment(): ProductFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [ProductModule::class])
+    abstract fun provideProductDetailActivity(): ProductDetailActivity
 
 }
