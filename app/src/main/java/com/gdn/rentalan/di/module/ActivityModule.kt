@@ -3,6 +3,7 @@ package com.gdn.rentalan.di.module
 import com.gdn.rentalan.di.module.feature.CategoryModule
 import com.gdn.rentalan.di.module.feature.MainModule
 import com.gdn.rentalan.di.scope.ActivityScope
+import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.main.MainActivity
 import dagger.Module
@@ -18,5 +19,9 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [CategoryModule::class])
     abstract fun provideCategoryFragment(): CategoryFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [CategoryModule::class])
+    abstract fun provideCategoryAddActivity(): CategoryAddActivity
 
 }

@@ -1,5 +1,6 @@
 package com.gdn.rentalan.ui.category
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +12,9 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Category
 import com.gdn.rentalan.databinding.FragmentCategoryBinding
+import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
@@ -42,6 +45,9 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         initView()
+        binding.btAdd.setOnClickListener {
+            activity?.let { Router.goToCategoryAdd(it) }
+        }
     }
 
 
@@ -58,7 +64,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     override fun showErrorMessage(error: String) {
-        Log.e("Error", error)
+        binding.tvNoData.visibility = View.VISIBLE
     }
 
     override fun fetchDataSuccess(list: RestListResponse<Category>) {
@@ -72,8 +78,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     companion object {
-        val TAG: String = "ListFragment"
+        val TAG: String = "CategoryFragment"
     }
-
 
 }

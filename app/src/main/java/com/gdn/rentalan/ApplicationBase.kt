@@ -35,9 +35,7 @@ class ApplicationBase : Application(), HasActivityInjector, HasServiceInjector {
         super.onCreate()
 
         instance = this
-
         DaggerApplicationComponent.create().inject(this)
-//        DaggerApplicationComponent.builder().application(this).build().inject(this)
     }
 
     companion object {

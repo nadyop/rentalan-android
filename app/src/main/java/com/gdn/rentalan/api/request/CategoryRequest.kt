@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class CategoryRequest(
 
         @field:SerializedName("name")
-        val name: String? = null,
+        var name: String? = null,
 
         @field:SerializedName("description")
-        val description: String? = null
+        var description: String? = null
 )

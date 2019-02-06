@@ -12,8 +12,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CategoryListPresenter @Inject constructor(private val api: ApiInterface):
-    BasePresenter(), CategoryContract.Presenter {
+class CategoryListPresenter @Inject constructor(private val api: ApiInterface) :
+        BasePresenter(), CategoryContract.Presenter {
 
     private lateinit var view: CategoryContract.View
     private val subscriptions = CompositeDisposable()
@@ -47,12 +47,12 @@ class CategoryListPresenter @Inject constructor(private val api: ApiInterface):
         subscriptions.add(subscribe)
     }
 
-  override fun attachView(view: CategoryContract.View) {
-    this.view = view
-  }
+    override fun attachView(view: CategoryContract.View) {
+        this.view = view
+    }
 
-  override fun attach() {
-    super.attach()
-    fetchData()
-  }
+    override fun attach() {
+        super.attach()
+        fetchData()
+    }
 }
