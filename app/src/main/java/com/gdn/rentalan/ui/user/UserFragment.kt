@@ -21,7 +21,6 @@ class UserFragment : BaseFragment(), UserContract.View {
     @Inject
     lateinit var presenter: UserContract.Presenter
     private lateinit var binding: FragmentUserBinding
-    private var refreshList: Boolean = true
     private var listAdapter: UserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +32,6 @@ class UserFragment : BaseFragment(), UserContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        refreshList = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

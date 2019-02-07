@@ -4,6 +4,7 @@ import com.gdn.rentalan.di.module.feature.*
 import com.gdn.rentalan.di.scope.ActivityScope
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.ProductDetailActivity
@@ -48,4 +49,7 @@ abstract class ActivityModule {
     @ContributesAndroidInjector(modules = [UserModule::class])
     abstract fun provideUserDetailActivity(): UserDetailActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [DashboardModule::class])
+    abstract fun provideDashboardFragment(): DashboardFragment
 }

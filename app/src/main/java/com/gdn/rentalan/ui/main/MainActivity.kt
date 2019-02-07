@@ -9,6 +9,7 @@ import android.view.Menu
 import com.gdn.rentalan.R
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.product.ProductFragment
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.android.AndroidInjection
@@ -46,27 +47,43 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
         AndroidInjection.inject(this)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        val fragment = CategoryFragment()
+//        val fragment = CategoryFragment()
+        val fragment = DashboardFragment()
         addFragment(fragment)
         presenter.attach()
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_category -> {
-                inflateCategoryFragmentIntoMainActivity(tabIndex)
+            R.id.navigation_home -> {
+                val fragment = DashboardFragment()
+                addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_product -> {
+            R.id.navigation_transaction -> {
                 val fragment = ProductFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_user -> {
+            R.id.navigation_account -> {
                 val fragment = UserFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
+//            R.id.navigation_category -> {
+//                inflateCategoryFragmentIntoMainActivity(tabIndex)
+//                return@OnNavigationItemSelectedListener true
+//            }
+//            R.id.navigation_product -> {
+//                val fragment = ProductFragment()
+//                addFragment(fragment)
+//                return@OnNavigationItemSelectedListener true
+//            }
+//            R.id.navigation_user -> {
+//                val fragment = UserFragment()
+//                addFragment(fragment)
+//                return@OnNavigationItemSelectedListener true
+//            }
         }
         false
     }

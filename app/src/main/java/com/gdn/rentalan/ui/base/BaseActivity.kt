@@ -1,10 +1,12 @@
 package com.gdn.rentalan.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.gdn.rentalan.R
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_category.*

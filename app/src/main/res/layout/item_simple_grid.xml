@@ -22,7 +22,9 @@
                 android:layout_height="200dp"
                 android:contentDescription="@string/search"
                 android:scaleType="centerCrop"
-                android:src="@drawable/blibli"/>
+                android:src="@drawable/blibli"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_product_name"

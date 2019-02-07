@@ -31,10 +31,14 @@
     <!-- Fragment tags -->
     <string name="fragment_list_tag">List Fragment</string>
 
-    <!-- main menu -->
+    <!-- main menu admin-->
     <string name="category">Kategori</string>
     <string name="product">Barang</string>
     <string name="user">Pengguna</string>
+    <!-- main menu -->
+    <string name="home">Beranda</string>
+    <string name="transaction">Transaksi</string>
+    <string name="account">Akun</string>
 
     <!--activity detail-->
     <string name="user_detail">Detail Pengguna</string>
