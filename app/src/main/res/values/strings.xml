@@ -53,7 +53,7 @@
     <string name="city">Kota</string>
     <string name="province">Provinsi</string>
 
-    <string name="correction">Koreksi</string>
+    <string name="decline">Tolak</string>
     <string name="active">Aktifkan</string>
 
     <string name="category_detail">Detail Kategori</string>

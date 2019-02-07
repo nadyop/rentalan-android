@@ -9,10 +9,9 @@ import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.User
-import com.gdn.rentalan.databinding.FragmentCategoryBinding
 import com.gdn.rentalan.databinding.FragmentUserBinding
 import com.gdn.rentalan.ui.base.BaseFragment
-import com.gdn.rentalan.util.Router
+import com.gdn.rentalan.ui.user.model.UserDetailUiModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_user.*
 import javax.inject.Inject
@@ -23,10 +22,12 @@ class UserFragment : BaseFragment(), UserContract.View {
     lateinit var presenter: UserContract.Presenter
     private lateinit var binding: FragmentUserBinding
     private var refreshList: Boolean = true
+    private var listAdapter: UserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
+        retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,16 +46,22 @@ class UserFragment : BaseFragment(), UserContract.View {
         initView()
     }
 
-
     private fun initView() {
+        val layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = layoutManager
+
+        if (listAdapter == null) {
+            listAdapter = UserListAdapter(ArrayList())
+        }
+        binding.recyclerView.adapter = listAdapter
         presenter.fetchData()
     }
 
     override fun showProgress(show: Boolean) {
         if (show) {
-            progressBar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
         }
     }
 
@@ -62,18 +69,12 @@ class UserFragment : BaseFragment(), UserContract.View {
         binding.tvNoData.visibility = View.VISIBLE
     }
 
-    override fun fetchDataSuccess(list: RestListResponse<User>) {
-        val adapter = activity?.let {
-            list.data?.toMutableList()?.let { users ->
-                UserListAdapter(it, users, this)
-            }
-        }
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter
+    override fun fetchDataSuccess(list: MutableList<UserDetailUiModel>) {
+        listAdapter?.addItems(list)
+        recyclerView.adapter = listAdapter
     }
 
-    companion object {
-        val TAG: String = "UserFragment"
+    override fun showNoData() {
+        binding.tvNoData.visibility = View.VISIBLE
     }
-
 }

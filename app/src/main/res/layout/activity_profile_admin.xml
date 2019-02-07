@@ -362,7 +362,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="@dimen/spacing_small"
-                    android:text="@string/correction"
+                    android:text="@string/decline"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/state_error"

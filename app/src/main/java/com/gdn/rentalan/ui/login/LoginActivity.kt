@@ -35,7 +35,7 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
 
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
     presenter.attachView(this)
 
     login()

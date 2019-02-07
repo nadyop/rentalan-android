@@ -4,13 +4,12 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
-import com.gdn.rentalan.databinding.ItemSimpleBinding
 import com.gdn.rentalan.api.response.Category
+import com.gdn.rentalan.databinding.ItemSimpleListBinding
 
 class CategoryListAdapter(private val context: Context, private val list: MutableList<Category>,
                           fragment: Fragment) : RecyclerView.Adapter<CategoryListAdapter.ListViewHolder>() {
@@ -29,11 +28,11 @@ class CategoryListAdapter(private val context: Context, private val list: Mutabl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_simple, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_simple_list, parent, false)
         return CategoryListAdapter.ListViewHolder(itemView)
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
+        val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleListBinding>(itemView)
     }
 }

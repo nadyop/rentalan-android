@@ -23,7 +23,7 @@ data class User(
 	val nik: String? = null,
 
 	@field:SerializedName("phoneNumber")
-	val phoneNumber: Any? = null,
+	val phoneNumber: String? = null,
 
 	@field:SerializedName("province")
 	val province: String? = null,

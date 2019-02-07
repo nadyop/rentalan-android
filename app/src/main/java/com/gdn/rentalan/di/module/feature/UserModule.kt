@@ -1,9 +1,7 @@
 package com.gdn.rentalan.di.module.feature
 
 import com.gdn.rentalan.di.scope.ActivityScope
-import com.gdn.rentalan.ui.user.UserContract
-import com.gdn.rentalan.ui.user.UserFragment
-import com.gdn.rentalan.ui.user.UserListPresenter
+import com.gdn.rentalan.ui.user.*
 import dagger.Binds
 import dagger.Module
 
@@ -20,4 +18,13 @@ abstract class UserModule {
     abstract fun provideUserPresenter(
             userListPresenter: UserListPresenter): UserContract.Presenter
 
+    @ActivityScope
+    @Binds
+    abstract fun provideUserDetailView(
+        userDetailActivity: UserDetailActivity): UserDetailContract.View
+
+    @ActivityScope
+    @Binds
+    abstract fun provideUserDetailPresenter(
+        userDetailPresenter: UserDetailPresenter): UserDetailContract.Presenter
 }

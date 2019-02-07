@@ -6,10 +6,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.view.Menu
-import android.view.View
 import com.gdn.rentalan.R
 import com.gdn.rentalan.ui.base.BaseActivity
-import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.product.ProductFragment
 import com.gdn.rentalan.ui.user.UserFragment
@@ -18,7 +16,6 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInjector {

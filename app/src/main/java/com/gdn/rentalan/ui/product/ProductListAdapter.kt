@@ -42,36 +42,4 @@ class ProductListAdapter(
             }
         }
     }
-
 }
-//    override fun getItemCount(): Int {
-//        return list.size
-//    }
-//
-//    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-//        val productDetailUiModel = getItemId(position)
-////        val product = list[position]
-//
-//        holder.itemCategoryBinding?.apply {
-//            with(productDetailUiModel) {
-//                tvTitle.text = this.na
-//                tvDescription.text = product.description
-//
-//                container.setOnClickListener {
-//                    Router.gotoProductDetail(it.context, this)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-//        val itemView = LayoutInflater.from(context).inflate(
-//                R.layout.item_simple, parent, false)
-//        return ProductListAdapter.ListViewHolder(itemView)
-//    }
-//
-//    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
-//    }
-//
-//}

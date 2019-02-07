@@ -8,6 +8,7 @@ import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.ProductDetailActivity
 import com.gdn.rentalan.ui.product.ProductFragment
+import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -42,5 +43,9 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun provideProductDetailActivity(): ProductDetailActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [UserModule::class])
+    abstract fun provideUserDetailActivity(): UserDetailActivity
 
 }

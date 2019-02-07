@@ -7,6 +7,7 @@ class ProductContract {
 
     interface View:  BaseContract.View {
         fun fetchDataSuccess(list: MutableList<ProductDetailUiModel>)
+        fun showNoData()
     }
 
     interface Presenter: BaseContract.Presenter {

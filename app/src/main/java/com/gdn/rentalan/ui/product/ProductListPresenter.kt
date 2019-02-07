@@ -25,13 +25,18 @@ class ProductListPresenter @Inject constructor(private val api: ApiInterface) :
                     view.showProgress(false)
                     Log.d("AAAAZ", "sukses nihh")
                     list.data.let {
-                        if (it.isNotEmpty()) {
-                            var listItems: MutableList<ProductDetailUiModel> = ArrayList()
-                            it.forEach { contentElement ->
-                                listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
-                            }
-                            view.fetchDataSuccess(listItems)
+                      it?.let {
+                        var listItems: MutableList<ProductDetailUiModel> = ArrayList()
+                        it.forEach { contentElement ->
+                          listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
                         }
+                        view.fetchDataSuccess(listItems)
+                      }
+
+                      if (it.isEmpty()) {
+                        view.showNoData()
+                      }
+
                     }
                 }, { error ->
                     view.showProgress(false)

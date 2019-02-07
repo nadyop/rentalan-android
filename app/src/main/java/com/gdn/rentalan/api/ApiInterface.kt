@@ -24,7 +24,7 @@ interface ApiInterface {
     fun updateCategoryDetail(@Query("categoryId") categoryId: String): Observable<RestCommonResponse>
 
     //    product
-    @GET("product?status=waiting")
+    @GET("product?status=all")
     fun getProductListWaiting(): Observable<RestListResponse<Product>>
 
     @GET("product?status=active")
@@ -40,7 +40,7 @@ interface ApiInterface {
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("product/verification")
-    fun verifProduct(@Query("productId") productId: String): Observable<RestCommonResponse>
+    fun verifProduct(@Query("productId") productId: String, @Query("accept") accept: String): Observable<RestCommonResponse>
 
     @GET("product")
     fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<RestListResponse<Product>>
@@ -75,7 +75,7 @@ interface ApiInterface {
     fun verifUser(@Query("userId") userId: String, @Body userRequest: UserRequest): Observable<RestCommonResponse>
 
     @GET("user")
-    fun getUserDetail(@Query("userId") userId: String): Observable<RestListResponse<User>>
+    fun getUserDetail(@Query("userId") userId: String): Observable<RestSingleResponse<User>>
 
     @GET("user?status=all")
     fun getUserList(): Observable<RestListResponse<User>>

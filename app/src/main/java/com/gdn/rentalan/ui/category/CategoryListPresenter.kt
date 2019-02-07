@@ -18,26 +18,15 @@ class CategoryListPresenter @Inject constructor(private val api: ApiInterface) :
     private lateinit var view: CategoryContract.View
     private val subscriptions = CompositeDisposable()
 
-//    override fun fetchData() {
-//      addDisposable(api.getCategoryList().subscribeWithLoadingDialogAndRetry(view)
-//          .subscribeWith(object :
-//              ApiResponseObserver<RestListResponse<Category>>(view){
-//            override fun onApiSuccess(response: RestListResponse<Category>) {
-//              Log.d("AAAAZ", "onApiSuccess")
-//            }
-//            override fun onApiError(response: RestListResponse<Category>) {
-//              Log.d("AAAAZ", "onApiError")
-//            }
-//          }))
-//    }
-
     override fun fetchData() {
         val subscribe = api.getCategoryList().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Category> ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "sukses nihh")
-                    list.let { view.fetchDataSuccess(it) }
+                    list.let {
+                      view.fetchDataSuccess(it)
+                    }
                 }, { error ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")

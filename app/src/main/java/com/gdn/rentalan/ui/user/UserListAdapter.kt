@@ -1,39 +1,43 @@
 package com.gdn.rentalan.ui.user
 
-import android.content.Context
 import android.databinding.DataBindingUtil
-import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
-import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.ItemSimpleBinding
+import com.gdn.rentalan.ui.base.BaseRecyclerViewListAdapter
+import com.gdn.rentalan.ui.user.model.UserDetailUiModel
+import com.gdn.rentalan.util.Router
 
-class UserListAdapter(private val context: Context, private val list: MutableList<User>,
-                          fragment: Fragment) : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
+class UserListAdapter(
+    userDetailUiModels: MutableList<UserDetailUiModel>)
+    : BaseRecyclerViewListAdapter<UserDetailUiModel, UserListAdapter.ViewHolder>(userDetailUiModels) {
 
-    override fun getItemCount(): Int {
-        return list.size
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemUserDiscussionBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val user = list[position]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_simple, parent, false
+        )
+        return ViewHolder(itemView)
+    }
 
-        holder.itemCategoryBinding.let {
-            it?.tvTitle?.text = user.sureName
-            it?.tvDescription?.text = user.city
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val user = getItem(position)
+
+        holder.itemUserDiscussionBinding?.apply {
+            with(user) {
+                tvTitle.text = sureName
+                tvDescription.text = city
+
+                container.setOnClickListener {
+                    Router.gotoUserDetail(it.context, this)
+                }
+            }
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_simple, parent, false)
-        return UserListAdapter.ListViewHolder(itemView)
-    }
-
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemCategoryBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)
-    }
-
 }
