@@ -24,11 +24,7 @@ class CategoryAddPresenter @Inject constructor(private val api: ApiInterface) :
         this.view = view
     }
 
-    override fun attach() {
-        super.attach()
-    }
-
-    override fun sendData(categoryName: String, categoryDesc: String) {
+  override fun sendData(categoryName: String, categoryDesc: String) {
 
         val subscribe = api.addCategory(CategoryRequest(categoryName, categoryDesc))
                 .subscribeOn(Schedulers.io())

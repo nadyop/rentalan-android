@@ -28,7 +28,7 @@ interface ApiInterface {
     fun getProductListWaiting(): Observable<RestListResponse<Product>>
 
     @GET("product?status=active")
-    fun getProductListActive(): Observable<Product>
+    fun getProductListActive(): Observable<RestListResponse<Product>>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("product")
@@ -43,13 +43,13 @@ interface ApiInterface {
     fun verifProduct(@Query("productId") productId: String): Observable<RestCommonResponse>
 
     @GET("product")
-    fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<Product>
+    fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<RestListResponse<Product>>
 
     @GET("product")
-    fun getProductDetail(@Query("productId") productId: String): Observable<Product>
+    fun getProductDetail(@Query("productId") productId: String): Observable<RestListResponse<Product>>
 
     @GET("product")
-    fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode") cityCode: String): Observable<Product>
+    fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode") cityCode: String): Observable<RestListResponse<Product>>
 
     //    rent
     @Headers("Accept: application/json", "Content-Type: application/json")
@@ -57,7 +57,7 @@ interface ApiInterface {
     fun rentProduct(@Query("userId") userId: String, @Body rentRequest: RentRequest): Observable<RestCommonResponse>
 
     @GET("rent/transaction")
-    fun getTransactionList(@Query("userId") userId: String): Observable<Transaction>
+    fun getTransactionList(@Query("userId") userId: String): Observable<RestListResponse<Transaction>>
 
     @POST("rent/accept")
     fun acceptRentProduct(@Query("transactionId") transactionId: String): Observable<RestCommonResponse>
@@ -75,7 +75,7 @@ interface ApiInterface {
     fun verifUser(@Query("userId") userId: String, @Body userRequest: UserRequest): Observable<RestCommonResponse>
 
     @GET("user")
-    fun getUserDetail(@Query("userId") userId: String): Observable<User>
+    fun getUserDetail(@Query("userId") userId: String): Observable<RestListResponse<User>>
 
     @GET("user?status=all")
     fun getUserList(): Observable<RestListResponse<User>>
@@ -86,7 +86,7 @@ interface ApiInterface {
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/login")
-    fun login(@Body loginRequest: LoginRequest): Observable<Login>
+    fun login(@Body loginRequest: LoginRequest): Observable<RestListResponse<Login>>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/change-password")

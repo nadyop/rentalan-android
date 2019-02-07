@@ -224,6 +224,7 @@
                 tools:visibility="visible">
 
             <TextView
+                    android:id="@+id/tv_correction"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -242,7 +243,7 @@
                     android:background="@color/black_1_50"/>
 
             <TextView
-                    android:id="@+id/tv_active"
+                    android:id="@+id/tv_activation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

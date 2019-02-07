@@ -1,10 +1,8 @@
 package com.gdn.rentalan.ui.category
 
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,6 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Category
 import com.gdn.rentalan.databinding.FragmentCategoryBinding
-import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
@@ -24,7 +21,6 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     @Inject
     lateinit var presenter: CategoryContract.Presenter
     private lateinit var binding: FragmentCategoryBinding
-    private var refreshList: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +34,13 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        refreshList = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         initView()
-        binding.btAdd.setOnClickListener {
+        binding.btAdd.setOnClickListener { it ->
             activity?.let { Router.goToCategoryAdd(it) }
         }
     }
