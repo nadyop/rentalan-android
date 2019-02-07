@@ -11,6 +11,7 @@ import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.databinding.FragmentProductBinding
 import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_product.*
 import javax.inject.Inject
@@ -21,10 +22,12 @@ class ProductFragment : BaseFragment(), ProductContract.View {
     lateinit var presenter: ProductContract.Presenter
     private lateinit var binding: FragmentProductBinding
     private var refreshList: Boolean = true
+    private var listAdapter: ProductListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
+        retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,6 +48,13 @@ class ProductFragment : BaseFragment(), ProductContract.View {
 
 
     private fun initView() {
+        val layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = layoutManager
+
+        if (listAdapter == null) {
+            listAdapter = ProductListAdapter(ArrayList())
+        }
+        binding.recyclerView.adapter = listAdapter
         presenter.fetchData()
     }
 
@@ -60,14 +70,9 @@ class ProductFragment : BaseFragment(), ProductContract.View {
         binding.tvNoData.visibility = View.VISIBLE
     }
 
-    override fun fetchDataSuccess(list: RestListResponse<Product>) {
-        val adapter = activity?.let {
-            list.data?.toMutableList()?.let { products ->
-                ProductListAdapter(it, products, this)
-            }
-        }
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter
+    override fun fetchDataSuccess(list: MutableList<ProductDetailUiModel>) {
+        listAdapter?.addItems(list)
+        recyclerView.adapter = listAdapter
     }
 
     companion object {

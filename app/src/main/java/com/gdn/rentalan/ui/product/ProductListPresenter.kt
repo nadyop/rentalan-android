@@ -5,6 +5,7 @@ import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
+import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +23,15 @@ class ProductListPresenter @Inject constructor(private val api: ApiInterface) :
                 .subscribe({ list: RestListResponse<Product> ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "sukses nihh")
-                    list.let { view.fetchDataSuccess(it) }
+                    list.data.let {
+                        if (it.isNotEmpty()) {
+                            var listItems: MutableList<ProductDetailUiModel> = ArrayList()
+                            it.forEach { contentElement ->
+                                listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
+                            }
+                            view.fetchDataSuccess(listItems)
+                        }
+                    }
                 }, { error ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")

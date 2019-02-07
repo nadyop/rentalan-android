@@ -46,7 +46,7 @@ interface ApiInterface {
     fun getProductListOwnerId(@Query("ownerId") ownerId: String): Observable<RestListResponse<Product>>
 
     @GET("product")
-    fun getProductDetail(@Query("productId") productId: String): Observable<RestListResponse<Product>>
+    fun getProductDetail(@Query("productId") productId: String): Observable<Product>
 
     @GET("product")
     fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode") cityCode: String): Observable<RestListResponse<Product>>
