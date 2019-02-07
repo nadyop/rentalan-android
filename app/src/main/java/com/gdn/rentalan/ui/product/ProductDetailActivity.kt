@@ -69,7 +69,7 @@ class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
 
     private fun sendDataListener(listener: View.OnClickListener) {
         this.actionButtonClickListener = listener
-        binding.tvActivation.setOnClickListener(listener)
+        binding.buttonRight.setOnClickListener(listener)
     }
 
     override fun setData(content: ProductDetailUiModel) {

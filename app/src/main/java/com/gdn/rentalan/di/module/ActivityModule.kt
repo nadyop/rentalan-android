@@ -1,12 +1,10 @@
 package com.gdn.rentalan.di.module
 
-import com.gdn.rentalan.di.module.feature.CategoryModule
-import com.gdn.rentalan.di.module.feature.MainModule
-import com.gdn.rentalan.di.module.feature.ProductModule
-import com.gdn.rentalan.di.module.feature.UserModule
+import com.gdn.rentalan.di.module.feature.*
 import com.gdn.rentalan.di.scope.ActivityScope
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
+import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.ProductDetailActivity
 import com.gdn.rentalan.ui.product.ProductFragment
@@ -16,6 +14,10 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityModule {
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [LoginModule::class])
+    abstract fun provideLoginActivity(): LoginActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainModule::class])

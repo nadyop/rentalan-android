@@ -1,7 +1,6 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.model
 
 import com.gdn.rentalan.api.response.Product
-import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 
 interface ProductMapper {
     companion object {
