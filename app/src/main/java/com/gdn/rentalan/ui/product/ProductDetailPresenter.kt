@@ -2,6 +2,7 @@ package com.gdn.rentalan.ui.product
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
+import com.gdn.rentalan.api.RestSingleResponse
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
@@ -16,34 +17,33 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
     private lateinit var view: ProductDetailContract.View
     private val subscriptions = CompositeDisposable()
 
-    override fun getData(productId: String) {
-        val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
+    override fun getData(id: String) {
+        val subscribe = api.getProductDetail(id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ list: Product ->
-                    view.showProgress(false)
-                    list?.let {
-                        val productDetail = it.id?.let { id ->
-                            it.name?.let { name ->
-                                it.description?.let { desc ->
-                                    it.categoryName?.let { categoryName ->
-                                        it.productImages?.let { productImage ->
-                                            ProductDetailUiModel(id, name, desc, it.pricePerDay, it.stock, it.downPayment, it.lateCharge, categoryName, productImage)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        productDetail?.let { detail ->
-                            view.setData(detail)
-                        }
-                    }
-
+                .subscribe({ response: RestSingleResponse<Product> ->
                     Log.d("AAAAZ", "sukses nihh")
+                    Log.d("AAAAZgetData", response.data.toString())
+                    response.data?.let {
+                        val items = ProductDetailUiModel(
+                                it.id.orEmpty(),
+                                it.name.orEmpty(),
+                                it.description.orEmpty(),
+                                it.pricePerDay,
+                                it.stock,
+                                it.downPayment,
+                                it.lateCharge,
+                                it.categoryName,
+                                it.productImages
+                        )
+                        view.setData(items)
+                    }
+                    view.showProgress(false)
                 }, { error ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
+        subscriptions.add(subscribe)
     }
 
     override fun verification(id: String) {

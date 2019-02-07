@@ -1,7 +1,10 @@
 package com.gdn.rentalan.ui.product
 
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.gdn.rentalan.R
 import com.gdn.rentalan.api.RestListResponse
@@ -11,10 +14,20 @@ import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_product_detail_admin.*
 import kotlinx.android.synthetic.main.fragment_product.*
 import javax.inject.Inject
 
 class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
+
+    companion object {
+        private const val DETAIL = "detail"
+        fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
+            val intent = Intent(context, ProductDetailActivity::class.java)
+            intent.putExtra(DETAIL, detail) //from @Parcelize
+            return intent
+        }
+    }
 
     @Inject
     lateinit var presenter: ProductDetailContract.Presenter
@@ -32,13 +45,17 @@ class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
         presenter.attachView(this)
+        detail = intent.getParcelableExtra(DETAIL)
+        Log.d("AAAAZ", detail.toString())
         detail?.id?.let {
             presenter.getData(it)
+            Log.d("AAAAZ", "ini tu ga null")
         }
         userAction()
     }
 
     private fun userAction(){
+        Log.d("AAAAZ", "userAction")
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -55,27 +72,24 @@ class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
         binding.tvActivation.setOnClickListener(listener)
     }
 
-    override fun setData(detail: ProductDetailUiModel) {
+    override fun setData(content: ProductDetailUiModel) {
         with(binding) {
-            tvProductName.text = detail.name
-            tvProductPriceDay.text = detail.pricePerDay.toString()
-            tvUserName.text = detail.name
-            tvPhone.text = detail.name
-            tvCity.text = detail.name
-            tvCategory.text = detail.categoryName
-            tvDescription.text = detail.description
-            tvDp.text = detail.downPayment.toString()
+            tvProductName.text = content.name
+            tvProductPriceDay.text = content.pricePerDay.toString()
+            tvUserName.text = content.name
+            tvPhone.text = content.name
+            tvCity.text = content.name
+            tvCategory.text = content.categoryName
+            tvDescription.text = content.description
+            tvDp.text = content.downPayment.toString()
         }
-    }
-
-    override fun fetchDataSuccess(list: RestListResponse<Product>) {
     }
 
     override fun showProgress(show: Boolean) {
         if (show) {
-            progressBar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

@@ -3,6 +3,7 @@ package com.gdn.rentalan.ui.product
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,20 @@ import kotlinx.android.synthetic.main.fragment_product.*
 import javax.inject.Inject
 
 class ProductFragment : BaseFragment(), ProductContract.View {
+
+//    companion object {
+//        private const val TYPE = "type"
+//        val TAG: String = "ProductFragment"
+//
+//        fun newInstance(type: String): ProductFragment {
+//            val productFragment = ProductFragment()
+//            productFragment.arguments = Bundle().apply {
+//                putString(TYPE, type)
+//            }
+//
+//            return productFragment
+//        }
+//    }
 
     @Inject
     lateinit var presenter: ProductContract.Presenter
@@ -46,7 +61,6 @@ class ProductFragment : BaseFragment(), ProductContract.View {
         initView()
     }
 
-
     private fun initView() {
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager
@@ -60,9 +74,9 @@ class ProductFragment : BaseFragment(), ProductContract.View {
 
     override fun showProgress(show: Boolean) {
         if (show) {
-            progressBar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
         }
     }
 
@@ -73,10 +87,6 @@ class ProductFragment : BaseFragment(), ProductContract.View {
     override fun fetchDataSuccess(list: MutableList<ProductDetailUiModel>) {
         listAdapter?.addItems(list)
         recyclerView.adapter = listAdapter
-    }
-
-    companion object {
-        val TAG: String = "ProductFragment"
     }
 
 }

@@ -28,8 +28,9 @@ interface Router {
             context.startActivity(intent)
         }
 
-        fun gotoProductDetail(context: Context, product: ProductDetailUiModel) {
-            val intent = Intent(context, ProductDetailActivity::class.java)
+        fun gotoProductDetail(context: Context,
+                              productUiModel: ProductDetailUiModel) {
+            val intent = ProductDetailActivity.Companion.newInstance(context, productUiModel)
             context.startActivity(intent)
         }
     }

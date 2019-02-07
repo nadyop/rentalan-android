@@ -24,7 +24,7 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInjector {
 
     @Inject
-    internal lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+    internal lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var presenter: MainContract.Presenter
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
 
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return this.fragmentInjector
+        return supportFragmentInjector
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

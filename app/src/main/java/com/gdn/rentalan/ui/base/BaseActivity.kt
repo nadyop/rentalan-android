@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.gdn.rentalan.R
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_category.*
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
@@ -17,6 +18,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         Log.d(javaClass.simpleName, "oncreate")

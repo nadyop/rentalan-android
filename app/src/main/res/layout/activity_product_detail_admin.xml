@@ -16,6 +16,14 @@
                 app:navigationIcon="@drawable/ic_left"
                 app:title="@string/product_detail"/>
 
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminate="true"/>
+
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -60,11 +68,11 @@
                                 android:text="@string/product_name"/>
 
                         <TextView
-                            android:id="@+id/tv_product_price_day"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/spacing_extra_smaller"
-                            android:text="@string/product_per_day"/>
+                                android:id="@+id/tv_product_price_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/spacing_extra_smaller"
+                                android:text="@string/product_per_day"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -146,114 +154,155 @@
                               android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_description_label_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/description"/>
+                                android:id="@+id/tv_description_label_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/description"/>
 
                         <TextView
-                            android:id="@+id/tv_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
                     </TableRow>
                     <TableRow android:id="@+id/tr_dp"
                               android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_dp_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/product_dp"/>
+                                android:id="@+id/tv_dp_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_dp"/>
 
                         <TextView
-                            android:id="@+id/tv_dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
                     </TableRow>
                     <TableRow android:id="@+id/tr_late_charge"
                               android:padding="@dimen/spacing_normal">
 
                         <TextView
-                            android:id="@+id/tv_late_charge_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="0"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:singleLine="true"
-                            android:text="@string/description"/>
+                                android:id="@+id/tv_late_charge_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/description"/>
 
                         <TextView
-                            android:id="@+id/tv_late_charge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:singleLine="false"
-                            android:text="Kamera"/>
+                                android:id="@+id/tv_late_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:singleLine="false"
+                                android:text="Kamera"/>
                     </TableRow>
                 </TableLayout>
             </android.support.constraint.ConstraintLayout>
 
         </ScrollView>
 
-        <LinearLayout
-                android:id="@+id/cl_action"
+        <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/outliner_shadow"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                tools:visibility="visible">
-
-            <TextView
-                    android:id="@+id/tv_correction"
-                    android:layout_width="0dp"
+                style="@style/CardView.FooterAction">
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/state_error"
-                    android:text="@string/correction"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:padding="@dimen/spacing_small"/>
+                    android:orientation="vertical">
 
-            <View
-                    android:id="@+id/v_answer_separator"
-                    android:layout_width="1dp"
-                    android:layout_marginTop="@dimen/spacing_smaller"
-                    android:layout_height="27dp"
-                    android:background="@color/black_1_50"/>
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/button_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_normal"
+                        android:visibility="visible">
 
-            <TextView
-                    android:id="@+id/tv_activation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"
-                    android:text="@string/active"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:background="@color/white_1_100"/>
+                    <Button
+                            android:id="@+id/button_left"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:text="@string/correction"
+                            android:layout_marginRight="@dimen/spacing_smaller"
+                            style="@style/Button.Action.Red"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/button_right"/>
 
-        </LinearLayout>
+                    <Button
+                            android:id="@+id/button_right"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:text="@string/active"
+                            android:layout_marginLeft="@dimen/spacing_smaller"
+                            style="@style/Button.Action.Blue"
+                            app:layout_constraintLeft_toRightOf="@+id/button_left"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/cl_action"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/outliner_shadow"-->
+        <!--android:visibility="gone"-->
+        <!--android:orientation="horizontal"-->
+        <!--tools:visibility="visible">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_correction"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:textColor="@color/state_error"-->
+        <!--android:text="@string/correction"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textStyle="bold"-->
+        <!--android:padding="@dimen/spacing_small"/>-->
+
+        <!--<View-->
+        <!--android:id="@+id/v_answer_separator"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_marginTop="@dimen/spacing_smaller"-->
+        <!--android:layout_height="27dp"-->
+        <!--android:background="@color/black_1_50"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_activation"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:text="@string/active"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textAlignment="center"-->
+        <!--android:background="@color/white_1_100"/>-->
+
+        <!--</LinearLayout>-->
     </LinearLayout>
 </layout>
