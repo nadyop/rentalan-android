@@ -56,8 +56,15 @@ interface ApiInterface {
     @POST("rent")
     fun rentProduct(@Query("userId") userId: String, @Body rentRequest: RentRequest): Observable<RestCommonResponse>
 
+    @GET("rent/transaction?userId=c54e79b6-2a69-437b-a9f0-67f153ede9b1")
+    fun getTransactionListOwner(@Query("isOwner") isOwner: Boolean = true)
+//    fun getTransactionListOwner(@Query("userId") userId: String = "c54e79b6-2a69-437b-a9f0-67f153ede9b1", @Query("isOwner") isOwner: Boolean = true)
+            : Observable<RestListResponse<Transaction>>
+
     @GET("rent/transaction")
-    fun getTransactionList(@Query("userId") userId: String): Observable<RestListResponse<Transaction>>
+    fun getTransactionListRenter(@Query("userId") userId: String = "c54e79b6-2a69-437b-a9f0-67f153ede9b1",
+                                @Query("isOwner") isOwner: Boolean = false)
+            : Observable<RestListResponse<Transaction>>
 
     @POST("rent/accept")
     fun acceptRentProduct(@Query("transactionId") transactionId: String): Observable<RestCommonResponse>

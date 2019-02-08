@@ -62,6 +62,7 @@
 
     <string name="category_detail">Detail Kategori</string>
 
+    <string name="product_is_rent">Barang Sedang Dipinjam</string>
     <string name="product_rent">Barang Dipinjam</string>
     <string name="product_return">Barang Dikembalikan</string>
     <string name="product_detail">Detail Barang</string>
@@ -75,4 +76,6 @@
     <string name="product_dp">Uang Muka</string>
 
     <string name="no_data">Data tidak tersedia</string>
+    <string name="qty">Kuantitas</string>
+    <string name="renter">Peminjam</string>
 </resources>

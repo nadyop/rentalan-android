@@ -58,5 +58,7 @@ abstract class ActivityModule {
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun provideProductActivityCheckout(): ProductActivityCheckout
 
-
+//    @ActivityScope
+//    @ContributesAndroidInjector(modules = [TransactionModule::class])
+//    abstract fun provideTransactionFragment(): TransactionFragment
 }

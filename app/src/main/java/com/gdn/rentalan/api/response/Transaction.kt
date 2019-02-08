@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 data class Transaction(
 
 	@field:SerializedName("quantity")
-	val quantity: Int? = null,
+	val quantity: Int = 0,
 
 	@field:SerializedName("totalPayment")
-    val totalPayment: Int? = null,
+    val totalPayment: Int = 0,
 
 	@field:SerializedName("renterId")
 	val renterId: String? = null,
 
 	@field:SerializedName("productId")
-	val productId: String? = null,
+	val productId: String = "",
 
 	@field:SerializedName("endDate")
 	val endDate: String? = null,
@@ -23,7 +23,7 @@ data class Transaction(
 	val downPayment: Int? = null,
 
 	@field:SerializedName("lateCharge")
-	val lateCharge: Int? = null,
+	val lateCharge: Int = 0,
 
 	@field:SerializedName("id")
 	val id: String? = null,
@@ -32,8 +32,8 @@ data class Transaction(
 	val ownerId: String? = null,
 
 	@field:SerializedName("startDate")
-	val startDate: String? = null,
+	val startDate: String = "",
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String = ""
 )

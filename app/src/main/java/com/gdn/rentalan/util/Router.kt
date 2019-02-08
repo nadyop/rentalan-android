@@ -7,6 +7,8 @@ import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
+import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
 
@@ -45,6 +47,12 @@ interface Router {
         fun gotoProductCheckoutDetail(context: Context,
                               productUiModel: ProductDetailUiModel) {
             val intent = ProductActivityCheckout.Companion.newInstance(context, productUiModel)
+            context.startActivity(intent)
+        }
+
+        fun gotoProductCheckoutTransactionDetail(context: Context,
+                                      transactionUiModel: TransactionUiModel) {
+            val intent = TransactionDetailActivity.Companion.newInstance(context, transactionUiModel)
             context.startActivity(intent)
         }
     }
