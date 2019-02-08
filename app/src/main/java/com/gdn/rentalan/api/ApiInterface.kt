@@ -30,6 +30,11 @@ interface ApiInterface {
     @GET("product?status=active")
     fun getProductListActive(): Observable<RestListResponse<Product>>
 
+//    @GET("product?ownerId=c54e79b6-2a69-437b-a9f0-67f153ede9b1")
+    @GET("product")
+    fun getTransactionDetail(@Query("ownerId")id: String = "c54e79b6-2a69-437b-a9f0-67f153ede9b1"):
+    Observable<RestSingleResponse<Transaction>>
+
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("product")
     fun addProduct(@Query("ownerId") ownerId: String, @Body productRequest: ProductRequest): Observable<RestCommonResponse>
@@ -77,9 +82,8 @@ interface ApiInterface {
     @POST("user/register")
     fun userRegister(@Body registerRequest: RegisterRequest): Observable<RestCommonResponse>
 
-    @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/verification")
-    fun verifUser(@Query("userId") userId: String, @Body userRequest: UserRequest): Observable<RestCommonResponse>
+    fun registerEmail(@Body registerEmailRequest: RegisterEmailRequest): Observable<RegisterEmailResponse>
 
     @GET("user")
     fun getUserDetail(@Query("userId") userId: String): Observable<RestSingleResponse<User>>

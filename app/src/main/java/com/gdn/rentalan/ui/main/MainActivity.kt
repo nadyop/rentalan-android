@@ -1,6 +1,9 @@
 package com.gdn.rentalan.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -11,6 +14,7 @@ import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.account.AccountPagerFragment
+import com.gdn.rentalan.ui.product.admin.ProductFragment
 import com.gdn.rentalan.ui.transaction.TransactionPagerFragment
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.android.AndroidInjection
@@ -22,11 +26,21 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInjector {
 
+    companion object {
+        private const val MAIN = "main"
+        fun newInstance(context: Context): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            return intent
+        }
+    }
+
     @Inject
     internal lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var presenter: MainContract.Presenter
+
+    val SPLASH_TIMEOUT: Int = 4000
 
     private val CATEGORY_FRAGMENT_INDEX = 1
     private val USER_FRAGMENT_INDEX = 2
@@ -35,7 +49,6 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
     private var currentFragmentIndex = CATEGORY_FRAGMENT_INDEX
     private var tabIndex = 0
     private var mFragmentManager: FragmentManager? = null
-
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return supportFragmentInjector
@@ -48,8 +61,8 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
         AndroidInjection.inject(this)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-//        val fragment = CategoryFragment()
-        val fragment = DashboardFragment()
+        val fragment = CategoryFragment()
+//        val fragment = DashboardFragment()
         addFragment(fragment)
         presenter.attach()
     }
@@ -61,20 +74,20 @@ class MainActivity : BaseActivity(), MainContract.View, HasSupportFragmentInject
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_transaction -> {
-                val fragment = TransactionPagerFragment()
-                addFragment(fragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_account -> {
-                val fragment = AccountPagerFragment()
-                addFragment(fragment)
-                return@OnNavigationItemSelectedListener true
-            }
-//            R.id.navigation_category -> {
-//                inflateCategoryFragmentIntoMainActivity(tabIndex)
+//            R.id.navigation_transaction -> {
+//                val fragment = TransactionPagerFragment()
+//                addFragment(fragment)
 //                return@OnNavigationItemSelectedListener true
 //            }
+//            R.id.navigation_account -> {
+//                val fragment = AccountPagerFragment()
+//                addFragment(fragment)
+//                return@OnNavigationItemSelectedListener true
+//            }
+            R.id.navigation_category -> {
+                inflateCategoryFragmentIntoMainActivity(tabIndex)
+                return@OnNavigationItemSelectedListener true
+            }
 //            R.id.navigation_product -> {
 //                val fragment = ProductFragment()
 //                addFragment(fragment)

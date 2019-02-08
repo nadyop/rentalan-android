@@ -13,6 +13,7 @@ data class TransactionUiModel(
         val startDate: String = "",
         val totalPayment: Int = 0,
         val status: String = "",
-        val productId: String = ""
+        val productId: String = "",
+        val productName: String = ""
 
 ) : Parcelable

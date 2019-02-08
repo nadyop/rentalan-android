@@ -72,6 +72,10 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
         recyclerView.adapter = adapter
     }
 
+    override fun showNoData() {
+        binding.tvNoData.visibility = View.VISIBLE
+    }
+
     companion object {
         val TAG: String = "CategoryFragment"
     }

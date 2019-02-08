@@ -7,9 +7,11 @@ import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.MainActivity
-import com.gdn.rentalan.ui.product.ProductActivityCheckout
+import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.admin.ProductFragment
+import com.gdn.rentalan.ui.register.email.RegisterActivity
+import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.TransactionFragment
 import com.gdn.rentalan.ui.transaction.TransactionMyFragment
 import com.gdn.rentalan.ui.user.UserDetailActivity
@@ -23,6 +25,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     abstract fun provideLoginActivity(): LoginActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [RegisterModule::class])
+    abstract fun provideRegisterActivity(): RegisterActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainModule::class])
@@ -67,4 +73,8 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [TransactionModule::class])
     abstract fun provideTransactionMyFragment(): TransactionMyFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [TransactionModule::class])
+    abstract fun provideTransactionDetailActivity(): TransactionDetailActivity
 }

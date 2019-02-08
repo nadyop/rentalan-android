@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.renter
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -14,19 +14,18 @@ import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_login.view.*
 import java.util.*
 import javax.inject.Inject
 
-
-class ProductActivityCheckout : BaseActivity(), ProductActivityCheckoutContract.View {
+class ProductActivityCheckout : BaseActivity(),
+    ProductActivityCheckoutContract.View {
 
     companion object {
         private const val CHECKOUT = "detail"
         fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
             val intent = Intent(context, ProductActivityCheckout::class.java)
             intent.putExtra(
-                    CHECKOUT, detail) //from @Parcelize
+                CHECKOUT, detail) //from @Parcelize
             return intent
         }
     }
@@ -48,7 +47,7 @@ class ProductActivityCheckout : BaseActivity(), ProductActivityCheckoutContract.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_checkout)
         presenter.attachView(this)
         detail = intent.getParcelableExtra(
-                CHECKOUT)
+            CHECKOUT)
         Log.d("AAAAZ", detail.toString())
         detail?.id?.let {
             presenter.getData(it)
@@ -127,8 +126,8 @@ class ProductActivityCheckout : BaseActivity(), ProductActivityCheckoutContract.
 
     override fun setData(content: ProductDetailUiModel) {
         with(binding) {
-            tvProductName.text = content.name
-            tvProductPriceDay.text = "Rp " + content.pricePerDay.toString()
+            tvProductName.text = content.name.capitalize()
+            tvProductPriceDay.text = "Rp " + content.pricePerDay.toString() + "/hari"
             tvUserName.text = content.name
             tvPhone.text = content.name
             tvCity.text = content.name

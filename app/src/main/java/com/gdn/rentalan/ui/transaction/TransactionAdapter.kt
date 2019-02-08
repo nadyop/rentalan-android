@@ -36,7 +36,7 @@ class TransactionAdapter(
                 tvDescription.text = endDate
 
                 container.setOnClickListener {
-                    Router.gotoProductCheckoutTransactionDetail(it.context, this)
+                    Router.gotoProductTransactionDetail(it.context, this)
                 }
             }
         }

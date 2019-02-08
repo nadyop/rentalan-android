@@ -2,10 +2,12 @@ package com.gdn.rentalan.ui.splashscreen
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivitySplashscreenBinding
 import com.gdn.rentalan.ui.base.BaseActivity
+import com.gdn.rentalan.util.Router
 
 class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
@@ -15,6 +17,10 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
     super.onCreate(savedInstanceState)
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_splashscreen)
+
+    Handler().postDelayed({
+      Router.goToLogin(this)
+    }, 3000)
   }
 
   override fun showProgress(show: Boolean) {

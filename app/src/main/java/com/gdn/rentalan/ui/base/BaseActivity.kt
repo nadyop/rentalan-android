@@ -1,15 +1,13 @@
 package com.gdn.rentalan.ui.base
 
-import android.content.Context
+import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.gdn.rentalan.R
-import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.fragment_category.*
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
@@ -20,7 +18,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         Log.d(javaClass.simpleName, "oncreate")
@@ -62,5 +59,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         val snackbar = Snackbar.make(findViewById(R.id.container), message, duration)
 
         return snackbar.show()
+    }
+
+    protected fun showToast(message: String, duration: Int) {
+        val toast = Toast.makeText(this, message, duration)
+
+        return toast.show()
     }
 }

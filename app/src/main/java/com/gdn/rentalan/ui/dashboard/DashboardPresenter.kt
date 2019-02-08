@@ -24,20 +24,15 @@ class DashboardPresenter @Inject constructor(private val api: ApiInterface) :
         .subscribe({ list: RestListResponse<Product> ->
           view.showProgress(false)
           Log.d("AAAAZ", "sukses nihh")
-          list.data.let {
-            it?.let {
-              var listItems: MutableList<ProductDetailUiModel> = ArrayList()
-              it.forEach { contentElement ->
-                listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
-              }
-              view.fetchDataSuccess(listItems)
-            }
-
-            if (it.isEmpty()) {
-              view.showNoData()
-            }
-
+          val listItems: MutableList<ProductDetailUiModel> = ArrayList()
+          list.data.forEach { contentElement ->
+            listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
           }
+          view.fetchDataSuccess(listItems)
+          if (list.data.isEmpty()) {
+            view.showNoData()
+          }
+
         }, { error ->
           view.showProgress(false)
           Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")

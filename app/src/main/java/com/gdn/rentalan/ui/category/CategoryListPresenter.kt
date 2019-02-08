@@ -19,17 +19,21 @@ class CategoryListPresenter @Inject constructor(private val api: ApiInterface) :
     private val subscriptions = CompositeDisposable()
 
     override fun fetchData() {
+        view.showProgress(true)
         val subscribe = api.getCategoryList().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Category> ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "sukses nihh")
+                    Log.d("getCategory", "sukses nihh")
                     list.let {
                       view.fetchDataSuccess(it)
                     }
+                    if (list.data.isEmpty()) {
+                      view.showNoData()
+                    }
                 }, { error ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+                    Log.d("getCategory", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
 

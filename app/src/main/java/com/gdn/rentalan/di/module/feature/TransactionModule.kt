@@ -27,4 +27,14 @@ abstract class TransactionModule {
     @Binds
     abstract fun provideMyTransactionPresenter(
             transactionPresenter: TransactionMyPresenter): TransactionMyContract.Presenter
+
+    @ActivityScope
+    @Binds
+    abstract fun provideTransactionDetailView(
+        transactionDetailActivity: TransactionDetailActivity): TransactionDetailContract.View
+
+    @ActivityScope
+    @Binds
+    abstract fun provideTransactionDetailPresenter(
+        transactionDetailPresenter: TransactionDetailPresenter): TransactionDetailContract.Presenter
 }

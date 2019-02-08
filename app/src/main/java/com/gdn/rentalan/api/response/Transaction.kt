@@ -16,8 +16,11 @@ data class Transaction(
 	@field:SerializedName("productId")
 	val productId: String = "",
 
+  @field:SerializedName("productName")
+  val productName: String = "",
+
 	@field:SerializedName("endDate")
-	val endDate: String? = null,
+	val endDate: String = "",
 
 	@field:SerializedName("downPayment")
 	val downPayment: Int? = null,

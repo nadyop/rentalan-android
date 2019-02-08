@@ -1,9 +1,9 @@
 package com.gdn.rentalan.di.module.feature
 
 import com.gdn.rentalan.di.scope.ActivityScope
-import com.gdn.rentalan.ui.product.ProductActivityCheckout
-import com.gdn.rentalan.ui.product.ProductActivityCheckoutContract
-import com.gdn.rentalan.ui.product.ProductActivityCheckoutPresenter
+import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
+import com.gdn.rentalan.ui.product.renter.ProductActivityCheckoutContract
+import com.gdn.rentalan.ui.product.renter.ProductActivityCheckoutPresenter
 import com.gdn.rentalan.ui.product.admin.*
 import dagger.Binds
 import dagger.Module

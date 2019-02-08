@@ -32,8 +32,8 @@ class DashboardAdapter(
     holder.itemGridBinding?.apply {
       with(product) {
 
-        tvProductName.text = name
-        tvProductPriceDay.text = pricePerDay.toString()
+        tvProductName.text = name.capitalize()
+        tvProductPriceDay.text = "Rp " + pricePerDay.toString() + "/hari"
 
         cardView.setOnClickListener {
           Router.gotoProductCheckoutDetail(it.context, this)

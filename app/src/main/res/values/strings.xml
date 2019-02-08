@@ -2,11 +2,11 @@
     <string name="app_name">Rentalan</string>
 
     <!-- app -->
-    <string name="login">Login</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
     <string name="password">Password</string>
     <string name="not_have_account">Belum punya akun?</string>
     <string name="have_account">Sudah punya akun?</string>
-    <string name="register">Daftar</string>
     <string name="next">Lanjut</string>
     <string name="otp">Kode Verifikasi</string>
     <string name="otp_check">Silahkan periksa email untuk mendapatkan kode verifikasi</string>

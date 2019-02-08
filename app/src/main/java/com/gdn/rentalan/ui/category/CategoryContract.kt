@@ -8,6 +8,7 @@ class CategoryContract {
 
     interface View:  BaseContract.View {
         fun fetchDataSuccess(list: RestListResponse<Category>)
+        fun showNoData()
     }
 
     interface Presenter: BaseContract.Presenter {

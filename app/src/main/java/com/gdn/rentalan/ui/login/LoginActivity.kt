@@ -1,6 +1,8 @@
 package com.gdn.rentalan.ui.login
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
@@ -8,6 +10,7 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityLoginBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
+import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -15,6 +18,14 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
+
+  companion object {
+    private const val LOGIN = "login"
+    fun newInstance(context: Context): Intent {
+      val intent = Intent(context, LoginActivity::class.java)
+      return intent
+    }
+  }
 
   @Inject
   lateinit var presenter: LoginContract.Presenter
@@ -38,10 +49,14 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
     presenter.attachView(this)
 
-    login()
+    initView()
   }
 
-  private fun login() {
+  private fun initView() {
+    binding.tvRegister.setOnClickListener {
+      Router.goToRegister(this)
+    }
+
     loginDataListener(View.OnClickListener {
       presenter.loginData(
           binding.etUsername.text.toString(),
@@ -64,7 +79,6 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
   }
 
   override fun goToMain() {
-    TODO(
-        "not implemented") //To change body of created functions use File | Settings | File Templates.
+    Router.goToMain(this)
   }
 }
