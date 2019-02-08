@@ -272,15 +272,16 @@
                     </TableLayout>
 
                     <TextView
-                        android:id="@+id/tv_checkout_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/spacing_small"
-                        android:text="@string/rent"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tl_description"/>
+                            android:id="@+id/tv_checkout_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_small"
+                            android:text="@string/rent"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tl_description"
+                            app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TableLayout
                         android:id="@+id/tl_checkout"
@@ -371,6 +372,32 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:textSize="@dimen/abc_text_size_small_material"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                                android:id="@+id/tr_total_rent"
+                                android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                    android:id="@+id/tv_total_rent_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:layout_weight="1"
+                                    android:gravity="start"
+                                    android:singleLine="true"
+                                    android:text="@string/total"/>
+
+                            <TextView
+                                    android:id="@+id/tv_total"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawablePadding="@dimen/spacing_extra_smaller"
+                                    android:text="@string/total"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/abc_text_size_small_material"/>
                         </TableRow>
 
                         <View style="@style/Separator"/>

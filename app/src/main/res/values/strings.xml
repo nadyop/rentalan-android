@@ -25,7 +25,7 @@
     <string name="date_start">Mulai Tanggal</string>
     <string name="date_end">Hingga Tanggal</string>
     <string name="sum">Jumlah</string>
-    <string name="total">Total :</string>
+    <string name="total">Total</string>
     <string name="me">Akun</string>
 
     <!-- Fragment tags -->

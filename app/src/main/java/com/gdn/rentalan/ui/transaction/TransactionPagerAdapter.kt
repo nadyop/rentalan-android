@@ -25,9 +25,9 @@ class TransactionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> "Disewa"
+            0 -> "Penyewa"
             else -> {
-                return "Transaksiku"
+                return "Pemilik"
             }
         }
     }
