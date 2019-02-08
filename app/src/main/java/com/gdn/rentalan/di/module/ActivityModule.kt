@@ -10,6 +10,8 @@ import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.admin.ProductFragment
+import com.gdn.rentalan.ui.transaction.TransactionFragment
+import com.gdn.rentalan.ui.transaction.TransactionMyFragment
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.Module
@@ -58,7 +60,11 @@ abstract class ActivityModule {
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun provideProductActivityCheckout(): ProductActivityCheckout
 
-//    @ActivityScope
-//    @ContributesAndroidInjector(modules = [TransactionModule::class])
-//    abstract fun provideTransactionFragment(): TransactionFragment
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [TransactionModule::class])
+    abstract fun provideTransactionFragment(): TransactionFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [TransactionModule::class])
+    abstract fun provideTransactionMyFragment(): TransactionMyFragment
 }

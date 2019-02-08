@@ -12,21 +12,20 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class TransactionPresenter @Inject constructor(private val api: ApiInterface) :
-        BasePresenter(), TransactionContract.Presenter {
+class TransactionMyPresenter @Inject constructor(private val api: ApiInterface) :
+        BasePresenter(), TransactionMyContract.Presenter {
 
-    private lateinit var view: TransactionContract.View
+    private lateinit var view: TransactionMyContract.View
     private val subscriptions = CompositeDisposable()
 
     override fun fetchData() {
-        view.showProgress(true)
-        val subscribe = api.getTransactionListOwner().subscribeOn(Schedulers.io())
+        val subscribe = api.getTransactionListRenter().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Transaction> ->
                     view.showProgress(false)
                     Log.d("AAAAZ", "sukses nihh")
 
-                    var listItems: MutableList<TransactionUiModel> = ArrayList()
+                    val listItems: MutableList<TransactionUiModel> = ArrayList()
                     list.data.forEach { contentElement ->
                         listItems.add(TransactionMapper.mapToTransactionUiModel(contentElement))
                     }
@@ -45,7 +44,7 @@ class TransactionPresenter @Inject constructor(private val api: ApiInterface) :
         subscriptions.add(subscribe)
     }
 
-    override fun attachView(view: TransactionContract.View) {
+    override fun attachView(view: TransactionMyContract.View) {
         this.view = view
     }
 
