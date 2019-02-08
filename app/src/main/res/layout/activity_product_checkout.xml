@@ -311,8 +311,9 @@
                                 android:hint="@string/date_start"
                                 android:layout_column="1"
                                 android:layout_weight="1"
+                                android:focusable="false"
                                 android:imeOptions="actionNext"
-                                android:inputType="date"
+
                                 android:textSize="@dimen/abc_text_size_small_material"/>
                         </TableRow>
 
@@ -341,7 +342,7 @@
                                 android:imeOptions="actionNext"
                                 android:layout_column="1"
                                 android:layout_weight="1"
-                                android:inputType="text"
+                                android:focusable="false"
                                 android:textSize="@dimen/abc_text_size_small_material"/>
                         </TableRow>
 
@@ -368,7 +369,7 @@
                             android:drawablePadding="@dimen/spacing_extra_smaller"
                             android:hint="@string/sum"
                             android:imeOptions="actionNext"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:textSize="@dimen/abc_text_size_small_material"/>
                         </TableRow>
 

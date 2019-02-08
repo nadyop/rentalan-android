@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.main.MainActivity
+import com.gdn.rentalan.ui.product.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
@@ -38,6 +39,12 @@ interface Router {
         fun gotoUserDetail(context: Context,
             userUiModel: UserDetailUiModel) {
             val intent = UserDetailActivity.Companion.newInstance(context, userUiModel)
+            context.startActivity(intent)
+        }
+
+        fun gotoProductCheckoutDetail(context: Context,
+                              productUiModel: ProductDetailUiModel) {
+            val intent = ProductActivityCheckout.Companion.newInstance(context, productUiModel)
             context.startActivity(intent)
         }
     }

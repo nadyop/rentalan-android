@@ -4,6 +4,7 @@ import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestCommonResponse
 import com.gdn.rentalan.api.RestSingleResponse
+import com.gdn.rentalan.api.request.RentRequest
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
@@ -48,14 +49,14 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
     subscriptions.add(subscribe)
   }
 
-  override fun verification(productId: String, accept: String) {
-    val subscribe = api.verifProduct(productId, accept)
+  override fun rent(productId: String, startDate: String, endDate: String, qty: Int) {
+    val subscribe = api.rentProduct(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ list: RestCommonResponse ->
           view.showProgress(false)
           Log.d("AAAAZ", "sukses add nihh")
-          view.goToProductList()
+          view.goToDashboard()
         }, { error ->
           view.showProgress(false)
           Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")

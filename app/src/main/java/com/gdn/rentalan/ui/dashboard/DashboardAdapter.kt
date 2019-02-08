@@ -36,7 +36,7 @@ class DashboardAdapter(
         tvProductPriceDay.text = pricePerDay.toString()
 
         cardView.setOnClickListener {
-          Router.gotoProductDetail(it.context, this)
+          Router.gotoProductCheckoutDetail(it.context, this)
         }
       }
     }

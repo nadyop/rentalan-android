@@ -5,14 +5,14 @@ import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 
 class ProductActivityCheckoutContract {
 
-  interface View : BaseContract.View {
-    fun setData(content: ProductDetailUiModel)
-    fun goToProductList()
-  }
+    interface View : BaseContract.View {
+        fun setData(content: ProductDetailUiModel)
+        fun goToDashboard()
+    }
 
-  interface Presenter : BaseContract.Presenter {
-    fun getData(id: String)
-    fun verification(productId: String, accept: String)
-    fun attachView(view: View)
-  }
+    interface Presenter : BaseContract.Presenter {
+        fun getData(id: String)
+        fun rent(productId: String, startDate: String, endDate: String, qty: Int)
+        fun attachView(view: View)
+    }
 }
