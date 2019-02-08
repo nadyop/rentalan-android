@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/container"
@@ -43,34 +43,34 @@
                         android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@color/white"
+                        android:orientation="vertical"
                         android:paddingBottom="@dimen/spacing_small"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/iv_product"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/image_width_large"
-                            tools:ignore="ContentDescription"
-                            android:src="@drawable/blibli"/>
+                            android:src="@drawable/blibli"
+                            tools:ignore="ContentDescription"/>
 
                         <LinearLayout
-                            android:weightSum="2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:orientation="horizontal"
                             android:padding="@dimen/spacing_normal"
-                            android:orientation="horizontal">
+                            android:weightSum="2">
 
                             <TextView
                                 android:id="@+id/tv_product_name"
-                                android:layout_weight="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size_super_large"
-                                android:text="@string/product_name"/>
+                                android:layout_weight="1"
+                                android:text="@string/product_name"
+                                android:textSize="@dimen/text_size_super_large"/>
 
                             <TextView
                                 android:id="@+id/tv_product_price_day"
@@ -82,14 +82,15 @@
                     </LinearLayout>
 
                     <android.support.constraint.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/spacing_small"
-                        android:background="@color/white"
                         android:layout_marginTop="@dimen/spacing_smaller"
-                        app:layout_constraintTop_toBottomOf="@+id/ll_photo"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_small"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="horizontal" android:id="@+id/constraintLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/ll_photo">
 
                         <TextView
                             android:id="@+id/tv_user_name"
@@ -105,37 +106,40 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/city"
-                            app:layout_constraintStart_toEndOf="@+id/tv_user_name"
-                            app:layout_constraintHorizontal_bias="1"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintStart_toEndOf="@+id/tv_user_name"
                             app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
                             android:id="@+id/tv_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/phone"
                             android:layout_marginTop="@dimen/spacing_small"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            android:text="@string/phone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"/>
 
                     </android.support.constraint.ConstraintLayout>
 
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="@string/product_description"
-                              android:padding="@dimen/spacing_small"
-                              app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                              app:layout_constraintStart_toStartOf="parent"
-                              android:id="@+id/tv_description_label"/>
+                    <TextView
+                        android:id="@+id/tv_description_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small"
+                        android:text="@string/product_description"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
 
-                    <TableLayout android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:background="@color/white"
-                                 app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
 
-                        <TableRow android:id="@+id/tr_category"
-                                  android:padding="@dimen/spacing_normal">
+                        <TableRow
+                            android:id="@+id/tr_category"
+                            android:padding="@dimen/spacing_normal">
 
                             <TextView
                                 android:id="@+id/tv_category_label"
@@ -159,8 +163,9 @@
 
                         <View style="@style/Separator"/>
 
-                        <TableRow android:id="@+id/tr_description"
-                                  android:padding="@dimen/spacing_normal">
+                        <TableRow
+                            android:id="@+id/tr_description"
+                            android:padding="@dimen/spacing_normal">
 
                             <TextView
                                 android:id="@+id/tv_description_label_1"
@@ -181,10 +186,12 @@
                                 android:gravity="end"
                                 android:text="Kamera"/>
                         </TableRow>
+
                         <View style="@style/Separator"/>
 
-                        <TableRow android:id="@+id/tr_dp"
-                                  android:padding="@dimen/spacing_normal">
+                        <TableRow
+                            android:id="@+id/tr_dp"
+                            android:padding="@dimen/spacing_normal">
 
                             <TextView
                                 android:id="@+id/tv_dp_label"
@@ -205,10 +212,12 @@
                                 android:gravity="end"
                                 android:text="Kamera"/>
                         </TableRow>
+
                         <View style="@style/Separator"/>
 
-                        <TableRow android:id="@+id/tr_late_charge"
-                                  android:padding="@dimen/spacing_normal">
+                        <TableRow
+                            android:id="@+id/tr_late_charge"
+                            android:padding="@dimen/spacing_normal">
 
                             <TextView
                                 android:id="@+id/tv_late_charge_label"
@@ -230,10 +239,12 @@
                                 android:singleLine="false"
                                 android:text="Kamera"/>
                         </TableRow>
+
                         <View style="@style/Separator"/>
 
-                        <TableRow android:id="@+id/tr_stock"
-                                  android:padding="@dimen/spacing_normal">
+                        <TableRow
+                            android:id="@+id/tr_stock"
+                            android:padding="@dimen/spacing_normal">
 
                             <TextView
                                 android:id="@+id/tv_stock_label"
@@ -255,6 +266,7 @@
                                 android:singleLine="false"
                                 android:text="20"/>
                         </TableRow>
+
                         <View style="@style/Separator"/>
 
                     </TableLayout>
@@ -263,9 +275,32 @@
             </ScrollView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/bt_one"
+                android:visibility="gone"
+                style="@style/CardView.FooterAction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/CardView.FooterAction">
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/button_rent"
+                        style="@style/Button.Action.Blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="@string/rent"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/bt_onee"
+                style="@style/CardView.FooterAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -280,22 +315,22 @@
 
                         <Button
                             android:id="@+id/button_left"
+                            style="@style/Button.Action.Red"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:text="@string/decline"
                             android:layout_marginRight="@dimen/spacing_smaller"
-                            style="@style/Button.Action.Red"
+                            android:text="@string/decline"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintRight_toLeftOf="@+id/button_right"/>
+                            app:layout_constraintRight_toLeftOf="@+id/button_right"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <Button
                             android:id="@+id/button_right"
+                            style="@style/Button.Action.Blue"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:text="@string/active"
                             android:layout_marginLeft="@dimen/spacing_smaller"
-                            style="@style/Button.Action.Blue"
+                            android:text="@string/active"
                             app:layout_constraintLeft_toRightOf="@+id/button_left"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent"/>

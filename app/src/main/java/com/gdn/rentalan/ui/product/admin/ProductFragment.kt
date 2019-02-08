@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.admin
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle

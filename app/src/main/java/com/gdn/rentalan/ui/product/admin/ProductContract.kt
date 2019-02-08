@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.admin
 
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel

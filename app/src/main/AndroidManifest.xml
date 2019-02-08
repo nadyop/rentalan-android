@@ -32,10 +32,13 @@
             android:name=".ui.category.CategoryAddActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.product.ProductDetailActivity"
+            android:name=".ui.product.admin.ProductDetailActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.user.UserDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.product.ProductActivityCheckout"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.main.MainActivity
-import com.gdn.rentalan.ui.product.ProductDetailActivity
+import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel

@@ -4,81 +4,364 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:navigationIcon="@drawable/ic_left"
+            app:title="@string/product_detail"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"/>
+
+        <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white_4_100"
+            android:background="@color/white_2_100"
             android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="@style/Toolbar"
-                app:navigationIcon="@drawable/ic_left"
-                app:title="@string/rent"
-                app:titleTextColor="@color/white"/>
-
-        <ScrollView
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-            <LinearLayout
-                    android:id="@+id/ll_product_date"
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cl_user"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/spacing_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                        android:id="@+id/startInputLayout"
+                    <LinearLayout
+                        android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/spacing_small"
-                        android:textColorHint="@color/colorPrimary">
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/spacing_small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
-                            android:id="@+id/et_start_date"
+                        <ImageView
+                            android:id="@+id/iv_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/image_width_large"
+                            android:src="@drawable/blibli"
+                            tools:ignore="ContentDescription"/>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="@dimen/spacing_extra_smaller"
-                            android:hint="@string/date_start"
-                            android:imeOptions="actionNext"
-                            android:inputType="date"
-                            android:textSize="@dimen/abc_text_size_small_material"/>
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_normal"
+                            android:weightSum="2">
 
-                </android.support.design.widget.TextInputLayout>
+                            <TextView
+                                android:id="@+id/tv_product_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/product_name"
+                                android:textSize="@dimen/text_size_super_large"/>
 
-                <android.support.design.widget.TextInputLayout
-                        android:id="@+id/endInputLayout"
+                            <TextView
+                                android:id="@+id/tv_product_price_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/spacing_extra_smaller"
+                                android:text="@string/product_per_day"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/spacing_small"
-                        android:textColorHint="@color/colorPrimary">
+                        android:layout_marginTop="@dimen/spacing_smaller"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_photo">
 
-                    <EditText
-                            android:id="@+id/et_end_date"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="@dimen/spacing_extra_smaller"
-                            android:hint="@string/date_end"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:textSize="@dimen/abc_text_size_small_material"/>
+                            android:text="@string/user"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                </android.support.design.widget.TextInputLayout>
+                        <TextView
+                            android:id="@+id/tv_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/city"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                <android.support.design.widget.TextInputLayout
-                        android:id="@+id/countInputLayout"
+                        <TextView
+                            android:id="@+id/tv_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/phone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"/>
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/tv_description_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small"
+                        android:text="@string/product_description"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
+
+                    <TableLayout
+                        android:id="@+id/tl_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/spacing_small"
-                        android:textColorHint="@color/colorPrimary">
+                        android:background="@color/white"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_description_label">
 
-                    <EditText
+                        <TableRow
+                            android:id="@+id/tr_category"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_category_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/category"/>
+
+                            <TextView
+                                android:id="@+id/tv_category"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_description"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_description_label_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/description"/>
+
+                            <TextView
+                                android:id="@+id/tv_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_dp"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_dp_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Kamera"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_late_charge"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_late_charge_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/description"/>
+
+                            <TextView
+                                android:id="@+id/tv_late_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:singleLine="false"
+                                android:text="Kamera"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_stock"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_stock_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_stock"/>
+
+                            <TextView
+                                android:id="@+id/tv_stock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:singleLine="false"
+                                android:text="20"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+                    </TableLayout>
+
+                    <TextView
+                        android:id="@+id/tv_checkout_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small"
+                        android:text="@string/rent"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tl_description"/>
+
+                    <TableLayout
+                        android:id="@+id/tl_checkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_checkout_label">
+
+                        <TableRow
+                            android:id="@+id/tr_checkout"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_startdate_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/date_start"/>
+
+                            <EditText
+                                android:id="@+id/et_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="@dimen/spacing_extra_smaller"
+                                android:hint="@string/date_start"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:imeOptions="actionNext"
+                                android:inputType="date"
+                                android:textSize="@dimen/abc_text_size_small_material"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_endate"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_endate_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/date_end"/>
+
+                            <EditText
+                                android:id="@+id/et_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="@dimen/spacing_extra_smaller"
+                                android:hint="@string/date_end"
+                                android:imeOptions="actionNext"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:inputType="text"
+                                android:textSize="@dimen/abc_text_size_small_material"/>
+                        </TableRow>
+
+                        <View style="@style/Separator"/>
+
+                        <TableRow
+                            android:id="@+id/tr_stock_rent"
+                            android:padding="@dimen/spacing_normal">
+
+                            <TextView
+                                android:id="@+id/tv_stock_rent_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_stock"/>
+
+                            <EditText
                             android:id="@+id/et_count"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -87,38 +370,33 @@
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:textSize="@dimen/abc_text_size_small_material"/>
+                        </TableRow>
 
-                </android.support.design.widget.TextInputLayout>
+                        <View style="@style/Separator"/>
+                    </TableLayout>
+                </android.support.constraint.ConstraintLayout>
+            </ScrollView>
 
-                <TextView
+            <android.support.v7.widget.CardView
+                android:id="@+id/bt_one"
+                style="@style/CardView.FooterAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/button_rent"
+                        style="@style/Button.Action.Blue"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        android:layout_marginRight="@dimen/spacing_super_larger"
-                        android:textSize="@dimen/text_size_normal"
-                        android:text="@string/total"/>
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        android:textStyle="bold"
-                        android:layout_marginRight="@dimen/spacing_super_larger"
-                        android:textSize="@dimen/text_size_larger"
-                        android:text="50000"/>
-
-                <Button
-                        android:id="@+id/bt_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="@dimen/spacing_larger"
-                        android:background="@color/colorAccent"
-                        android:text="@string/rent"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"/>
-            </LinearLayout>
-
-        </ScrollView>
-
+                        android:layout_height="48dp"
+                        android:text="@string/rent"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
 </layout>

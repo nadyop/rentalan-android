@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.admin
 
 import android.content.Context
 import android.content.Intent
@@ -7,25 +7,23 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.gdn.rentalan.R
-import com.gdn.rentalan.api.RestListResponse
-import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.databinding.ActivityProductDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_product_detail_admin.*
-import kotlinx.android.synthetic.main.fragment_product.*
 import javax.inject.Inject
 
-class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
+class ProductDetailActivity : BaseActivity(),
+    ProductDetailContract.View {
 
     companion object {
         private const val DETAIL = "detail"
         fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
             val intent = Intent(context, ProductDetailActivity::class.java)
-            intent.putExtra(DETAIL, detail) //from @Parcelize
+            intent.putExtra(
+                DETAIL, detail) //from @Parcelize
             return intent
         }
     }
@@ -46,7 +44,8 @@ class ProductDetailActivity : BaseActivity(), ProductDetailContract.View {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
         presenter.attachView(this)
-        detail = intent.getParcelableExtra(DETAIL)
+        detail = intent.getParcelableExtra(
+            DETAIL)
         Log.d("AAAAZ", detail.toString())
         detail?.id?.let {
             presenter.getData(it)

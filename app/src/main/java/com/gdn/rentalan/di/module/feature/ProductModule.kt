@@ -1,7 +1,10 @@
 package com.gdn.rentalan.di.module.feature
 
 import com.gdn.rentalan.di.scope.ActivityScope
-import com.gdn.rentalan.ui.product.*
+import com.gdn.rentalan.ui.product.ProductActivityCheckout
+import com.gdn.rentalan.ui.product.ProductActivityCheckoutContract
+import com.gdn.rentalan.ui.product.ProductActivityCheckoutPresenter
+import com.gdn.rentalan.ui.product.admin.*
 import dagger.Binds
 import dagger.Module
 
@@ -27,4 +30,14 @@ abstract class ProductModule {
     @Binds
     abstract fun provideProductDetailPresenter(
             productDetailPresenter: ProductDetailPresenter): ProductDetailContract.Presenter
+
+    @ActivityScope
+    @Binds
+    abstract fun provideProductCheckoutView(
+        productActivityCheckout: ProductActivityCheckout): ProductActivityCheckoutContract.View
+
+    @ActivityScope
+    @Binds
+    abstract fun provideProductCheckoutPresenter(
+      productActivityCheckoutPresenter: ProductActivityCheckoutPresenter): ProductActivityCheckoutContract.Presenter
 }

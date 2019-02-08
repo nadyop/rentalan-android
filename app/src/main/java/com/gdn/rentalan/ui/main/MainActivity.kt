@@ -10,7 +10,7 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
-import com.gdn.rentalan.ui.product.ProductFragment
+import com.gdn.rentalan.ui.product.admin.ProductFragment
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

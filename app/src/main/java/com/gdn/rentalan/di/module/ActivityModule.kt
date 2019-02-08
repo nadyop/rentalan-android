@@ -7,8 +7,9 @@ import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.MainActivity
-import com.gdn.rentalan.ui.product.ProductDetailActivity
-import com.gdn.rentalan.ui.product.ProductFragment
+import com.gdn.rentalan.ui.product.ProductActivityCheckout
+import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
+import com.gdn.rentalan.ui.product.admin.ProductFragment
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.Module
@@ -52,4 +53,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [DashboardModule::class])
     abstract fun provideDashboardFragment(): DashboardFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [ProductModule::class])
+    abstract fun provideProductActivityCheckout(): ProductActivityCheckout
+
+
 }

@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.product
+package com.gdn.rentalan.ui.product.admin
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface

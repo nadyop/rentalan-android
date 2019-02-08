@@ -69,4 +69,5 @@ class DashboardFragment : BaseFragment() , DashboardContract.View {
   override fun showNoData() {
     binding.tvNoData.visibility = View.VISIBLE
   }
+
 }
