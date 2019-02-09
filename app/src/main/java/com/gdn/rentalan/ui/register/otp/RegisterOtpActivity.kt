@@ -3,8 +3,6 @@ package com.gdn.rentalan.ui.register.otp
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.util.Log
-import android.widget.EditText
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityRegisterOtpBinding
 import com.gdn.rentalan.ui.base.BaseActivity
@@ -44,7 +42,7 @@ class RegisterOtpActivity : BaseActivity(), RegisterOtpContract.View {
         showSnackbar("OTP tidak sesuai", Snackbar.LENGTH_LONG)
       } else {
         showToast("OTP berhasil dimasukkan", Snackbar.LENGTH_LONG)
-        Router.goToLogin(this)
+        Router.goToRegisterProfile(this)
       }
     }
 

@@ -80,7 +80,7 @@ interface ApiInterface {
     //    user
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/register")
-    fun userRegister(@Body registerRequest: RegisterRequest): Observable<RestCommonResponse>
+    fun registerProfile(@Body registerRequest: RegisterRequest): Observable<RestCommonResponse>
 
     @POST("user/verification")
     fun registerEmail(@Body registerEmailRequest: RegisterEmailRequest): Observable<RegisterEmailResponse>

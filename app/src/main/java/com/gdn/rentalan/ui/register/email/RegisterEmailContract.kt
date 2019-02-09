@@ -2,7 +2,7 @@ package com.gdn.rentalan.ui.register.email
 
 import com.gdn.rentalan.ui.base.BaseContract
 
-class RegisterContract {
+class RegisterEmailContract {
 
   interface View: BaseContract.View {
     fun getOtp(otp: String)

@@ -8,8 +8,9 @@ import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
-import com.gdn.rentalan.ui.register.email.RegisterActivity
+import com.gdn.rentalan.ui.register.email.RegisterEmailActivity
 import com.gdn.rentalan.ui.register.otp.RegisterOtpActivity
+import com.gdn.rentalan.ui.register.profile.RegisterProfileActivity
 import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
@@ -35,7 +36,7 @@ interface Router {
         }
 
         fun goToRegisterEmail(context: Context) {
-            val intent = Intent(context, RegisterActivity::class.java)
+            val intent = Intent(context, RegisterEmailActivity::class.java)
             context.startActivity(intent)
         }
 
@@ -76,7 +77,13 @@ interface Router {
         }
 
         fun goToRegister(context: Context) {
-            val intent = RegisterActivity.Companion.newInstance(context)
+            val intent = RegisterEmailActivity.Companion.newInstance(context)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
+
+        fun goToRegisterProfile(context: Context) {
+            val intent = Intent(context, RegisterProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(intent)
         }

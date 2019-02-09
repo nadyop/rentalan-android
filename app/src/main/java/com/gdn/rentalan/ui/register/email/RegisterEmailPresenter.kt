@@ -10,14 +10,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RegisterPresenter @Inject constructor(private val api: ApiInterface) :
-    BasePresenter(), RegisterContract.Presenter {
+class RegisterEmailPresenter @Inject constructor(private val api: ApiInterface) :
+    BasePresenter(), RegisterEmailContract.Presenter {
 
-  private lateinit var view: RegisterContract.View
+  private lateinit var mView: RegisterEmailContract.View
   private val subscriptions = CompositeDisposable()
 
-  override fun attachView(view: RegisterContract.View) {
-    this.view = view
+  override fun attachView(view: RegisterEmailContract.View) {
+    this.mView = view
   }
 
   override fun registerEmail(email: String) {
@@ -25,13 +25,13 @@ class RegisterPresenter @Inject constructor(private val api: ApiInterface) :
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ list: RegisterEmailResponse ->
-          view.showProgress(false)
+          mView.showProgress(false)
           Log.d("AAAAZ", "sukses add nihh")
-          view.getOtp(list.data.toString())
+          mView.getOtp(list.data.toString())
         }, { error ->
-          view.showProgress(false)
+          mView.showProgress(false)
           Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
-          view.showErrorMessage(error.localizedMessage)
+          mView.showErrorMessage(error.localizedMessage)
         })
 
     subscriptions.add(subscribe)

@@ -16,7 +16,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/ic_left"
                 app:title="@string/self_data"/>
 
         <TextView
@@ -43,6 +42,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/usernameInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:textColorHint="@color/colorPrimary"
+                    android:layout_margin="@dimen/spacing_small">
+
+                    <EditText
+                        android:id="@+id/et_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/spacing_extra_smaller"
+                        android:hint="@string/username"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textSize="@dimen/abc_text_size_small_material"/>
+
+                    <TextView
+                        android:id="@+id/tv_username_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:textColor="@color/state_error"
+                        android:text="@string/username_unique"/>
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                         android:id="@+id/surenameInputLayout"
@@ -102,6 +128,13 @@
                             android:inputType="textEmailAddress"
                             android:textSize="@dimen/abc_text_size_small_material"/>
 
+                    <TextView
+                        android:id="@+id/tv_email_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:textColor="@color/state_error"
+                        android:text="@string/email_unique"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -109,6 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_normal"
+                        app:passwordToggleEnabled="true"
                         android:textColorHint="@color/colorPrimary"
                         android:layout_margin="@dimen/spacing_small">
 
@@ -140,6 +174,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView"/>
 
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_next"
+            app:layout_constraintVertical_bias="0.089"/>
     </android.support.constraint.ConstraintLayout>
 
 </layout>

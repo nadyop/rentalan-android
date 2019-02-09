@@ -14,22 +14,22 @@ import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class RegisterActivity : BaseActivity(), RegisterContract.View {
+class RegisterEmailActivity : BaseActivity(), RegisterEmailContract.View {
 
   companion object {
     private const val REGISTER = "register"
     fun newInstance(context: Context): Intent {
-      val intent = Intent(context, RegisterActivity::class.java)
+      val intent = Intent(context, RegisterEmailActivity::class.java)
       return intent
     }
   }
 
   @Inject
-  lateinit var presenter: RegisterContract.Presenter
+  lateinit var mPresenter: RegisterEmailContract.Presenter
   private lateinit var binding: ActivityRegisterBinding
 
   override fun getPresenter(): BaseContract.Presenter? {
-    return presenter
+    return mPresenter
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,20 +37,20 @@ class RegisterActivity : BaseActivity(), RegisterContract.View {
     super.onCreate(savedInstanceState)
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
-    presenter.attachView(this)
+    mPresenter.attachView(this)
 
     initView()
   }
 
   override fun getOtp(otp: String) {
-    val intent = Intent(this@RegisterActivity, RegisterOtpActivity::class.java)
+    val intent = Intent(this@RegisterEmailActivity, RegisterOtpActivity::class.java)
     intent.putExtra("otp", otp)
     startActivity(intent)
   }
 
   private fun initView() {
     binding.btRegister.setOnClickListener {
-      presenter.registerEmail(binding.etUsername.text.toString())
+      mPresenter.registerEmail(binding.etUsername.text.toString())
       showProgress(true)
     }
     binding.login.setOnClickListener {

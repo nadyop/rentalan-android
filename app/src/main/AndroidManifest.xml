@@ -21,10 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.register.email.RegisterActivity"
+        <activity android:name=".ui.register.email.RegisterEmailActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.register.otp.RegisterOtpActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ui.register.profile.RegisterProfileActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="stateHidden"/>
         <activity

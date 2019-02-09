@@ -1,9 +1,12 @@
 package com.gdn.rentalan.di.module.feature
 
 import com.gdn.rentalan.di.scope.ActivityScope
-import com.gdn.rentalan.ui.register.email.RegisterActivity
-import com.gdn.rentalan.ui.register.email.RegisterContract
-import com.gdn.rentalan.ui.register.email.RegisterPresenter
+import com.gdn.rentalan.ui.register.email.RegisterEmailActivity
+import com.gdn.rentalan.ui.register.email.RegisterEmailContract
+import com.gdn.rentalan.ui.register.email.RegisterEmailPresenter
+import com.gdn.rentalan.ui.register.profile.RegisterProfileActivity
+import com.gdn.rentalan.ui.register.profile.RegisterProfileContract
+import com.gdn.rentalan.ui.register.profile.RegisterProfilePresenter
 import dagger.Binds
 import dagger.Module
 
@@ -11,8 +14,14 @@ import dagger.Module
 abstract class RegisterModule {
 
   @ActivityScope @Binds abstract fun provideRegisterView(
-      registerActivity: RegisterActivity): RegisterContract.View
+      registerEmailActivity: RegisterEmailActivity): RegisterEmailContract.View
 
   @ActivityScope @Binds abstract fun provideRegisterPresenter(
-      registerPresenter: RegisterPresenter): RegisterContract.Presenter
+      registerEmailPresenter: RegisterEmailPresenter): RegisterEmailContract.Presenter
+
+  @ActivityScope @Binds abstract fun provideRegisterProfileView(
+      registerProfileActivity: RegisterProfileActivity): RegisterProfileContract.View
+
+  @ActivityScope @Binds abstract fun provideRegisterProfilePresenter(
+      registerProfilePresenter: RegisterProfilePresenter): RegisterProfileContract.Presenter
 }

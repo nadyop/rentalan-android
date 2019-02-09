@@ -10,7 +10,8 @@ import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.admin.ProductFragment
-import com.gdn.rentalan.ui.register.email.RegisterActivity
+import com.gdn.rentalan.ui.register.email.RegisterEmailActivity
+import com.gdn.rentalan.ui.register.profile.RegisterProfileActivity
 import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.TransactionFragment
 import com.gdn.rentalan.ui.transaction.TransactionMyFragment
@@ -28,7 +29,11 @@ abstract class ActivityModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [RegisterModule::class])
-    abstract fun provideRegisterActivity(): RegisterActivity
+    abstract fun provideRegisterEmailActivity(): RegisterEmailActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [RegisterModule::class])
+    abstract fun provideRegisterProfileActivity(): RegisterProfileActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainModule::class])

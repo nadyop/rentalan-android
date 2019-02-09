@@ -49,6 +49,9 @@
     <string name="email">E-mail</string>
     <string name="surename">Nama Lengkap</string>
     <string name="username">Username</string>
+    <string name="username_unique">Username tidak tersedia</string>
+    <string name="email_unique">Email telah terdaftarkan</string>
+    <string name="register_success">Silahkan login untuk lengkapi data diri</string>
     <string name="phone">No. HP</string>
     <string name="gender">Gender</string>
     <string name="birth">Tgl Lahir</string>
