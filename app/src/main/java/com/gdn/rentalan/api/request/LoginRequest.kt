@@ -1,6 +1,12 @@
 package com.gdn.rentalan.api.request
 
+import com.google.gson.annotations.SerializedName
+
 data class LoginRequest(
-	val password: String? = null,
-	val username: String? = null
+
+		@field:SerializedName("username")
+		val username: String? = null,
+
+		@field:SerializedName("password")
+		val password: String? = null
 )

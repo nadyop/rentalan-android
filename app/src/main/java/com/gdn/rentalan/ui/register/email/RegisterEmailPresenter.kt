@@ -26,11 +26,11 @@ class RegisterEmailPresenter @Inject constructor(private val api: ApiInterface) 
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ list: RegisterEmailResponse ->
           mView.showProgress(false)
-          Log.d("AAAAZ", "sukses add nihh")
+          Log.d("AAAAZ", "register email success")
           mView.getOtp(list.data.toString())
         }, { error ->
           mView.showProgress(false)
-          Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
+          Log.d("AAAAZ", "register email failed + ${error.message} + ==== + ${error.cause}")
           mView.showErrorMessage(error.localizedMessage)
         })
 

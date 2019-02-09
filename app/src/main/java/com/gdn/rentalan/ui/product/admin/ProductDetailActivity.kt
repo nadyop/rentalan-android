@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityProductDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
@@ -61,11 +62,16 @@ class ProductDetailActivity : BaseActivity(),
         }
 
         sendDataListener(View.OnClickListener {
-            Log.d("AAAAZproductId = ", detail?.id.orEmpty())
             presenter.verification(
                 detail?.id.orEmpty(), true.toString()
             )
         })
+
+        binding.buttonLeft.setOnClickListener {
+            presenter.verification(
+                detail?.id.orEmpty(), false.toString()
+            )
+        }
     }
 
     private fun sendDataListener(listener: View.OnClickListener) {
@@ -74,11 +80,12 @@ class ProductDetailActivity : BaseActivity(),
     }
 
     override fun setData(content: ProductDetailUiModel) {
+        Glide.with(this).load(content.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
             tvProductName.text = content.name
-            tvProductPriceDay.text = "Rp " + content.pricePerDay.toString()
-            tvUserName.text = content.name
-            tvPhone.text = content.name
+            tvProductPriceDay.text = "Rp " + content.pricePerDay.toString() + " /hari"
+            tvUserName.text = content.ownerName
+            tvPhone.text = content.ownerPhone
             tvCity.text = content.name
             tvCategory.text = content.categoryName
             tvDescription.text = content.description

@@ -2,11 +2,9 @@ package com.gdn.rentalan.ui.category
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
-import com.gdn.rentalan.api.ApiResponseObserver
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Category
 import com.gdn.rentalan.ui.base.BasePresenter
-import com.gdn.rentalan.util.subscribeWithLoadingDialogAndRetry
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -5,6 +5,7 @@ import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.di.module.ActivityModule
 import com.gdn.rentalan.di.module.ApplicationModule
 import com.gdn.rentalan.di.scope.ApplicationScope
+import com.gdn.rentalan.util.LoginRepository
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -14,4 +15,5 @@ import dagger.android.AndroidInjector
 interface ApplicationComponent : AndroidInjector<ApplicationBase>{
 
     fun apiInterface(): ApiInterface
+    fun loginRepository(): LoginRepository
 }

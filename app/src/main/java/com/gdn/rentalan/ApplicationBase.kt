@@ -5,6 +5,7 @@ import android.app.Application
 import android.app.Service
 import com.gdn.rentalan.di.component.ApplicationComponent
 import com.gdn.rentalan.di.component.DaggerApplicationComponent
+import com.gdn.rentalan.di.module.ApplicationModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -19,6 +20,15 @@ class ApplicationBase : Application(), HasActivityInjector, HasServiceInjector {
 
     lateinit var appComponent: ApplicationComponent
 
+    override fun onCreate() {
+        super.onCreate()
+
+        instance = this
+        DaggerApplicationComponent.builder().applicationModule(ApplicationModule(getInstance()))
+            .build().inject(this)
+//        DaggerApplicationComponent.create().inject(this)
+    }
+
     override fun activityInjector(): AndroidInjector<Activity> {
         return activityDispatchingAndroidInjector
     }
@@ -29,13 +39,6 @@ class ApplicationBase : Application(), HasActivityInjector, HasServiceInjector {
 
     fun getInstance(): ApplicationBase {
         return instance
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-
-        instance = this
-        DaggerApplicationComponent.create().inject(this)
     }
 
     companion object {

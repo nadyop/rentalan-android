@@ -18,21 +18,13 @@ class RegisterOtpActivity : BaseActivity(), RegisterOtpContract.View {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_register_otp)
 
     validateOtp()
-  }
 
-  override fun onBackPressed() {
-    super.onBackPressed()
     binding.toolbar.setNavigationOnClickListener {
       Router.goToRegisterEmail(this)
     }
   }
 
   override fun validateOtp() {
-
-//    binding.toolbar.setOnClickListener {
-//      Router.goToRegisterEmail(this)
-//      super.onBackPressed()
-//    }
 
     binding.btNext.setOnClickListener {
       val extras = intent?.extras?.getString("otp")

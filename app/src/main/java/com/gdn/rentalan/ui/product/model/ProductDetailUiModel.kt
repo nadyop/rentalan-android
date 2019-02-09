@@ -13,5 +13,8 @@ data class ProductDetailUiModel(
         val downPayment: Int? = null,
         val lateCharge: Int? = null,
         val categoryName: String = "",
-        val productImage: List<String>? = listOf()
+        val productImage: String? = "",
+        val status: String= "",
+        val ownerName: String = "",
+        val ownerPhone: String = ""
 ) : Parcelable

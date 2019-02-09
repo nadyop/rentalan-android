@@ -5,11 +5,12 @@ import com.gdn.rentalan.ui.base.BaseContract
 class LoginContract {
 
   interface View : BaseContract.View {
-    fun goToMain()
+    fun validate(code: Int)
+    fun goToMainPage()
   }
 
   interface Presenter : BaseContract.Presenter {
-    fun loginData(username: String, password: String)
+    fun login(username: String, password: String)
     fun attachView(view: LoginContract.View)
   }
 

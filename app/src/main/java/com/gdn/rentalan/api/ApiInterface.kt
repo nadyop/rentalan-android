@@ -24,7 +24,7 @@ interface ApiInterface {
     fun updateCategoryDetail(@Query("categoryId") categoryId: String): Observable<RestCommonResponse>
 
     //    product
-    @GET("product?status=all")
+    @GET("product?status=waiting")
     fun getProductListWaiting(): Observable<RestListResponse<Product>>
 
     @GET("product?status=active")
@@ -82,6 +82,10 @@ interface ApiInterface {
     @POST("user/register")
     fun registerProfile(@Body registerRequest: RegisterRequest): Observable<RestCommonResponse>
 
+    @Headers("Accept: application/json", "Content-Type: application/json")
+    @POST("user/verification")
+    fun verifUser(@Query("userId") userId: String): Observable<RestCommonResponse>
+
     @POST("user/verification")
     fun registerEmail(@Body registerEmailRequest: RegisterEmailRequest): Observable<RegisterEmailResponse>
 
@@ -97,7 +101,7 @@ interface ApiInterface {
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/login")
-    fun login(@Body loginRequest: LoginRequest): Observable<RestListResponse<Login>>
+    fun login(@Body loginRequest: LoginRequest): Observable<RestSingleResponse<Login>>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/change-password")

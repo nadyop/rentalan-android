@@ -1,11 +1,11 @@
 package com.gdn.rentalan.di.module
 
+import android.app.Application
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.util.Constants
-import com.google.gson.Gson
+import com.gdn.rentalan.util.LoginRepository
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,4 +30,9 @@ class WebServiceModule {
   internal fun provideApiInterface(retrofit: Retrofit): ApiInterface {
     return retrofit.create(ApiInterface::class.java)
   }
+
+//  @Provides
+//  internal fun provideLoginRepository(): LoginRepository {
+//    return LoginRepository()
+//  }
 }

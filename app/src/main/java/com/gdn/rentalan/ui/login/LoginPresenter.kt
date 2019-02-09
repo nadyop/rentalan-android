@@ -2,18 +2,18 @@ package com.gdn.rentalan.ui.login
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
-import com.gdn.rentalan.api.RestCommonResponse
-import com.gdn.rentalan.api.RestListResponse
+import com.gdn.rentalan.api.RestSingleResponse
 import com.gdn.rentalan.api.request.LoginRequest
 import com.gdn.rentalan.api.response.Login
 import com.gdn.rentalan.ui.base.BasePresenter
+import com.gdn.rentalan.util.LoginRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class LoginPresenter @Inject constructor(private val api: ApiInterface):
-    BasePresenter(), LoginContract.Presenter {
+class LoginPresenter @Inject constructor(private val api: ApiInterface,
+    private val loginRepository: LoginRepository): BasePresenter(), LoginContract.Presenter {
 
   private lateinit var view: LoginContract.View
   private val subscriptions = CompositeDisposable()
@@ -22,20 +22,32 @@ class LoginPresenter @Inject constructor(private val api: ApiInterface):
     this.view = view
   }
 
-  override fun loginData(username: String, password: String) {
-    val subscribe = api.login(LoginRequest(username = username, password = password))
+  override fun login(username: String, password: String) {
+    view.showProgress(true)
+    val subscribe = api.login(LoginRequest(username, password))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ list: RestListResponse<Login> ->
+        .subscribe({ response: RestSingleResponse<Login> ->
+          response.data?.let {
+            val items = LoginUiModel (
+                it.userId,
+                it.role.orEmpty()
+            )
+            this.setSharedPrefs(items)
+          }
+          view.validate(response.code)
           view.showProgress(false)
-          Log.d("AAAAZ", "sukses add nihh")
-          view.goToMain()
+          Log.d("AAAAZ", "login success")
         }, { error ->
           view.showProgress(false)
-          Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
-          view.showErrorMessage(error.localizedMessage)
+          Log.d("AAAAZ", "login failed + ${error.message} + ==== + ${error.cause}")
         })
 
     subscriptions.add(subscribe)
+  }
+
+  protected fun setSharedPrefs(loginUiModel: LoginUiModel) {
+    loginRepository.userId = loginUiModel.userID
+    loginRepository.role = loginUiModel.role
   }
 }

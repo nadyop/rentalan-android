@@ -7,7 +7,11 @@ class MainContract {
 
     interface View: BaseContract.View {
         fun addFragment(fragment: Fragment)
+//        fun showMenu(role: String)
     }
 
-    interface Presenter: BaseContract.Presenter
+    interface Presenter: BaseContract.Presenter {
+        fun attachView(view: View)
+//        fun loadUserInfo()
+    }
 }

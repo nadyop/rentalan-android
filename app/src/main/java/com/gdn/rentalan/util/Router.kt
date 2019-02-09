@@ -19,9 +19,27 @@ import com.gdn.rentalan.ui.user.model.UserDetailUiModel
 interface Router {
     companion object {
 
+        private val PARAM_MAIN_MENU = "mainMenu"
+
         fun goToMain(context: Context) {
-            val intent = MainActivity.Companion.newInstance(context)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            val intent = Intent(context, MainActivity::class.java)
+//            val intent = MainActivity.Companion.newInstance(context)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
+
+        fun goToLogin(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+        }
+
+        fun goToRegister(context: Context) {
+            val intent = Intent(context, RegisterEmailActivity::class.java)
+            context.startActivity(intent)
+        }
+
+        fun goToRegisterProfile(context: Context) {
+            val intent = Intent(context, RegisterProfileActivity::class.java)
             context.startActivity(intent)
         }
 
@@ -42,7 +60,7 @@ interface Router {
 
         fun goToCategoryList(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.putExtra(PARAM_MAIN_MENU, MainActivity.CATEGORY_FRAGMENT_INDEX)
             context.startActivity(intent)
         }
 
@@ -60,31 +78,13 @@ interface Router {
 
         fun gotoProductCheckoutDetail(context: Context,
                               productUiModel: ProductDetailUiModel) {
-            val intent = ProductActivityCheckout.Companion.newInstance(context, productUiModel)
+            val intent = ProductActivityCheckout.newInstance(context, productUiModel)
             context.startActivity(intent)
         }
 
-        fun gotoProductTransactionDetail(context: Context,
-                                      transactionUiModel: TransactionUiModel) {
-            val intent = TransactionDetailActivity.Companion.newInstance(context, transactionUiModel)
-            context.startActivity(intent)
-        }
-
-        fun goToLogin(context: Context) {
-            val intent = LoginActivity.Companion.newInstance(context)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            context.startActivity(intent)
-        }
-
-        fun goToRegister(context: Context) {
-            val intent = RegisterEmailActivity.Companion.newInstance(context)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            context.startActivity(intent)
-        }
-
-        fun goToRegisterProfile(context: Context) {
-            val intent = Intent(context, RegisterProfileActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        fun gotoProductTransactionDetail(
+            context: Context, transactionUiModel: TransactionUiModel) {
+            val intent = TransactionDetailActivity.newInstance(context, transactionUiModel)
             context.startActivity(intent)
         }
     }

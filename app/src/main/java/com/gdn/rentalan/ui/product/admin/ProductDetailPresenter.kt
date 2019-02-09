@@ -23,8 +23,6 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
       val subscribe = api.getProductDetail(id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<Product> ->
-                    Log.d("AAAAZ", "sukses nihh")
-                    Log.d("AAAAZgetData", response.data.toString())
                     response.data?.let {
                         val items = ProductDetailUiModel(
                                 it.id.orEmpty(),
@@ -38,11 +36,12 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
                                 it.productImages
                         )
                         view.setData(items)
+                      Log.d("AAAAZ", "product detail success")
                     }
                     view.showProgress(false)
                 }, { error ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+                    Log.d("AAAAZ", "product detail failed + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
         subscriptions.add(subscribe)
@@ -54,11 +53,11 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe({ list: RestCommonResponse ->
             view.showProgress(false)
-            Log.d("AAAAZ", "sukses add nihh")
+            Log.d("AAAAZ", "verif product success")
             view.goToProductList()
           }, { error ->
             view.showProgress(false)
-            Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
+            Log.d("AAAAZ", "verif product failed + ${error.message} + ==== + ${error.cause}")
             view.showErrorMessage(error.localizedMessage)
           })
 
@@ -68,5 +67,4 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
     override fun attachView(view: ProductDetailContract.View) {
         this.view = view
     }
-
 }

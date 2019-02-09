@@ -81,21 +81,6 @@
                             android:src="@drawable/blibli"/>
 
                     <TextView
-                            android:id="@+id/tv_user_self"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/spacing_small"
-                            android:text="@string/user_face"
-                            android:textStyle="bold"/>
-
-                    <ImageView
-                            android:id="@+id/iv_user_self"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/image_width_medium"
-                            tools:ignore="ContentDescription"
-                            android:src="@drawable/owl"/>
-
-                    <TextView
                             android:id="@+id/tv_user_ktp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

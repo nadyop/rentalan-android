@@ -8,8 +8,8 @@ data class Login(
 	val role: String? = null,
 
 	@field:SerializedName("success")
-	val success: Boolean? = null,
+	val success: String = "",
 
 	@field:SerializedName("userId")
-	val userId: String? = null
+	val userId: String = ""
 )

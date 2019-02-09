@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityUserDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
@@ -58,12 +59,18 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
         }
 
         sendDataListener(View.OnClickListener {
-            Log.d("AAAAZuserId = ", detail?.id.orEmpty())
           detail = intent.getParcelableExtra(DETAIL)
           presenter.verification(
                 detail?.id.orEmpty(), true.toString()
             )
         })
+
+        binding.buttonLeft.setOnClickListener {
+            detail = intent.getParcelableExtra(DETAIL)
+            presenter.verification(
+                detail?.id.orEmpty(), false.toString()
+            )
+        }
     }
 
     private fun sendDataListener(listener: View.OnClickListener) {
@@ -72,6 +79,8 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
     }
 
     override fun setData(content: UserDetailUiModel) {
+        Glide.with(this).load(content.selfPhotoPath).fitCenter().into(binding.ivUserSelf)
+        Glide.with(this).load(content.ktpPhotoPath).fitCenter().into(binding.ivUserKtp)
         with(binding) {
             tvSurename.text = content.sureName
             tvEmail.text = content.email

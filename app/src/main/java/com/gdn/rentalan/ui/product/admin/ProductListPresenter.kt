@@ -23,24 +23,21 @@ class ProductListPresenter @Inject constructor(private val api: ApiInterface) :
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Product> ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "sukses nihh")
+                    Log.d("AAAAZ", "product list success")
                     list.data.let {
-                      it?.let {
-                        var listItems: MutableList<ProductDetailUiModel> = ArrayList()
-                        it.forEach { contentElement ->
-                          listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
-                        }
-                        view.fetchDataSuccess(listItems)
+                      val listItems: MutableList<ProductDetailUiModel> = ArrayList()
+                      list.data.forEach { contentElement ->
+                        listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
                       }
+                      view.fetchDataSuccess(listItems)
 
-                      if (it.isEmpty()) {
+                      if (list.data.isEmpty()) {
                         view.showNoData()
                       }
-
                     }
                 }, { error ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+                    Log.d("AAAAZ", "product list error + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
 

@@ -329,7 +329,6 @@
                             style="@style/Button.Action.Blue"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:layout_marginLeft="@dimen/spacing_smaller"
                             android:text="@string/active"
                             app:layout_constraintLeft_toRightOf="@+id/button_left"
                             app:layout_constraintRight_toRightOf="parent"

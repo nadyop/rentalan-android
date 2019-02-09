@@ -12,6 +12,7 @@ import com.gdn.rentalan.util.Router
 class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
   private lateinit var binding: ActivitySplashscreenBinding
+  val SPLASH_TIMEOUT: Long = 3000
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
     Handler().postDelayed({
       Router.goToLogin(this)
-    }, 3000)
+    }, SPLASH_TIMEOUT)
   }
 
   override fun showProgress(show: Boolean) {

@@ -9,31 +9,42 @@
         android:layout_height="match_parent"
         android:background="@color/main_bgcolor_white">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/login"/>
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:visibility="gone"
             android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_register"
+            app:layout_constraintVertical_bias="0.058"/>
 
         <TextView
             android:id="@+id/rentalan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_extra_larger"
             android:gravity="center_horizontal"
             android:text="@string/app_name"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
             android:textSize="21sp"
             android:textStyle="bold"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="@dimen/spacing_extra_larger"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView"
@@ -66,7 +77,8 @@
                         android:imeOptions="actionNext"
                         android:importantForAutofill="no"
                         android:inputType="text"
-                        tools:targetApi="o"/>
+                        tools:targetApi="o"
+                        android:textSize="@dimen/abc_text_size_small_material"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -88,8 +100,28 @@
                         android:drawablePadding="@dimen/spacing_super_smaller"
                         android:hint="@string/password"
                         android:imeOptions="actionNext"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/abc_text_size_small_material"/>
+
+                    <TextView
+                        android:id="@+id/tv_login_failed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_failed"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:textColor="@color/state_error"/>
+
+                    <TextView
+                        android:id="@+id/tv_user_notfound"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_notfound"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:textColor="@color/state_error"/>
                 </android.support.design.widget.TextInputLayout>
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -127,6 +159,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

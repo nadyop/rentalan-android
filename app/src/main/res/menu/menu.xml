@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
 
     <group>
         <item
-        android:id="@+id/navigation_category"
-        android:icon="@drawable/ic_category_dark"
-        android:title="@string/category" />
+            android:id="@+id/navigation_category"
+            android:icon="@drawable/ic_category_dark"
+            android:title="@string/category"/>
 
-        <!--<item-->
-        <!--android:id="@+id/navigation_product"-->
-        <!--android:icon="@drawable/ic_product_dark"-->
-        <!--android:title="@string/product" />-->
-
-        <!--<item-->
-        <!--android:id="@+id/navigation_user"-->
-        <!--android:icon="@drawable/ic_user_dark"-->
-        <!--android:title="@string/user" />-->
         <item
-            android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_home_dark"
-            android:title="@string/home" />
+            android:id="@+id/navigation_product"
+            android:icon="@drawable/ic_product_dark"
+            android:title="@string/product"/>
 
-        <!--&lt;!&ndash;<item&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/navigation_transaction"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:icon="@drawable/ic_product_dark"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:title="@string/transaction" />&ndash;&gt;-->
+        <item
+            android:id="@+id/navigation_user"
+            android:icon="@drawable/ic_user_dark"
+            android:title="@string/user"/>
 
-        <!--&lt;!&ndash;<item&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/navigation_account"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:icon="@drawable/ic_user_dark"&ndash;&gt;-->
-            <!--android:title="@string/account" />-->
+        <!--<item-->
+            <!--android:id="@+id/navigation_home"-->
+            <!--android:icon="@drawable/ic_home_dark"-->
+            <!--android:title="@string/home"/>-->
+
+        <!--<item-->
+            <!--android:id="@+id/navigation_transaction"-->
+            <!--android:icon="@drawable/ic_product_dark"-->
+            <!--android:title="@string/transaction"/>-->
+
+        <!--<item-->
+            <!--android:id="@+id/navigation_account"-->
+            <!--android:icon="@drawable/ic_user_dark"-->
+            <!--android:title="@string/account"/>-->
     </group>
 </menu>

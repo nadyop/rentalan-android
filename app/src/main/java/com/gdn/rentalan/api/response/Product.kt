@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Product(
 
 	@field:SerializedName("productImages")
-	var productImages: List<String>? = null,
+	var productImages: String? = null,
 
 	@field:SerializedName("downPayment")
 	val downPayment: Int? = null,
@@ -32,5 +32,9 @@ data class Product(
 	val pricePerDay: Int? = null,
 
 	@field:SerializedName("categoryName")
-	val categoryName: String = ""
+	val categoryName: String = "",
+
+	@field:SerializedName("status")
+	val status: String = ""
+
 )

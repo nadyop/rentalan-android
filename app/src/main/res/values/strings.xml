@@ -52,6 +52,8 @@
     <string name="username_unique">Username tidak tersedia</string>
     <string name="email_unique">Email telah terdaftarkan</string>
     <string name="register_success">Silahkan login untuk lengkapi data diri</string>
+    <string name="login_failed">Data yang dimasukkan tidak sesuai</string>
+    <string name="user_notfound">User tidak ditemukan</string>
     <string name="phone">No. HP</string>
     <string name="gender">Gender</string>
     <string name="birth">Tgl Lahir</string>

@@ -54,17 +54,17 @@ class UserDetailPresenter @Inject constructor(private val api: ApiInterface) :
         subscriptions.add(subscribe)
     }
 
-    override fun verification(productId: String, accept: String) {
-      val subscribe = api.verifProduct(productId, accept)
+    override fun verification(userId: String) {
+      val subscribe = api.verifUser(userId)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe({ list: RestCommonResponse ->
             view.showProgress(false)
-            Log.d("AAAAZ", "sukses add nihh")
+            Log.d("AAAAZ", "user success")
             view.goToUserList()
           }, { error ->
             view.showProgress(false)
-            Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
+            Log.d("AAAAZ", "user error + ${error.message} + ==== + ${error.cause}")
             view.showErrorMessage(error.localizedMessage)
           })
 
