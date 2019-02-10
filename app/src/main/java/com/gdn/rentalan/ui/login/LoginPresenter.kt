@@ -43,7 +43,6 @@ class LoginPresenter @Inject constructor(private val api: ApiInterface,
           view.validate(response.code)
           view.showProgress(false)
           Log.d("AAAAZ", "login success")
-          Log.d("AAAAZ", "login success")
         }, { error ->
           view.showProgress(false)
           Log.d("AAAAZ", "login failed + ${error.message} + ==== + ${error.cause}")

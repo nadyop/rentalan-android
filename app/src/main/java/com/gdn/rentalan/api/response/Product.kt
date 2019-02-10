@@ -4,37 +4,30 @@ import com.google.gson.annotations.SerializedName
 
 data class Product(
 
-	@field:SerializedName("productImages")
-	var productImages: String? = null,
+    @field:SerializedName("productImages") var productImage: String? = null,
 
-	@field:SerializedName("downPayment")
-	val downPayment: Int? = null,
+    @field:SerializedName("downPayment") val downPayment: Int? = null,
 
-	@field:SerializedName("name")
-	val name: String? = null,
+    @field:SerializedName("name") val name: String? = null,
 
-	@field:SerializedName("description")
-	val description: String? = null,
+    @field:SerializedName("description") val description: String? = null,
 
-	@field:SerializedName("lateCharge")
-	val lateCharge: Int? = null,
+    @field:SerializedName("lateCharge") val lateCharge: Int? = null,
 
-	@field:SerializedName("id")
-	val id: String? = null,
+    @field:SerializedName("id") val id: String? = null,
 
-	@field:SerializedName("stock")
-	val stock: Int? = null,
+    @field:SerializedName("stock") val stock: Int? = null,
 
-	@field:SerializedName("ownerId")
-	val ownerId: String? = null,
+    @field:SerializedName("ownerId") val ownerId: String? = null,
 
-	@field:SerializedName("pricePerDay")
-	val pricePerDay: Int? = null,
+    @field:SerializedName("ownerName") val ownerName: String = "",
 
-	@field:SerializedName("categoryName")
-	val categoryName: String = "",
+    @field:SerializedName("ownerPhoneNumber") val ownerPhoneNumber: String = "",
 
-	@field:SerializedName("status")
-	val status: String = ""
+    @field:SerializedName("pricePerDay") val pricePerDay: Int? = null,
+
+    @field:SerializedName("categoryName") val categoryName: String = "",
+
+    @field:SerializedName("status") val status: String = ""
 
 )

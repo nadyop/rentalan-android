@@ -7,19 +7,21 @@ import com.gdn.rentalan.api.response.Transaction
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.transaction.model.TransactionMapper
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
+import com.gdn.rentalan.util.LoginRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class TransactionMyPresenter @Inject constructor(private val api: ApiInterface) :
-        BasePresenter(), TransactionMyContract.Presenter {
+class TransactionMyPresenter @Inject constructor(private val api: ApiInterface,
+    private val loginRepository: LoginRepository) : BasePresenter(), TransactionMyContract.Presenter {
 
     private lateinit var view: TransactionMyContract.View
     private val subscriptions = CompositeDisposable()
 
     override fun fetchData() {
-        val subscribe = api.getTransactionListRenter().subscribeOn(Schedulers.io())
+        val subscribe = api.getTransactionListRenter(loginRepository.userId.toString())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Transaction> ->
                     view.showProgress(false)

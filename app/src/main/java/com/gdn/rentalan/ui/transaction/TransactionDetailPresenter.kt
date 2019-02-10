@@ -37,8 +37,7 @@ BasePresenter(), TransactionDetailContract.Presenter {
                 it.startDate,
                 it.totalPayment,
                 it.status,
-                it.productId,
-                it.productName
+                it.productId
             )
             view.setData(items)
           }

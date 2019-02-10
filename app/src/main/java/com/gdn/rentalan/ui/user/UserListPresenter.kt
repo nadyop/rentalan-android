@@ -19,7 +19,7 @@ class UserListPresenter @Inject constructor(private val api: ApiInterface) :
     private val subscriptions = CompositeDisposable()
 
   override fun fetchData() {
-    val subscribe = api.getUserList().subscribeOn(Schedulers.io())
+    val subscribe = api.getUserListWaiting().subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ list: RestListResponse<User> ->
           view.showProgress(false)

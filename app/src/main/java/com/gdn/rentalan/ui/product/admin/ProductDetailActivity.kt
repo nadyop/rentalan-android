@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
@@ -12,6 +13,7 @@ import com.gdn.rentalan.databinding.ActivityProductDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.util.Constants.Companion.URL_PRODUCT
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -61,16 +63,18 @@ class ProductDetailActivity : BaseActivity(),
             onBackPressed()
         }
 
-        sendDataListener(View.OnClickListener {
+        binding.buttonRight.setOnClickListener {
             presenter.verification(
                 detail?.id.orEmpty(), true.toString()
             )
-        })
+            goToProductList()
+        }
 
         binding.buttonLeft.setOnClickListener {
             presenter.verification(
                 detail?.id.orEmpty(), false.toString()
             )
+            goToProductList()
         }
     }
 
@@ -80,7 +84,7 @@ class ProductDetailActivity : BaseActivity(),
     }
 
     override fun setData(content: ProductDetailUiModel) {
-        Glide.with(this).load(content.productImage).fitCenter().into(binding.ivProduct)
+        Glide.with(this).load(URL_PRODUCT + content.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
             tvProductName.text = content.name
             tvProductPriceDay.text = "Rp " + content.pricePerDay.toString() + " /hari"
@@ -106,6 +110,7 @@ class ProductDetailActivity : BaseActivity(),
 
     override fun goToProductList() {
         Router.goToMain(this)
+        showSnackbar("Product activated", Snackbar.LENGTH_LONG)
         super.onBackPressed()
     }
 }

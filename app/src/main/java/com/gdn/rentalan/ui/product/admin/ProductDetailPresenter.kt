@@ -18,9 +18,9 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
     private lateinit var view: ProductDetailContract.View
     private val subscriptions = CompositeDisposable()
 
-    override fun getData(id: String) {
+    override fun getData(productId: String) {
       view.showProgress(true)
-      val subscribe = api.getProductDetail(id).subscribeOn(Schedulers.io())
+      val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<Product> ->
                     response.data?.let {
@@ -33,10 +33,11 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
                                 it.downPayment,
                                 it.lateCharge,
                                 it.categoryName,
-                                it.productImages
+                                it.productImage
                         )
                         view.setData(items)
                       Log.d("AAAAZ", "product detail success")
+
                     }
                     view.showProgress(false)
                 }, { error ->
@@ -54,10 +55,9 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
           .subscribe({ list: RestCommonResponse ->
             view.showProgress(false)
             Log.d("AAAAZ", "verif product success")
-            view.goToProductList()
           }, { error ->
             view.showProgress(false)
-            Log.d("AAAAZ", "verif product failed + ${error.message} + ==== + ${error.cause}")
+            Log.d("AAAAZ", "verif product failed + ${error.message} = ${error.stackTrace}")
             view.showErrorMessage(error.localizedMessage)
           })
 

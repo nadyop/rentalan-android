@@ -19,9 +19,9 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
   private lateinit var view: ProductActivityCheckoutContract.View
   private val subscriptions = CompositeDisposable()
 
-  override fun getData(id: String) {
+  override fun getData(productId: String) {
     view.showProgress(true)
-    val subscribe = api.getProductDetail(id).subscribeOn(Schedulers.io())
+    val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ response: RestSingleResponse<Product> ->
           Log.d("AAAAZ", "sukses nihh")
@@ -36,7 +36,7 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
                 it.downPayment,
                 it.lateCharge,
                 it.categoryName,
-                it.productImages
+                it.productImage
             )
             view.setData(items)
           }
@@ -50,7 +50,7 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
   }
 
   override fun rent(productId: String, startDate: String, endDate: String, qty: Int) {
-    val subscribe = api.rentProduct(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
+    val subscribe = api.rentCheckout(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ list: RestCommonResponse ->

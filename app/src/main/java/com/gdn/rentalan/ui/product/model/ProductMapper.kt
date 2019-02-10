@@ -14,7 +14,9 @@ interface ProductMapper {
                     item.downPayment,
                     item.lateCharge,
                     item.categoryName,
-                    item.productImages
+                    item.productImage,
+                    item.ownerName,
+                    item.ownerPhoneNumber
             )
         }
     }

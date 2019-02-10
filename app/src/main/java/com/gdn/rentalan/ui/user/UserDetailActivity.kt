@@ -12,6 +12,8 @@ import com.gdn.rentalan.databinding.ActivityUserDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
+import com.gdn.rentalan.util.Constants.Companion.URL_KTP
+import com.gdn.rentalan.util.Constants.Companion.URL_SELF
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -79,8 +81,8 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
     }
 
     override fun setData(content: UserDetailUiModel) {
-        Glide.with(this).load(content.selfPhotoPath).fitCenter().into(binding.ivUserFace)
-        Glide.with(this).load(content.ktpPhotoPath).fitCenter().into(binding.ivUserKtp)
+        Glide.with(this).load(URL_SELF + content.selfPhotoPath).fitCenter().into(binding.ivUserFace)
+        Glide.with(this).load(URL_KTP + content.ktpPhotoPath).fitCenter().into(binding.ivUserKtp)
         with(binding) {
             tvSurename.text = content.sureName
             tvEmail.text = content.email

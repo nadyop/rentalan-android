@@ -11,7 +11,7 @@ class ProductActivityCheckoutContract {
     }
 
     interface Presenter : BaseContract.Presenter {
-        fun getData(id: String)
+        fun getData(productId: String)
         fun rent(productId: String, startDate: String, endDate: String, qty: Int)
         fun attachView(view: View)
     }

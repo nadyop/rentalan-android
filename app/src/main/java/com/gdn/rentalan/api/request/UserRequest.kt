@@ -25,9 +25,6 @@ data class UserRequest(
 	@field:SerializedName("ktpPhotoPath")
 	val ktpPhotoPath: String? = null,
 
-	@field:SerializedName("facePhotoPath")
-	val facePhotoPath: String? = null,
-
 	@field:SerializedName("sureName")
 	val sureName: String? = null,
 

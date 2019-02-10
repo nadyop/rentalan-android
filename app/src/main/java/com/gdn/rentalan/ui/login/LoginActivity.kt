@@ -76,13 +76,12 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
   }
 
   private fun login() {
-    val username = binding.etUsername.text.toString()
-    val password = binding.etPassword.text.toString()
 
     binding.btLogin.setOnClickListener {
-      if (username == "") {
-        binding.tvLoginFailed.visibility = View.VISIBLE
-      } else if (username != "") {
+      val username = binding.etUsername.text.toString()
+      val password = binding.etPassword.text.toString()
+
+      if (username != "") {
         presenter.login(
             username,
             password
