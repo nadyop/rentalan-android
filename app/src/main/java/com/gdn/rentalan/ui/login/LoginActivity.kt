@@ -5,13 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.EditText
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityLoginBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
-import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -54,11 +53,18 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
     initView()
   }
 
+  override fun goToMainPage(role: String) {
+    if(role == "admin") {
+      Router.goToMain(this)
+    } else {
+      Router.goToUserMain(this)
+    }
+  }
+
   override fun validate(code: Int) {
     when (code) {
       417 -> binding.tvLoginFailed.visibility = View.VISIBLE
       404 -> binding.tvUserNotfound.visibility = View.VISIBLE
-      200 -> goToMainPage()
     }
   }
 
@@ -69,18 +75,19 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
     login()
   }
 
-  override fun goToMainPage() {
-    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-    startActivity(intent)
-  }
-
   private fun login() {
+    val username = binding.etUsername.text.toString()
+    val password = binding.etPassword.text.toString()
+
     binding.btLogin.setOnClickListener {
-      Router.goToMain(this)
-      presenter.login(
-          binding.etUsername.text.toString(),
-          binding.etPassword.text.toString()
-      )
+      if (username == "") {
+        binding.tvLoginFailed.visibility = View.VISIBLE
+      } else if (username != "") {
+        presenter.login(
+            username,
+            password
+        )
+      }
     }
   }
 

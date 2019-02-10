@@ -24,6 +24,5 @@
                 android:layout_gravity="bottom"
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu"/>
-
     </LinearLayout>
 </layout>

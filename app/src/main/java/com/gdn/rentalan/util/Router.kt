@@ -4,7 +4,8 @@ import android.content.Context
 import android.content.Intent
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.login.LoginActivity
-import com.gdn.rentalan.ui.main.MainActivity
+import com.gdn.rentalan.ui.main.admin.MainActivity
+import com.gdn.rentalan.ui.main.user.UserMainActivity
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
@@ -25,6 +26,11 @@ interface Router {
             val intent = Intent(context, MainActivity::class.java)
 //            val intent = MainActivity.Companion.newInstance(context)
 //            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
+
+        fun goToUserMain(context: Context) {
+            val intent = Intent(context, UserMainActivity::class.java)
             context.startActivity(intent)
         }
 

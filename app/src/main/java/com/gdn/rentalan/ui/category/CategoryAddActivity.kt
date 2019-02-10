@@ -3,14 +3,11 @@ package com.gdn.rentalan.ui.category
 import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.View
 import com.gdn.rentalan.R
-import com.gdn.rentalan.api.RestCommonResponse
 import com.gdn.rentalan.databinding.ActivityAddCategoryBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
-import com.gdn.rentalan.ui.main.MainActivity
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

@@ -17,6 +17,7 @@ class LoginPresenter @Inject constructor(private val api: ApiInterface,
 
   private lateinit var view: LoginContract.View
   private val subscriptions = CompositeDisposable()
+  private var roleUser = ""
 
   override fun attachView(view: LoginContract.View) {
     this.view = view
@@ -34,9 +35,14 @@ class LoginPresenter @Inject constructor(private val api: ApiInterface,
                 it.role.orEmpty()
             )
             this.setSharedPrefs(items)
+            this.roleUser = items.role.toString()
+          }
+          if (response.code == 200) {
+            view.goToMainPage(this.roleUser)
           }
           view.validate(response.code)
           view.showProgress(false)
+          Log.d("AAAAZ", "login success")
           Log.d("AAAAZ", "login success")
         }, { error ->
           view.showProgress(false)
@@ -49,5 +55,11 @@ class LoginPresenter @Inject constructor(private val api: ApiInterface,
   protected fun setSharedPrefs(loginUiModel: LoginUiModel) {
     loginRepository.userId = loginUiModel.userID
     loginRepository.role = loginUiModel.role
+  }
+
+  override fun loadUserInfo() {
+    roleUser.let {
+      view.goToMainPage(it)
+    }
   }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menu_user">
+        <item
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/ic_home_dark"
+            android:title="@string/home"/>
+
+        <item
+            android:id="@+id/navigation_transaction"
+            android:icon="@drawable/ic_product_dark"
+            android:title="@string/transaction"/>
+
+        <item
+            android:id="@+id/navigation_account"
+            android:icon="@drawable/ic_user_dark"
+            android:title="@string/account"/>
+    </group>
+</menu>

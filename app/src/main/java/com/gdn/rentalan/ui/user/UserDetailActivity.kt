@@ -61,14 +61,14 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
         sendDataListener(View.OnClickListener {
           detail = intent.getParcelableExtra(DETAIL)
           presenter.verification(
-                detail?.id.orEmpty(), true.toString()
+                detail?.id.orEmpty()
             )
         })
 
         binding.buttonLeft.setOnClickListener {
             detail = intent.getParcelableExtra(DETAIL)
             presenter.verification(
-                detail?.id.orEmpty(), false.toString()
+                detail?.id.orEmpty()
             )
         }
     }
@@ -79,7 +79,7 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
     }
 
     override fun setData(content: UserDetailUiModel) {
-        Glide.with(this).load(content.selfPhotoPath).fitCenter().into(binding.ivUserSelf)
+        Glide.with(this).load(content.selfPhotoPath).fitCenter().into(binding.ivUserFace)
         Glide.with(this).load(content.ktpPhotoPath).fitCenter().into(binding.ivUserKtp)
         with(binding) {
             tvSurename.text = content.sureName

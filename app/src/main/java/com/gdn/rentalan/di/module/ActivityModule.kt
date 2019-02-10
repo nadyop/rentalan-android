@@ -6,7 +6,8 @@ import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.login.LoginActivity
-import com.gdn.rentalan.ui.main.MainActivity
+import com.gdn.rentalan.ui.main.admin.MainActivity
+import com.gdn.rentalan.ui.main.user.UserMainActivity
 import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
 import com.gdn.rentalan.ui.product.admin.ProductDetailActivity
 import com.gdn.rentalan.ui.product.admin.ProductFragment
@@ -38,6 +39,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainModule::class])
     abstract fun provideMainActivity(): MainActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    abstract fun provideUserMainActivity(): UserMainActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [CategoryModule::class])

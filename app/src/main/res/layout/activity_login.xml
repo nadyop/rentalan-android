@@ -127,8 +127,8 @@
 
         <Button
             android:id="@+id/bt_login"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="@dimen/button_size_normal"
             android:layout_margin="@dimen/spacing_larger"
             android:background="@color/colorAccent"
             android:text="@string/login"
