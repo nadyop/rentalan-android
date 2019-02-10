@@ -9,6 +9,7 @@ import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ItemSimpleGridBinding
 import com.gdn.rentalan.ui.base.BaseRecyclerViewListAdapter
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.util.Constants.Companion.formatRupiah
 import com.gdn.rentalan.util.Router
 
 class DashboardAdapter(
@@ -33,7 +34,7 @@ class DashboardAdapter(
       with(product) {
 
         tvProductName.text = name.capitalize()
-        tvProductPriceDay.text = "Rp " + pricePerDay.toString() + "/hari"
+        tvProductPriceDay.text = formatRupiah.format(pricePerDay.toString().toInt()) + "/hari"
 
         cardView.setOnClickListener {
           Router.gotoProductCheckoutDetail(it.context, this)

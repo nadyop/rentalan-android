@@ -13,7 +13,9 @@ import com.gdn.rentalan.databinding.ActivityProductDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.util.Constants
 import com.gdn.rentalan.util.Constants.Companion.URL_PRODUCT
+import com.gdn.rentalan.util.Constants.Companion.formatRupiah
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -84,14 +86,14 @@ class ProductDetailActivity : BaseActivity(),
         Glide.with(this).load(URL_PRODUCT + items.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
             tvProductName.text = items.name
-            tvProductPriceDay.text = "Rp " + items.pricePerDay.toString() + " /hari"
+            tvProductPriceDay.text = formatRupiah.format(items.pricePerDay.toString().toInt()) + " /hari"
             tvUserName.text = items.ownerName
             tvPhone.text = items.ownerPhone
             tvCity.text = items.ownerCity
             tvCategory.text = items.categoryName
             tvDescription.text = items.description
             tvStock.text = items.stock.toString()
-            tvDp.text = "Rp " + items.downPayment.toString()
+            tvDp.text = formatRupiah.format(items.downPayment.toString().toInt())
         }
     }
 

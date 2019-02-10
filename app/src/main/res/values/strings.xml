@@ -26,6 +26,7 @@
     <string name="date_end">Hingga Tanggal</string>
     <string name="sum">Jumlah</string>
     <string name="total">Total</string>
+    <string name="check_total">Cek Total</string>
     <string name="me">Akun</string>
 
     <!-- Fragment tags -->

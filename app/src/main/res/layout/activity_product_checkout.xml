@@ -372,6 +372,11 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:textSize="@dimen/abc_text_size_small_material"/>
+
+                            <ImageView
+                                android:id="@+id/iv_check"
+                                android:src="@drawable/ic_load_light"
+                                android:layout_width="@dimen/button_size_normal"/>
                         </TableRow>
 
                         <View style="@style/Separator"/>
@@ -395,7 +400,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:drawablePadding="@dimen/spacing_extra_smaller"
-                                    android:text="@string/total"
+                                    android:text="@string/check_total"
                                     android:textStyle="bold"
                                     android:textSize="@dimen/abc_text_size_small_material"/>
                         </TableRow>

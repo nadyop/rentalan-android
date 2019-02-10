@@ -16,7 +16,7 @@ data class Product(
 
     @field:SerializedName("id") val id: String? = null,
 
-    @field:SerializedName("stock") val stock: Int? = null,
+    @field:SerializedName("stock") val stock: Int = 0,
 
     @field:SerializedName("ownerId") val ownerId: String? = null,
 
@@ -26,7 +26,7 @@ data class Product(
 
     @field:SerializedName("ownerPhoneNumber") val ownerPhoneNumber: String = "",
 
-    @field:SerializedName("pricePerDay") val pricePerDay: Int? = null,
+    @field:SerializedName("pricePerDay") val pricePerDay: Int = 0,
 
     @field:SerializedName("categoryName") val categoryName: String = "",
 
