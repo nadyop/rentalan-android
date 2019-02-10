@@ -120,7 +120,7 @@ class ProductActivityCheckout : BaseActivity(),
             mDatePickerDialog.show()
         }
 
-      binding.ivCheck.setOnClickListener {
+      binding.tvTotal.setOnClickListener {
           if (binding.etCount.text.toString() != "" || !endDate.equals(0) || !startDate.equals(0) ||
               binding.etEndDate.text.toString() != "" || binding.etStartDate.text.toString() != ""){
 

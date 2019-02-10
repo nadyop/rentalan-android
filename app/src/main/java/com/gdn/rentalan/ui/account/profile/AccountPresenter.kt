@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AccountPresenter @Inject constructor(private val api: ApiInterface,
-    private val loginRepository: LoginRepository) : BasePresenter(), AccountContract.Presenter {
+    loginRepository: LoginRepository) : BasePresenter(), AccountContract.Presenter {
 
   @Inject lateinit var view: AccountContract.View
   private val subscriptions = CompositeDisposable()
@@ -47,6 +47,10 @@ class AccountPresenter @Inject constructor(private val api: ApiInterface,
           view.showErrorMessage(error.localizedMessage)
         })
     subscriptions.add(subscribe)
+  }
+
+  override fun goToEditUserId() {
+    view.goToEditProfile(userId)
   }
 
   override fun attachView(view: AccountContract.View) {

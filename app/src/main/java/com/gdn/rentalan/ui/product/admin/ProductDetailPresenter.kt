@@ -30,12 +30,9 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
                                 it.pricePerDay,
                                 it.stock,
                                 it.downPayment,
-                                it.lateCharge,
-                                it.categoryName,
-                                it.productImage,
-                                it.ownerCity,
-                                it.ownerName,
-                                it.ownerPhoneNumber
+                                it.lateCharge, it.categoryName.toString(),
+                                it.productImage, it.ownerCity.toString(), it.ownerName.toString(),
+                            it.ownerPhoneNumber.toString()
                         )
                         view.setData(items)
                     }

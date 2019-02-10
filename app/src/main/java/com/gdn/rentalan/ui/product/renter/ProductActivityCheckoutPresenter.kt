@@ -34,8 +34,7 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
                 it.pricePerDay,
                 it.stock,
                 it.downPayment,
-                it.lateCharge,
-                it.categoryName,
+                it.lateCharge, it.categoryName.toString(),
                 it.productImage
             )
             view.setData(items)

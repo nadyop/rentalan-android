@@ -373,10 +373,6 @@
                             android:inputType="number"
                             android:textSize="@dimen/abc_text_size_small_material"/>
 
-                            <ImageView
-                                android:id="@+id/iv_check"
-                                android:src="@drawable/ic_load_light"
-                                android:layout_width="@dimen/button_size_normal"/>
                         </TableRow>
 
                         <View style="@style/Separator"/>

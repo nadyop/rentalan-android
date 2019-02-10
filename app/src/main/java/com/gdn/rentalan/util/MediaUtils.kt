@@ -52,27 +52,26 @@ class MediaUtils {
 
   fun openImageDialog() {
     val alertDialogBuilder = AlertDialog.Builder(mActivity)
-    alertDialogBuilder.setTitle(R.string.select_source).setItems(R.array.source_array,
-        DialogInterface.OnClickListener { dialog, which ->
-          if (which == 0) {
-            // camera
-            if (Build.VERSION.SDK_INT > 23) {
-              // check Permission
-              checkPermission(REQ_CAMERA)
-            } else {
-              openCamera()
-            }
+    alertDialogBuilder.setTitle(R.string.select_source).setItems(R.array.source_array, { _, which ->
+      if (which == 0) {
+        // camera
+        if (Build.VERSION.SDK_INT > 23) {
+          // check Permission
+          checkPermission(REQ_CAMERA)
+        } else {
+          openCamera()
+        }
 
-          } else {
-            // gallery
-            if (Build.VERSION.SDK_INT > 23) {
-              // check Permission
-              checkPermission(REQ_GALLERY)
-            } else {
-              openGallery()
-            }
-          }
-        })
+      } else {
+        // gallery
+        if (Build.VERSION.SDK_INT > 23) {
+          // check Permission
+          checkPermission(REQ_GALLERY)
+        } else {
+          openGallery()
+        }
+      }
+    })
     alertDialogBuilder.create().show()
   }
 

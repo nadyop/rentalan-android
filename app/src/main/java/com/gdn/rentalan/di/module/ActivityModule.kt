@@ -2,6 +2,8 @@ package com.gdn.rentalan.di.module
 
 import com.gdn.rentalan.di.module.feature.*
 import com.gdn.rentalan.di.scope.ActivityScope
+import com.gdn.rentalan.ui.account.profile.AccountFragment
+import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
@@ -92,4 +94,12 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [SearchModule::class])
     abstract fun provideSearchActivity(): SearchActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [AccountModule::class])
+    abstract fun provideAccountFragment(): AccountFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [AccountModule::class])
+    abstract fun provideAccountEditActivity(): AccountEditActivity
 }

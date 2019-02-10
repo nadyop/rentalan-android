@@ -1,5 +1,7 @@
 package com.gdn.rentalan.ui.account.profile
 
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -8,16 +10,26 @@ import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.FragmentProfileBinding
+import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.ui.main.user.UserMainActivity
 import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class AccountFragment : BaseFragment(), AccountContract.View {
 
+  companion object {
+    private const val ACCOUNT = "account"
+    fun newInstance(context: Context): Intent {
+      val intent = Intent(context, UserMainActivity::class.java)
+      return intent
+    }
+  }
+
   @Inject lateinit var presenter: AccountContract.Presenter
   private lateinit var binding: FragmentProfileBinding
-  private lateinit var detail: AccountUiModel
+  private var detail: AccountUiModel? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,14 +46,24 @@ class AccountFragment : BaseFragment(), AccountContract.View {
     super.onViewCreated(view, savedInstanceState)
 
     presenter.attachView(this)
-    setData(detail)
+    presenter.getAccount()
+    detail?.let { setData(it) }
     userAction()
   }
 
-  private fun userAction() {
+  override fun goToEditProfile(userId: String) {
+    val intent = Intent(context, AccountEditActivity::class.java)
+    intent.putExtra("userId", userId)
+    context?.startActivity(intent)
+  }
 
+  private fun userAction() {
     binding.btEdit.setOnClickListener {
-      Router.gotoAccountEdit(it.context, detail)
+      presenter.goToEditUserId()
+    }
+
+    binding.tvLogout.setOnClickListener {
+      context?.let { it1 -> Router.goToLogin(it1) }
     }
   }
 
@@ -66,6 +88,10 @@ class AccountFragment : BaseFragment(), AccountContract.View {
     } else {
       binding.tvStatus.text = getString(R.string.message_verify_yet)
     }
+  }
+
+  override fun goToEdit() {
+    context?.let { detail?.let { it1 -> Router.gotoAccountEdit(it, it1) } }
   }
 
   override fun showProgress(show: Boolean) {

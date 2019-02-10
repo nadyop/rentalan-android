@@ -1,10 +1,15 @@
 package com.gdn.rentalan.ui.account.profile.edit
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -14,14 +19,11 @@ import com.gdn.rentalan.databinding.ActivityProfileEditBinding
 import com.gdn.rentalan.ui.account.profile.AccountUiModel
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
-import com.gdn.rentalan.util.MediaUtils
 import com.gdn.rentalan.util.Router
-import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
-import java.io.File
 import javax.inject.Inject
 
-class AccountEditActivity : BaseActivity(), AccountEditContract.View, MediaUtils.GetImg {
+class AccountEditActivity : BaseActivity(), AccountEditContract.View {
 
   companion object {
     private const val TRANSACTION = "detail"
@@ -37,7 +39,6 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View, MediaUtils
   lateinit var presenter: AccountEditContract.Presenter
   private lateinit var binding: ActivityProfileEditBinding
   private var detail: AccountUiModel? = null
-  internal lateinit var mMediaUtils: MediaUtils
 
   override fun getPresenter(): BaseContract.Presenter? {
     return presenter
@@ -49,15 +50,51 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View, MediaUtils
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_edit)
     presenter.attachView(this)
+    presenter.getDetail()
 
-    detail?.let { setData(it) }
+//    detail?.let { setData(it) }
     userAction()
+  }
 
-    mMediaUtils = MediaUtils(this)
+  private fun selectImage(context: Context) {
+    val options = arrayOf<CharSequence>("Take Photo", "Cancel")
 
+    val builder = AlertDialog.Builder(context)
+    builder.setTitle("Choose your profile picture")
+
+    builder.setItems(options) { dialog, item ->
+      if (options[item] == "Take Photo") {
+        val takePicture = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePicture, 0)
+
+      } else if (options[item] == "Cancel") {
+        dialog.dismiss()
+      }
+    }
+    builder.show()
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    if (resultCode != Activity.RESULT_CANCELED) {
+      when (requestCode) {
+        0 -> if (resultCode == Activity.RESULT_OK && data != null) {
+          val ktpImage = data.extras?.get("data") as Bitmap
+          binding.ivUserKtp.setImageBitmap(ktpImage)
+        }
+      }
+    }
   }
 
   private fun userAction() {
+
+    binding.btUpload.setOnClickListener {
+      selectImage(this@AccountEditActivity)
+    }
+
+    binding.btUploadSelf.setOnClickListener {
+      selectImage(this@AccountEditActivity)
+    }
+
     binding.toolbar.setNavigationOnClickListener {
       onBackPressed()
     }
@@ -75,40 +112,21 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View, MediaUtils
             etBirth.text.toString()
             etBirth.text.toString()
             etSurename.text.toString()
-            etKtp.text.toString()
-            etSelf.text.toString()
+//            etKtp.text.toString()
+//            etSelf.text.toString()
           }
       ))
     }
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
-      grantResults: IntArray) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    mMediaUtils.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  override fun onStart() {
+    super.onStart()
+    presenter.getDetail()
+    detail?.let { setData(it) }
   }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-    data?.let { mMediaUtils.onActivityResult(requestCode, resultCode, it) }
-  }
-
-  override fun imgdata(imgPath: String?) {
-    Log.d("AccountEditActivity", "imgdata: $imgPath")
-    Picasso.get().load(File(imgPath)).into(binding.ivSelf)
-  }
-
-  fun selectImg(view: View) {
-    // select image button clicked
-    mMediaUtils.openImageDialog()
-  }
-
-  private fun uploadKtp() {
-    binding.btUploadSelf.setOnClickListener {
-      mMediaUtils.openImageDialog()
-    }
-  }
   override fun setData(details: AccountUiModel) {
+    binding.etSurename.setText(details.sureName)
     with(binding) {
       etSurename.setText(detail?.sureName, TextView.BufferType.EDITABLE)
       etEmail.setText(detail?.email, TextView.BufferType.EDITABLE)
@@ -131,11 +149,13 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View, MediaUtils
     if (show) {
       binding.cv1.visibility = View.GONE
       binding.cv2.visibility = View.GONE
+      binding.cv3.visibility = View.GONE
       binding.btSave.visibility = View.GONE
       binding.progressBar.visibility = View.VISIBLE
     } else {
       binding.cv1.visibility = View.VISIBLE
       binding.cv2.visibility = View.VISIBLE
+      binding.cv3.visibility = View.VISIBLE
       binding.btSave.visibility = View.VISIBLE
       binding.progressBar.visibility = View.GONE
     }

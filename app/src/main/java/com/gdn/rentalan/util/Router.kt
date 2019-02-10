@@ -2,6 +2,7 @@ package com.gdn.rentalan.util
 
 import android.content.Context
 import android.content.Intent
+import com.gdn.rentalan.ui.account.profile.AccountFragment
 import com.gdn.rentalan.ui.account.profile.AccountUiModel
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
@@ -37,7 +38,8 @@ interface Router {
         }
 
         fun goToLogin(context: Context) {
-            val intent = Intent(context, LoginActivity::class.java)
+            val intent = LoginActivity.newInstance(context)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(intent)
         }
 
@@ -74,13 +76,13 @@ interface Router {
 
         fun gotoProductDetail(context: Context,
                               productUiModel: ProductDetailUiModel) {
-            val intent = ProductDetailActivity.Companion.newInstance(context, productUiModel)
+            val intent = ProductDetailActivity.newInstance(context, productUiModel)
             context.startActivity(intent)
         }
 
         fun gotoUserDetail(context: Context,
             userUiModel: UserDetailUiModel) {
-            val intent = UserDetailActivity.Companion.newInstance(context, userUiModel)
+            val intent = UserDetailActivity.newInstance(context, userUiModel)
             context.startActivity(intent)
         }
 

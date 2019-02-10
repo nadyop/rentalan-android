@@ -39,10 +39,11 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:indeterminate="true"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <TableLayout
             android:id="@+id/tl_profile"
@@ -74,6 +75,8 @@
                     android:gravity="end"
                     android:text="Kamera"/>
             </TableRow>
+
+            <View style="@style/Separator"/>
 
             <TableRow
                 android:id="@+id/tr_surename"

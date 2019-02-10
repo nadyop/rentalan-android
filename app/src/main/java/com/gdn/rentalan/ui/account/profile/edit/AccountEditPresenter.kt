@@ -1,5 +1,6 @@
 package com.gdn.rentalan.ui.account.profile.edit
 
+import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestCommonResponse
 import com.gdn.rentalan.api.RestSingleResponse
@@ -48,6 +49,7 @@ class AccountEditPresenter @Inject constructor(private var api: ApiInterface,
                 it.status.orEmpty()
             )
             view.setData(items)
+            Log.d("AAAAZ", items.toString())
           }
           view.showProgress(false)
         }, { error ->
