@@ -9,7 +9,6 @@ interface UserMapper {
                     item.address,
                     item.gender,
                     item.city,
-                    item.facePhotoPath,
                     item.birthDate,
                     item.nik,
                     item.phoneNumber,

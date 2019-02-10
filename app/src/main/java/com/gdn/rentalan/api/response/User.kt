@@ -13,9 +13,6 @@ data class User(
 	@field:SerializedName("city")
 	val city: String? = null,
 
-	@field:SerializedName("facePhotoPath")
-	val facePhotoPath: String? = null,
-
 	@field:SerializedName("birthDate")
 	val birthDate: String? = null,
 

@@ -1,0 +1,79 @@
+package com.gdn.rentalan.ui.account.profile
+
+import android.databinding.DataBindingUtil
+import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.gdn.rentalan.R
+import com.gdn.rentalan.databinding.FragmentProfileBinding
+import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.util.Router
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
+
+class AccountFragment : BaseFragment(), AccountContract.View {
+
+  @Inject lateinit var presenter: AccountContract.Presenter
+  private lateinit var binding: FragmentProfileBinding
+  private lateinit var detail: AccountUiModel
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    AndroidSupportInjection.inject(this)
+  }
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+      savedInstanceState: Bundle?): View? {
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    presenter.attachView(this)
+    setData(detail)
+    userAction()
+  }
+
+  private fun userAction() {
+
+    binding.btEdit.setOnClickListener {
+      Router.gotoAccountEdit(it.context, detail)
+    }
+  }
+
+  override fun setData(items: AccountUiModel) {
+    with(binding) {
+      tvUsername.text = items.username
+      tvSurename.text = items.sureName
+      tvEmail.text = items.email
+      tvPhone.text = items.phoneNumber
+      tvAddress.text = items.email
+      tvProvince.text = items.province
+      tvCity.text = items.city
+      tvGender.text = items.gender
+      tvBirth.text = items.birthDate
+    }
+
+    if (items.status == "verify") {
+      val colorBackground = context?.let { ContextCompat.getColor(it, R.color.state_done) }
+      binding.tvStatus.text = getString(R.string.message_verify)
+      colorBackground?.let { binding.llStatus.setBackgroundColor(it) }
+
+    } else {
+      binding.tvStatus.text = getString(R.string.message_verify_yet)
+    }
+  }
+
+  override fun showProgress(show: Boolean) {
+    super.showProgress(show)
+    if (show){
+      binding.tlProfile.visibility = View.GONE
+    } else {
+      binding.tlProfile.visibility = View.VISIBLE
+    }
+  }
+}

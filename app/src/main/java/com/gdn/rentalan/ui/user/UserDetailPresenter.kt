@@ -30,7 +30,6 @@ class UserDetailPresenter @Inject constructor(private val api: ApiInterface) :
                             it.address,
                             it.gender,
                             it.city,
-                            it.facePhotoPath,
                             it.birthDate,
                             it.nik,
                             it.phoneNumber,

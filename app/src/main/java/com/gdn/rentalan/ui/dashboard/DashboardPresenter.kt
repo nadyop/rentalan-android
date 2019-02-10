@@ -35,7 +35,7 @@ class DashboardPresenter @Inject constructor(private val api: ApiInterface) :
 
         }, { error ->
           view.showProgress(false)
-          Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+          Log.d("AAAAZ", "error nihh data get+ ==== + ${error.message} + ==== + ${error.cause}")
           view.showErrorMessage(error.localizedMessage)
         })
 
@@ -59,7 +59,7 @@ class DashboardPresenter @Inject constructor(private val api: ApiInterface) :
 
         }, { error ->
           view.showProgress(false)
-          Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+          Log.d("AAAAZ", "error nihh search+ ==== + ${error.message} + ==== + ${error.cause}")
           view.showErrorMessage(error.localizedMessage)
         })
 

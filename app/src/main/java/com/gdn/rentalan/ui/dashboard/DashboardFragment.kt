@@ -31,9 +31,9 @@ class DashboardFragment : BaseFragment() , DashboardContract.View {
   lateinit var presenter: DashboardContract.Presenter
   private lateinit var binding: FragmentDashboardBinding
   private var listAdapter: DashboardAdapter? = null
-  private var provinceCode: String = ""
-  private var cityCode: String = ""
-  private var keyword: String = ""
+//  private var provinceCode: String = ""
+//  private var cityCode: String = ""
+//  private var keyword: String = ""
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidSupportInjection.inject(this)
@@ -43,9 +43,9 @@ class DashboardFragment : BaseFragment() , DashboardContract.View {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
 
-    this.provinceCode  = arguments!!.getString("edttext")
-    this.cityCode  = arguments!!.getString("edttext")
-    this.keyword = arguments!!.getString("edttext")
+//    this.provinceCode  = arguments!!.getString("edttext")
+//    this.cityCode  = arguments!!.getString("edttext")
+//    this.keyword = arguments!!.getString("edttext")
 
     return binding.root
   }
@@ -64,11 +64,14 @@ class DashboardFragment : BaseFragment() , DashboardContract.View {
       listAdapter = DashboardAdapter(ArrayList())
     }
     binding.recyclerView.adapter = listAdapter
-    if (cityCode != "" || provinceCode != "" || keyword != "") {
-      presenter.fetchDataSearch(provinceCode, cityCode, keyword)
-    } else {
-      presenter.fetchData()
-    }
+
+    presenter.fetchData()
+
+    //    if (cityCode != "" || provinceCode != "" || keyword != "") {
+//      presenter.fetchDataSearch(provinceCode, cityCode, keyword)
+//    } else {
+//      presenter.fetchData()
+//    }
   }
 
   override fun fetchDataSuccess(list: MutableList<ProductDetailUiModel>) {

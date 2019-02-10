@@ -25,7 +25,6 @@ class CategoryAddPresenter @Inject constructor(private val api: ApiInterface) :
     }
 
   override fun sendData(categoryName: String, categoryDesc: String) {
-
         val subscribe = api.addCategory(CategoryRequest(categoryName, categoryDesc))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

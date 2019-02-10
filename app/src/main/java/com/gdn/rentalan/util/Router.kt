@@ -2,6 +2,8 @@ package com.gdn.rentalan.util
 
 import android.content.Context
 import android.content.Intent
+import com.gdn.rentalan.ui.account.profile.AccountUiModel
+import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.admin.MainActivity
@@ -91,6 +93,12 @@ interface Router {
         fun gotoProductTransactionDetail(
             context: Context, transactionUiModel: TransactionUiModel) {
             val intent = TransactionDetailActivity.newInstance(context, transactionUiModel)
+            context.startActivity(intent)
+        }
+
+        fun gotoAccountEdit(
+            context: Context, accountUiModel: AccountUiModel) {
+            val intent = AccountEditActivity.newInstance(context, accountUiModel)
             context.startActivity(intent)
         }
     }

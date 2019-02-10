@@ -58,11 +58,14 @@
     <string name="user_notfound">User tidak ditemukan</string>
     <string name="phone">No. HP</string>
     <string name="gender">Gender</string>
+    <string name="nik">NIK</string>
     <string name="birth">Tgl Lahir</string>
     <string name="user_address_info">Informasi Alamat</string>
     <string name="address">Alamat</string>
     <string name="city">Kota</string>
     <string name="province">Provinsi</string>
+    <string name="message_verify_yet">Lengkapi data diri untuk dapat melakukan transaksi</string>
+    <string name="message_verify">Selamat akun anda telah terverifikasi</string>
 
     <string name="decline">Tolak</string>
     <string name="active">Aktifkan</string>
@@ -85,4 +88,12 @@
     <string name="no_data">Data tidak tersedia</string>
     <string name="qty">Kuantitas</string>
     <string name="renter">Peminjam</string>
+
+    <string name="select_source">Select source</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string-array name="source_array">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+
 </resources>

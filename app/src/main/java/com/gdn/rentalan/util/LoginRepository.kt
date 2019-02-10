@@ -2,9 +2,6 @@ package com.gdn.rentalan.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.R.id.edit
-
-
 
 class LoginRepository (context: Context){
 
@@ -20,7 +17,7 @@ class LoginRepository (context: Context){
 //    editor.apply()
 //  }
 
-  var userId: String?
+  var userId: String
     get() = sharedPreferences.getString(LoginRepository.USER_ID, "")
     set(userId) = sharedPreferences.edit().putString(LoginRepository.USER_ID, userId).apply()
 

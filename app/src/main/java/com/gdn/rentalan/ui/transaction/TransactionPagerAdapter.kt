@@ -3,8 +3,6 @@ package com.gdn.rentalan.ui.transaction
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.gdn.rentalan.ui.account.AccountFragment
-import com.gdn.rentalan.ui.account.ProductMyFragment
 
 class TransactionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

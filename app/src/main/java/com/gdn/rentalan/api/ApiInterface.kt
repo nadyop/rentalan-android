@@ -26,8 +26,7 @@ interface ApiInterface {
   file: MultipartBody.Part, @Part("request")
   productRequest: ProductRequest): Observable<RestCommonResponse>
 
-  @Headers("Accept: application/json", "Content-Type: multipart/form-data")
-  @Multipart
+  @Headers("Accept: application/json", "Content-Type: multipart/form-data") @Multipart
   @PUT("product") fun updateProductByOwner(@Query("ownerId") ownerId: String, @Query("productId")
   productId: String, @Part("image") file: MultipartBody.Part, @Part("request")
   productRequest: ProductRequest): Observable<RestCommonResponse>
@@ -46,8 +45,9 @@ interface ApiInterface {
 
   @GET("product?status=active") fun getProductListActive(): Observable<RestListResponse<Product>>
 
-  @GET("product") fun searchProduct(@Query("provinceCode") provinceCode: String = "", @Query("cityCode")
-  cityCode: String = "", @Query("searchKey") searchKey: String = ""): Observable<RestListResponse<Product>>
+  @GET("product") fun searchProduct(@Query("provinceCode") provinceCode: String = "",
+      @Query("cityCode") cityCode: String = "", @Query("searchKey")
+      searchKey: String = ""): Observable<RestListResponse<Product>>
 
   @DELETE("product") fun deletProduct(@Query("ownerId") ownerId: String, @Query("productId")
   productId: String)
@@ -74,6 +74,10 @@ interface ApiInterface {
 
   @PUT("user/verification") fun verifUser(@Query("userId")
   userId: String): Observable<RestCommonResponse>
+
+  @Multipart @PUT("user/verification") fun verifByUser(@Query("userId") userId: String,
+      @Part("request") userRequest: UserRequest, @Part("ktpImage") ktpImage: MultipartBody.Part,
+      @Part("selfImage") selfImage: MultipartBody.Part ): Observable<RestCommonResponse>
 
   @POST("user/verification") fun registerEmail(@Body
   registerEmailRequest: RegisterEmailRequest): Observable<RegisterEmailResponse>

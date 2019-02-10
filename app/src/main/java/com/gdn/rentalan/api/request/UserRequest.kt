@@ -22,14 +22,14 @@ data class UserRequest(
 	@field:SerializedName("city")
 	val city: String? = null,
 
-	@field:SerializedName("ktpPhotoPath")
-	val ktpPhotoPath: String? = null,
-
 	@field:SerializedName("sureName")
 	val sureName: String? = null,
 
 	@field:SerializedName("birthDate")
 	val birthDate: String? = null,
+
+	@field:SerializedName("ktpPhotoPath")
+	val ktpPhotoPath: String? = null,
 
 	@field:SerializedName("selfPhotoPath")
 	val selfPhotoPath: String? = null
