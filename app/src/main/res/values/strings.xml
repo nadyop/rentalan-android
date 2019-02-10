@@ -12,7 +12,8 @@
     <string name="otp_check">Silahkan periksa email untuk mendapatkan kode verifikasi</string>
     <string name="self_data">Data Diri</string>
     <string name="fill_in_self_data">Lengkapi data diri anda untuk dapat melanjutkan pendaftaran</string>
-    <string name="search">Cari...</string>
+    <string name="search">Cari</string>
+    <string name="keyword">Kata kunci</string>
     <string name="fill_data">Lengkapi data diri untuk dapat melakukan transaksi</string>
     <string name="account_created">Akun sukses dibuat</string>
     <string name="not_account_verified">Akun belum diverifikasi</string>

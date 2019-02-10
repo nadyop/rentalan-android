@@ -12,6 +12,7 @@ class DashboardContract {
 
   interface Presenter: BaseContract.Presenter {
     fun fetchData()
+    fun fetchDataSearch(provinceCode: String, cityCode: String, searchKey: String)
     fun attachView(view: View)
   }
 }

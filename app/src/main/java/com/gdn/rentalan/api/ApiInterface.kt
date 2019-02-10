@@ -46,8 +46,8 @@ interface ApiInterface {
 
   @GET("product?status=active") fun getProductListActive(): Observable<RestListResponse<Product>>
 
-  @GET("product") fun searchProduct(@Query("provinceCode") provinceCode: String, @Query("cityCode")
-  cityCode: String, @Query("searchKey") searchKey: String): Observable<RestListResponse<Product>>
+  @GET("product") fun searchProduct(@Query("provinceCode") provinceCode: String = "", @Query("cityCode")
+  cityCode: String = "", @Query("searchKey") searchKey: String = ""): Observable<RestListResponse<Product>>
 
   @DELETE("product") fun deletProduct(@Query("ownerId") ownerId: String, @Query("productId")
   productId: String)

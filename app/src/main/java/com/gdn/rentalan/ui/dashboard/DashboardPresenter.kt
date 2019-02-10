@@ -42,6 +42,30 @@ class DashboardPresenter @Inject constructor(private val api: ApiInterface) :
     subscriptions.add(subscribe)
   }
 
+  override fun fetchDataSearch(provinceCode: String, cityCode: String, searchKey: String) {
+    val subscribe = api.searchProduct(provinceCode, cityCode, searchKey).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ list: RestListResponse<Product> ->
+          view.showProgress(false)
+          Log.d("AAAAZ", "sukses nihh")
+          val listItems: MutableList<ProductDetailUiModel> = ArrayList()
+          list.data.forEach { contentElement ->
+            listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
+          }
+          view.fetchDataSuccess(listItems)
+          if (list.data.isEmpty()) {
+            view.showNoData()
+          }
+
+        }, { error ->
+          view.showProgress(false)
+          Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+          view.showErrorMessage(error.localizedMessage)
+        })
+
+    subscriptions.add(subscribe)
+  }
+
   override fun attachView(view: DashboardContract.View) {
     this.view = view
   }
