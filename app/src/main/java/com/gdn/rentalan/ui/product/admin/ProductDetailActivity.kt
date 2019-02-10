@@ -47,18 +47,15 @@ class ProductDetailActivity : BaseActivity(),
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
         presenter.attachView(this)
-        detail = intent.getParcelableExtra(
-            DETAIL)
-        Log.d("AAAAZ", detail.toString())
+        detail = intent.getParcelableExtra(DETAIL)
         detail?.id?.let {
             presenter.getData(it)
-            Log.d("AAAAZ", "ini tu ga null")
         }
         userAction()
     }
 
     private fun userAction(){
-        Log.d("AAAAZ", "userAction")
+        detail?.let { setData(it) }
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -83,18 +80,18 @@ class ProductDetailActivity : BaseActivity(),
         binding.buttonRight.setOnClickListener(listener)
     }
 
-    override fun setData(content: ProductDetailUiModel) {
-        Glide.with(this).load(URL_PRODUCT + content.productImage).fitCenter().into(binding.ivProduct)
+    override fun setData(items: ProductDetailUiModel) {
+        Glide.with(this).load(URL_PRODUCT + items.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
-            tvProductName.text = content.name
-            tvProductPriceDay.text = "Rp " + content.pricePerDay.toString() + " /hari"
-            tvUserName.text = content.ownerName
-            tvPhone.text = content.ownerPhone
-            tvCity.text = content.name
-            tvCategory.text = content.categoryName
-            tvDescription.text = content.description
-            tvStock.text = content.stock.toString()
-            tvDp.text = "Rp " + content.downPayment.toString()
+            tvProductName.text = items.name
+            tvProductPriceDay.text = "Rp " + items.pricePerDay.toString() + " /hari"
+            tvUserName.text = items.ownerName
+            tvPhone.text = items.ownerPhone
+            tvCity.text = items.ownerCity
+            tvCategory.text = items.categoryName
+            tvDescription.text = items.description
+            tvStock.text = items.stock.toString()
+            tvDp.text = "Rp " + items.downPayment.toString()
         }
     }
 

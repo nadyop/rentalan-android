@@ -1,13 +1,12 @@
 package com.gdn.rentalan.ui.product.admin
 
-import android.support.v4.app.Fragment
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 
 class ProductDetailContract {
 
     interface View: BaseContract.View {
-        fun setData(content: ProductDetailUiModel)
+        fun setData(items: ProductDetailUiModel)
         fun goToProductList()
     }
 

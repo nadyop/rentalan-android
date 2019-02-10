@@ -16,5 +16,6 @@ data class ProductDetailUiModel(
         val productImage: String? = "",
         val status: String= "",
         val ownerName: String = "",
-        val ownerPhone: String = ""
+        val ownerPhone: String = "",
+        val ownerCity: String = ""
 ) : Parcelable

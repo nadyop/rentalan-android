@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Product(
 
-    @field:SerializedName("productImages") var productImage: String? = null,
+    @field:SerializedName("productImage") var productImage: String? = null,
 
     @field:SerializedName("downPayment") val downPayment: Int? = null,
 
@@ -21,6 +21,8 @@ data class Product(
     @field:SerializedName("ownerId") val ownerId: String? = null,
 
     @field:SerializedName("ownerName") val ownerName: String = "",
+
+    @field:SerializedName("ownerCity") val ownerCity: String = "",
 
     @field:SerializedName("ownerPhoneNumber") val ownerPhoneNumber: String = "",
 

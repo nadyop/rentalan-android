@@ -1,6 +1,5 @@
 package com.gdn.rentalan.ui.product.admin
 
-import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestCommonResponse
 import com.gdn.rentalan.api.RestSingleResponse
@@ -33,16 +32,16 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
                                 it.downPayment,
                                 it.lateCharge,
                                 it.categoryName,
-                                it.productImage
+                                it.productImage,
+                                it.ownerCity,
+                                it.ownerName,
+                                it.ownerPhoneNumber
                         )
                         view.setData(items)
-                      Log.d("AAAAZ", "product detail success")
-
                     }
                     view.showProgress(false)
                 }, { error ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "product detail failed + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
         subscriptions.add(subscribe)
@@ -54,10 +53,8 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe({ list: RestCommonResponse ->
             view.showProgress(false)
-            Log.d("AAAAZ", "verif product success")
           }, { error ->
             view.showProgress(false)
-            Log.d("AAAAZ", "verif product failed + ${error.message} = ${error.stackTrace}")
             view.showErrorMessage(error.localizedMessage)
           })
 
