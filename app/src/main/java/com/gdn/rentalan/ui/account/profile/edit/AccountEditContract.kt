@@ -1,8 +1,9 @@
 package com.gdn.rentalan.ui.account.profile.edit
 
-import com.gdn.rentalan.api.request.UserRequest
+import com.gdn.rentalan.api.request.UserVerifyRequest
 import com.gdn.rentalan.ui.account.profile.AccountUiModel
 import com.gdn.rentalan.ui.base.BaseContract
+import java.io.File
 
 class AccountEditContract {
 
@@ -12,7 +13,7 @@ class AccountEditContract {
   }
 
   interface Presenter: BaseContract.Presenter {
-    fun saveDetail(details: UserRequest)
+    fun saveDetail(request: UserVerifyRequest, ktpFile: File, selfFile: File)
     fun getDetail()
     fun attachView(view: View)
   }

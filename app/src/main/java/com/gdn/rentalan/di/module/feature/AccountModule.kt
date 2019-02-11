@@ -7,6 +7,9 @@ import com.gdn.rentalan.ui.account.profile.AccountPresenter
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditContract
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditPresenter
+import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileActivity
+import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileContract
+import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfilePresenter
 import dagger.Binds
 import dagger.Module
 
@@ -23,4 +26,10 @@ import dagger.Module
 
   @ActivityScope @Binds abstract fun provideAccountEditPresenter(
       accountEditPresenter: AccountEditPresenter): AccountEditContract.Presenter
+
+  @ActivityScope @Binds abstract fun provideAccountEditProfileView(
+          accountEditProfileActivity: AccountEditProfileActivity): AccountEditProfileContract.View
+
+  @ActivityScope @Binds abstract fun provideAccountEditProfilePresenter(
+          accountEditProfilePresenter: AccountEditProfilePresenter): AccountEditProfileContract.Presenter
 }

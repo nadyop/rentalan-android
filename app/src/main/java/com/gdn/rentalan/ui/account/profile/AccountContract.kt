@@ -8,11 +8,13 @@ class AccountContract {
     fun setData(items: AccountUiModel)
     fun goToEdit()
     fun goToEditProfile(userId: String)
+    fun goToEditProfileVerify(userId: String)
   }
 
   interface Presenter: BaseContract.Presenter {
     fun attachView(view: View)
     fun getAccount()
     fun goToEditUserId()
+    fun goToEditUserIdVerify()
   }
 }

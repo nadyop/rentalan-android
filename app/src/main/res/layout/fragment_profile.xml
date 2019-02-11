@@ -31,10 +31,23 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:layout_marginBottom="@dimen/spacing_normal"
-                android:text="@string/edit"
+                android:text="@string/verification"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/bt_edit_verify"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_marginBottom="@dimen/spacing_normal"
+                    android:text="@string/edit"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
         </LinearLayout>
 
         <ProgressBar

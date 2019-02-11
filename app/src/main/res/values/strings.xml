@@ -19,6 +19,7 @@
     <string name="not_account_verified">Akun belum diverifikasi</string>
     <string name="account_verified">Akun telah terverifikasi</string>
     <string name="edit">Edit</string>
+    <string name="verification">Verifikasi</string>
     <string name="save">Simpan</string>
     <string name="rent">Pinjam</string>
     <string name="add_product">Tambah Barang</string>
