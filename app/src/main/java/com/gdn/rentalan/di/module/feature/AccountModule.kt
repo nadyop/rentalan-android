@@ -7,6 +7,9 @@ import com.gdn.rentalan.ui.account.product.ProductMyPresenter
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddActivity
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddContract
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddPresenter
+import com.gdn.rentalan.ui.account.product.update.ProductMyUpdateActivity
+import com.gdn.rentalan.ui.account.product.update.ProductMyUpdateContract
+import com.gdn.rentalan.ui.account.product.update.ProductMyUpdatePresenter
 import com.gdn.rentalan.ui.account.profile.AccountContract
 import com.gdn.rentalan.ui.account.profile.AccountFragment
 import com.gdn.rentalan.ui.account.profile.AccountPresenter
@@ -71,4 +74,14 @@ abstract class AccountModule {
     @Binds
     abstract fun provideProductMyAddPresenter(
             productMyAddPresenter: ProductMyAddPresenter): ProductMyAddContract.Presenter
+
+    @ActivityScope
+    @Binds
+    abstract fun provideProductMyUpdateView(
+        productMyUpdateActivity: ProductMyUpdateActivity): ProductMyUpdateContract.View
+
+    @ActivityScope
+    @Binds
+    abstract fun provideProductMyUpdatePresenter(
+        productMyUpdatePresenter: ProductMyUpdatePresenter): ProductMyUpdateContract.Presenter
 }

@@ -37,7 +37,6 @@ class ProductDetailActivity : BaseActivity(),
     lateinit var presenter: ProductDetailContract.Presenter
     private lateinit var binding: ActivityProductDetailAdminBinding
     private var detail: ProductDetailUiModel? = null
-    private var actionButtonClickListener: View.OnClickListener? = null
 
     override fun getPresenter(): BaseContract.Presenter? {
         return presenter
@@ -47,8 +46,8 @@ class ProductDetailActivity : BaseActivity(),
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
         presenter.attachView(this)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
         detail = intent.getParcelableExtra(DETAIL)
         detail?.id?.let {
             presenter.getData(it)

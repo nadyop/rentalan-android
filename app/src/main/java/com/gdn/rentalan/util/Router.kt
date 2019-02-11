@@ -3,7 +3,7 @@ package com.gdn.rentalan.util
 import android.content.Context
 import android.content.Intent
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddActivity
-import com.gdn.rentalan.ui.account.profile.AccountFragment
+import com.gdn.rentalan.ui.account.product.update.ProductMyUpdateActivity
 import com.gdn.rentalan.ui.account.profile.AccountUiModel
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
@@ -81,9 +81,14 @@ interface Router {
             context.startActivity(intent)
         }
 
-        fun gotoMyProductDetail(context: Context,
+        fun gotoMyProductDetail(context: Context) {
+            val intent = Intent(context, ProductMyAddActivity::class.java)
+            context.startActivity(intent)
+        }
+
+        fun gotoProductUpdate(context: Context,
             productUiModel: ProductDetailUiModel) {
-            val intent = ProductMyAddActivity.newInstance(context, productUiModel)
+            val intent = ProductMyUpdateActivity.newInstance(context, productUiModel)
             context.startActivity(intent)
         }
 

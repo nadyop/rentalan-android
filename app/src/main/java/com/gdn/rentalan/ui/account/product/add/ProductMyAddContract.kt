@@ -16,8 +16,6 @@ class ProductMyAddContract {
 
     interface Presenter: BaseContract.Presenter {
         fun addProductByOwner(request: ProductVerifyRequest, image: File)
-        fun updateProductByOwner(request: ProductVerifyRequest, image: File)
-        fun getDetail(productId: String)
         fun attachView(view: View)
         fun getCategory()
     }

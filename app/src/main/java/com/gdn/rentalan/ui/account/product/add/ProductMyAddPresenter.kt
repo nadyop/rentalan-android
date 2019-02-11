@@ -35,10 +35,6 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
         this.view = view
     }
 
-    override fun updateProductByOwner(request: ProductVerifyRequest, image: File) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun addProductByOwner(request: ProductVerifyRequest, image: File) {
 
         val productRequestBody = RequestBody.create(MediaType.parse("application/json"), gson.toJson(request))
@@ -61,36 +57,6 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
                 })
 
         subscriptions.add(subscribe)
-    }
-
-    override fun getDetail(productId: String) {
-      view.showProgress(true)
-      val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe({ response: RestSingleResponse<Product> ->
-            response.data?.let {
-              val items = ProductDetailUiModel(
-                  it.id.orEmpty(),
-                  it.name.orEmpty(),
-                  it.description.orEmpty(),
-                  it.pricePerDay,
-                  it.stock,
-                  it.downPayment,
-                  it.lateCharge,
-                  it.categoryName.toString(),
-                  it.productImage,
-                  it.ownerCity.toString(),
-                  it.ownerName.toString(),
-                  it.ownerPhoneNumber.toString()
-              )
-              view.setData(items)
-            }
-            view.showProgress(false)
-          }, { error ->
-            view.showProgress(false)
-            view.showErrorMessage(error.localizedMessage)
-          })
-      subscriptions.add(subscribe)
     }
 
     override fun getCategory() {

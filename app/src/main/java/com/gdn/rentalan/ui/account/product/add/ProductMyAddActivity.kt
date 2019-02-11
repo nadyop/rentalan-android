@@ -30,15 +30,6 @@ import kotlin.collections.ArrayList
 
 class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
 
-    companion object {
-        private const val MYDETAIL = "mydetail"
-        fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
-            val intent = Intent(context, ProductMyAddActivity::class.java)
-            intent.putExtra(MYDETAIL, detail) //from @Parcelize
-            return intent
-        }
-    }
-
     @Inject
     lateinit var presenter: ProductMyAddContract.Presenter
     lateinit var binding: ActivityAddProductMyBinding
@@ -62,10 +53,6 @@ class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_product_my)
         presenter.attachView(this)
 
-        detail = intent.getParcelableExtra(MYDETAIL)
-        detail?.id?.let {
-            presenter.getDetail(it)
-        }
         userAction()
         binding.btSave.setOnClickListener {
             submit()

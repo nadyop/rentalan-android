@@ -35,7 +35,7 @@ class ProductMyAdapter(
                 tvDescription.text = status
 
                 container.setOnClickListener {
-                    Router.gotoMyProductDetail(it.context, this)
+                    Router.gotoProductUpdate(it.context, this)
                 }
             }
         }

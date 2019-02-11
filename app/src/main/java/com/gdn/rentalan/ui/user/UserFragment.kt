@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
-import com.gdn.rentalan.api.RestListResponse
-import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.FragmentUserBinding
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
