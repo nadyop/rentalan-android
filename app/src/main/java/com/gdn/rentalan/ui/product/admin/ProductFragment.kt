@@ -16,20 +16,6 @@ import javax.inject.Inject
 
 class ProductFragment : BaseFragment(), ProductContract.View {
 
-    //    companion object {
-//        private const val TYPE = "type"
-//        val TAG: String = "ProductFragment"
-//
-//        fun newInstance(type: String): ProductFragment {
-//            val productFragment = ProductFragment()
-//            productFragment.arguments = Bundle().apply {
-//                putString(TYPE, type)
-//            }
-//
-//            return productFragment
-//        }
-//    }
-
     @Inject
     lateinit var presenter: ProductContract.Presenter
     private lateinit var binding: FragmentProductBinding

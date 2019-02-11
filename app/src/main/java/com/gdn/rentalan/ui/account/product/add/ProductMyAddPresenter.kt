@@ -4,11 +4,14 @@ import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestCommonResponse
 import com.gdn.rentalan.api.RestListResponse
+import com.gdn.rentalan.api.RestSingleResponse
 import com.gdn.rentalan.api.request.ProductVerifyRequest
 import com.gdn.rentalan.api.response.Category
+import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.category.CategoryMapper
 import com.gdn.rentalan.ui.category.CategoryUiModel
+import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.util.LoginRepository
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -43,6 +46,7 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
 
         val imageRequestBody = RequestBody.create(MediaType.parse("application/json"), image)
         val imageRequestBodyPart = MultipartBody.Part.createFormData("image", image.name, imageRequestBody)
+
         val subscribe = api.addProductByOwner(userId, imageRequestBodyPart, productRequestBodyPart)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -60,7 +64,33 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
     }
 
     override fun getDetail(productId: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+      view.showProgress(true)
+      val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe({ response: RestSingleResponse<Product> ->
+            response.data?.let {
+              val items = ProductDetailUiModel(
+                  it.id.orEmpty(),
+                  it.name.orEmpty(),
+                  it.description.orEmpty(),
+                  it.pricePerDay,
+                  it.stock,
+                  it.downPayment,
+                  it.lateCharge,
+                  it.categoryName.toString(),
+                  it.productImage,
+                  it.ownerCity.toString(),
+                  it.ownerName.toString(),
+                  it.ownerPhoneNumber.toString()
+              )
+              view.setData(items)
+            }
+            view.showProgress(false)
+          }, { error ->
+            view.showProgress(false)
+            view.showErrorMessage(error.localizedMessage)
+          })
+      subscriptions.add(subscribe)
     }
 
     override fun getCategory() {
@@ -71,7 +101,6 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
                     list.data.forEach { contentElement ->
                         listItems.add(CategoryMapper.mapToCategoryUiModel(contentElement))
                     }
-
                     view.showCategories(listItems)
                 }, { error ->
                     view.showProgress(false)

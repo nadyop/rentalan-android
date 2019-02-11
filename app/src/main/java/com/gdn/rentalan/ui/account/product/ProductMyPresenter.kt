@@ -5,6 +5,8 @@ import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
+import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.ui.product.model.ProductMapper
 import com.gdn.rentalan.util.LoginRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -25,12 +27,17 @@ class ProductMyPresenter @Inject constructor(private var api: ApiInterface, logi
                 .subscribe({ list: RestListResponse<Product> ->
                     view.showProgress(false)
                     Log.d("getProductByOwner", "sukses nihh")
-                    list.let {
-                        view.fetchDataSuccess(it)
+                  list.let {
+                    val listItems: MutableList<ProductDetailUiModel> = ArrayList()
+                    list.data.forEach { contentElement ->
+                      listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
                     }
+                    view.fetchDataSuccess(listItems)
+
                     if (list.data.isEmpty()) {
-                        view.showNoData()
+                      view.showNoData()
                     }
+                  }
                 }, { error ->
                     view.showProgress(false)
                     Log.d("getCategory", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")

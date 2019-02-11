@@ -53,6 +53,8 @@ class ProductDetailActivity : BaseActivity(),
         detail?.id?.let {
             presenter.getData(it)
         }
+        Log.d("aaazz", detail.toString())
+
         userAction()
     }
 
@@ -75,11 +77,6 @@ class ProductDetailActivity : BaseActivity(),
             )
             goToProductList()
         }
-    }
-
-    private fun sendDataListener(listener: View.OnClickListener) {
-        this.actionButtonClickListener = listener
-        binding.buttonRight.setOnClickListener(listener)
     }
 
     override fun setData(items: ProductDetailUiModel) {

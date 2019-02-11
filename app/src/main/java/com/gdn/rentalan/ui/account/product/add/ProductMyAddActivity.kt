@@ -9,7 +9,8 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.gdn.rentalan.R
 import com.gdn.rentalan.api.request.ProductVerifyRequest
 import com.gdn.rentalan.databinding.ActivityAddProductMyBinding
@@ -26,16 +27,14 @@ import java.io.OutputStream
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
 
     companion object {
-        private const val PRODUCT = "detail"
+        private const val MYDETAIL = "mydetail"
         fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
             val intent = Intent(context, ProductMyAddActivity::class.java)
-            intent.putExtra(
-                    PRODUCT, detail) //from @Parcelize
+            intent.putExtra(MYDETAIL, detail) //from @Parcelize
             return intent
         }
     }
@@ -63,12 +62,16 @@ class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_product_my)
         presenter.attachView(this)
 
-        detail?.id?.let { presenter.getDetail(it) }
+        detail = intent.getParcelableExtra(MYDETAIL)
+        detail?.id?.let {
+            presenter.getDetail(it)
+        }
         userAction()
         binding.btSave.setOnClickListener {
             submit()
         }
 
+        Log.d("aaazz", detail.toString())
         presenter.getCategory()
     }
 
@@ -118,6 +121,8 @@ class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
     }
 
     private fun userAction() {
+        Log.d("detail", detail.toString())
+//        detail?.let { setData(it) }
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -146,7 +151,6 @@ class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
         with(binding) {
             etProductName.setText(details.name)
             etDesc.setText(details.description)
-//            spCategory.setText(details.categoryName)
             etPricePerday.setText(details.pricePerDay)
             etStock.setText(details.stock)
             etDp.setText(details.downPayment)
@@ -177,15 +181,26 @@ class ProductMyAddActivity : BaseActivity(), ProductMyAddContract.View {
             categoriesData.add(category.name)
         }
 
-        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesData)
+        val arrayAdapter = ArrayAdapter<String>(this, R.layout.item_spinner, categoriesData)
         binding.spCategory.adapter = arrayAdapter
     }
 
     private fun submit(){
         val selectedName = binding.spCategory.selectedItem.toString()
-        val selectedId =categories?.single {
+        val selectedCategoryId = categories?.single {
             it.name == selectedName
         }?.id
-        Log.d("aaaaa", selectedId)
+
+        val req = ProductVerifyRequest(
+            binding.etProductName.text.toString(),
+            binding.etDesc.text.toString(),
+            selectedCategoryId,
+            binding.etPricePerday.text.toString().toInt(),
+            binding.etStock.text.toString().toInt(),
+            binding.etDp.text.toString().toInt(),
+            binding.etLateCharge.text.toString().toInt()
+        )
+
+        image?.let { presenter.addProductByOwner(req, it) }
     }
 }

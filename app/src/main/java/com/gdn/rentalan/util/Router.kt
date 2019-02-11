@@ -81,6 +81,12 @@ interface Router {
             context.startActivity(intent)
         }
 
+        fun gotoMyProductDetail(context: Context,
+            productUiModel: ProductDetailUiModel) {
+            val intent = ProductMyAddActivity.newInstance(context, productUiModel)
+            context.startActivity(intent)
+        }
+
         fun gotoUserDetail(context: Context,
             userUiModel: UserDetailUiModel) {
             val intent = UserDetailActivity.newInstance(context, userUiModel)

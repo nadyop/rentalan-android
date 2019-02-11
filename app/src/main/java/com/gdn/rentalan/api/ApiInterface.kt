@@ -12,20 +12,17 @@ interface ApiInterface {
     @GET("category")
     fun getCategoryList(): Observable<RestListResponse<Category>>
 
-    @Headers("Accept: application/json", "Content-Type: application/json")
+//    @Headers("Accept: application/json", "Content-Type: application/json")
     @GET("category")
     fun getCategoryDetail(@Query("categoryId") categoryId: String): Observable<Category>
 
-    @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("category")
     fun addCategory(@Body categoryRequest: CategoryRequest): Observable<RestCommonResponse>
 
-    @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("category")
     fun updateCategoryDetail(@Query("categoryId") categoryId: String): Observable<RestCommonResponse>
 
     //    product
-    @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
     @POST("product")
     fun addProductByOwner(
@@ -34,7 +31,6 @@ interface ApiInterface {
             @Part request: MultipartBody.Part)
             : Observable<RestCommonResponse>
 
-    @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
     @PUT("product")
     fun updateProductByOwner(
@@ -43,7 +39,6 @@ interface ApiInterface {
             @Part image: MultipartBody.Part,
             @Part request: MultipartBody.Part): Observable<RestCommonResponse>
 
-    @Headers("Accept: application/json", "Content-Type: application/json")
     @PUT("product/verification")
     fun verifProduct(@Query("productId") productId: String,
                      @Query("accept") accept: String): Observable<RestCommonResponse>
@@ -68,7 +63,7 @@ interface ApiInterface {
                       searchKey: String = ""): Observable<RestListResponse<Product>>
 
     @DELETE("product")
-    fun deletProduct(@Query("ownerId") ownerId: String, @Query("productId")
+    fun deleteProduct(@Query("ownerId") ownerId: String, @Query("productId")
     productId: String)
 
     //    rent

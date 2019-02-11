@@ -12,6 +12,7 @@ import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.databinding.FragmentUserBinding
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
+import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_user.*
 import javax.inject.Inject
@@ -49,6 +50,10 @@ class UserFragment : BaseFragment(), UserContract.View {
         }
         binding.recyclerView.adapter = listAdapter
         presenter.fetchData()
+
+        binding.tvLogout.setOnClickListener {
+            context?.let { it1 -> Router.goToLogin(it1) }
+        }
     }
 
     override fun showProgress(show: Boolean) {

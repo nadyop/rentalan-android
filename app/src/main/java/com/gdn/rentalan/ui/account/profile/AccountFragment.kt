@@ -110,9 +110,11 @@ class AccountFragment : BaseFragment(), AccountContract.View {
     override fun showProgress(show: Boolean) {
         super.showProgress(show)
         if (show) {
+            binding.llStatus.visibility = View.GONE
             binding.tlProfile.visibility = View.GONE
         } else {
-            binding.tlProfile.visibility = View.VISIBLE
+          binding.llStatus.visibility = View.VISIBLE
+          binding.tlProfile.visibility = View.VISIBLE
         }
     }
 }

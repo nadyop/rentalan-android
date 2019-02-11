@@ -15,8 +15,10 @@ interface ProductMapper {
                     item.lateCharge,
                     item.categoryName.toString(),
                     item.productImage,
+                    item.status.orEmpty(),
                     item.ownerName.toString(),
-                    item.ownerPhoneNumber.toString()
+                    item.ownerPhoneNumber.toString(),
+                    item.ownerCity.toString()
             )
         }
     }

@@ -11,6 +11,7 @@ import com.gdn.rentalan.api.RestListResponse
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.databinding.FragmentMyProductBinding
 import com.gdn.rentalan.ui.base.BaseFragment
+import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.util.Router
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -20,6 +21,7 @@ class ProductMyFragment : BaseFragment(), ProductMyContract.View {
     @Inject
     lateinit var presenter: ProductMyContract.Presenter
     private lateinit var binding: FragmentMyProductBinding
+    private var listAdapter: ProductMyAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,16 +47,19 @@ class ProductMyFragment : BaseFragment(), ProductMyContract.View {
 
     private fun initView() {
         presenter.fetchData()
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.rvItems.layoutManager = layoutManager
+        if (listAdapter == null) {
+            listAdapter = ProductMyAdapter(ArrayList())
+        }
+        binding.rvItems.adapter = listAdapter
+        presenter.fetchData()
     }
 
-    override fun fetchDataSuccess(list: RestListResponse<Product>) {
-        val adapter = activity?.let {
-            list.data?.toMutableList()?.let { products ->
-                ProductMyAdapter(it, products, this)
-            }
-        }
-        binding.rvItems.layoutManager = LinearLayoutManager(activity)
-        binding.rvItems.adapter = adapter
+    override fun fetchDataSuccess(list: MutableList<ProductDetailUiModel>) {
+        listAdapter?.addItems(list)
+        binding.rvItems.adapter = listAdapter
     }
 
     override fun showNoData() {
