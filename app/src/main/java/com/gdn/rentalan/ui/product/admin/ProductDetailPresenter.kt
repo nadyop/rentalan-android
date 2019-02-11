@@ -18,8 +18,8 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
     private val subscriptions = CompositeDisposable()
 
     override fun getData(productId: String) {
-      view.showProgress(true)
-      val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
+        view.showProgress(true)
+        val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<Product> ->
                     response.data?.let {
@@ -30,9 +30,12 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
                                 it.pricePerDay,
                                 it.stock,
                                 it.downPayment,
-                                it.lateCharge, it.categoryName.toString(),
-                                it.productImage, it.ownerCity.toString(), it.ownerName.toString(),
-                            it.ownerPhoneNumber.toString()
+                                it.lateCharge,
+                                it.categoryName.toString(),
+                                it.productImage,
+                                it.ownerCity.toString(),
+                                it.ownerName.toString(),
+                                it.ownerPhoneNumber.toString()
                         )
                         view.setData(items)
                     }
@@ -45,17 +48,17 @@ class ProductDetailPresenter @Inject constructor(private val api: ApiInterface) 
     }
 
     override fun verification(productId: String, accept: String) {
-      val subscribe = api.verifProduct(productId, accept)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe({ list: RestCommonResponse ->
-            view.showProgress(false)
-          }, { error ->
-            view.showProgress(false)
-            view.showErrorMessage(error.localizedMessage)
-          })
+        val subscribe = api.verifProduct(productId, accept)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ list: RestCommonResponse ->
+                    view.showProgress(false)
+                }, { error ->
+                    view.showProgress(false)
+                    view.showErrorMessage(error.localizedMessage)
+                })
 
-      subscriptions.add(subscribe)
+        subscriptions.add(subscribe)
     }
 
     override fun attachView(view: ProductDetailContract.View) {

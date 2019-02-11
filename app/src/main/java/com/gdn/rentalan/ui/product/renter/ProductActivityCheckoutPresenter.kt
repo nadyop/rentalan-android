@@ -14,59 +14,60 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiInterface) :
-    BasePresenter(), ProductActivityCheckoutContract.Presenter {
+        BasePresenter(), ProductActivityCheckoutContract.Presenter {
 
-  private lateinit var view: ProductActivityCheckoutContract.View
-  private val subscriptions = CompositeDisposable()
+    private lateinit var view: ProductActivityCheckoutContract.View
+    private val subscriptions = CompositeDisposable()
 
-  override fun getData(productId: String) {
-    view.showProgress(true)
-    val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ response: RestSingleResponse<Product> ->
-          Log.d("AAAAZ", "sukses nihh")
-          Log.d("AAAAZgetData", response.data.toString())
-          response.data?.let {
-            val items = ProductDetailUiModel(
-                it.id.orEmpty(),
-                it.name.orEmpty(),
-                it.description.orEmpty(),
-                it.pricePerDay,
-                it.stock,
-                it.downPayment,
-                it.lateCharge, it.categoryName.toString(),
-                it.productImage
-            )
-            view.setData(items)
-          }
-          view.showProgress(false)
-        }, { error ->
-          view.showProgress(false)
-          Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
-          view.showErrorMessage(error.localizedMessage)
-        })
-    subscriptions.add(subscribe)
-  }
+    override fun getData(productId: String) {
+        view.showProgress(true)
+        val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ response: RestSingleResponse<Product> ->
+                    Log.d("AAAAZ", "sukses nihh")
+                    Log.d("AAAAZgetData", response.data.toString())
+                    response.data?.let {
+                        val items = ProductDetailUiModel(
+                                it.id.orEmpty(),
+                                it.name.orEmpty(),
+                                it.description.orEmpty(),
+                                it.pricePerDay,
+                                it.stock,
+                                it.downPayment,
+                                it.lateCharge,
+                                it.categoryName.toString(),
+                                it.productImage
+                        )
+                        view.setData(items)
+                    }
+                    view.showProgress(false)
+                }, { error ->
+                    view.showProgress(false)
+                    Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
+                    view.showErrorMessage(error.localizedMessage)
+                })
+        subscriptions.add(subscribe)
+    }
 
-  override fun rent(productId: String, startDate: String, endDate: String, qty: Int) {
-    val subscribe = api.rentCheckout(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ list: RestCommonResponse ->
-          view.showProgress(false)
-          Log.d("AAAAZ", "sukses add nihh")
-          view.goToDashboard()
-        }, { error ->
-          view.showProgress(false)
-          Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
-          view.showErrorMessage(error.localizedMessage)
-        })
+    override fun rent(productId: String, startDate: String, endDate: String, qty: Int) {
+        val subscribe = api.rentCheckout(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ list: RestCommonResponse ->
+                    view.showProgress(false)
+                    Log.d("AAAAZ", "sukses add nihh")
+                    view.goToDashboard()
+                }, { error ->
+                    view.showProgress(false)
+                    Log.d("AAAAZ", "error add nihh + ==== + ${error.message} + ==== + ${error.cause}")
+                    view.showErrorMessage(error.localizedMessage)
+                })
 
-    subscriptions.add(subscribe)
-  }
+        subscriptions.add(subscribe)
+    }
 
-  override fun attachView(view: ProductActivityCheckoutContract.View) {
-    this.view = view
-  }
+    override fun attachView(view: ProductActivityCheckoutContract.View) {
+        this.view = view
+    }
 
 }

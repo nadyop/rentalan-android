@@ -24,6 +24,22 @@
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"/>
 
+            <TextView
+                    android:id="@+id/tv_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="@string/no_data"/>
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:indeterminate="true"/>
+
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_items"
                     android:layout_width="match_parent"

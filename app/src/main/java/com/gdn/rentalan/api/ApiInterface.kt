@@ -28,16 +28,20 @@ interface ApiInterface {
     @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
     @POST("product")
-    fun addProductByOwner(@Query("ownerId") ownerId: String, @Part("image")
-    file: MultipartBody.Part, @Part("request")
-                          productRequest: ProductRequest): Observable<RestCommonResponse>
+    fun addProductByOwner(
+            @Query("ownerId") ownerId: String,
+            @Part image: MultipartBody.Part,
+            @Part request: MultipartBody.Part)
+            : Observable<RestCommonResponse>
 
     @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
     @PUT("product")
-    fun updateProductByOwner(@Query("ownerId") ownerId: String, @Query("productId")
-    productId: String, @Part("image") file: MultipartBody.Part, @Part("request")
-                             productRequest: ProductRequest): Observable<RestCommonResponse>
+    fun updateProductByOwner(
+            @Query("ownerId") ownerId: String,
+            @Query("productId") productId: String,
+            @Part image: MultipartBody.Part,
+            @Part request: MultipartBody.Part): Observable<RestCommonResponse>
 
     @Headers("Accept: application/json", "Content-Type: application/json")
     @PUT("product/verification")

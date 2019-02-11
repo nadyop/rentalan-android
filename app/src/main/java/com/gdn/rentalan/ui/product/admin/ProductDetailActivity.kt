@@ -21,14 +21,14 @@ import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class ProductDetailActivity : BaseActivity(),
-    ProductDetailContract.View {
+        ProductDetailContract.View {
 
     companion object {
         private const val DETAIL = "detail"
         fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
             val intent = Intent(context, ProductDetailActivity::class.java)
             intent.putExtra(
-                DETAIL, detail) //from @Parcelize
+                    DETAIL, detail) //from @Parcelize
             return intent
         }
     }
@@ -56,7 +56,7 @@ class ProductDetailActivity : BaseActivity(),
         userAction()
     }
 
-    private fun userAction(){
+    private fun userAction() {
         detail?.let { setData(it) }
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -64,14 +64,14 @@ class ProductDetailActivity : BaseActivity(),
 
         binding.buttonRight.setOnClickListener {
             presenter.verification(
-                detail?.id.orEmpty(), true.toString()
+                    detail?.id.orEmpty(), true.toString()
             )
             goToProductList()
         }
 
         binding.buttonLeft.setOnClickListener {
             presenter.verification(
-                detail?.id.orEmpty(), false.toString()
+                    detail?.id.orEmpty(), false.toString()
             )
             goToProductList()
         }

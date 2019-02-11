@@ -12,8 +12,11 @@ interface ProductMapper {
                     item.pricePerDay,
                     item.stock,
                     item.downPayment,
-                    item.lateCharge, item.categoryName.toString(),
-                    item.productImage, item.ownerName.toString(), item.ownerPhoneNumber.toString()
+                    item.lateCharge,
+                    item.categoryName.toString(),
+                    item.productImage,
+                    item.ownerName.toString(),
+                    item.ownerPhoneNumber.toString()
             )
         }
     }

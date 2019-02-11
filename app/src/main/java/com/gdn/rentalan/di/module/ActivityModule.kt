@@ -2,6 +2,8 @@ package com.gdn.rentalan.di.module
 
 import com.gdn.rentalan.di.module.feature.*
 import com.gdn.rentalan.di.scope.ActivityScope
+import com.gdn.rentalan.ui.account.product.ProductMyFragment
+import com.gdn.rentalan.ui.account.product.add.ProductMyAddActivity
 import com.gdn.rentalan.ui.account.profile.AccountFragment
 import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileActivity
@@ -107,4 +109,12 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [AccountModule::class])
     abstract fun provideAccountEditProfileActivity(): AccountEditProfileActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [AccountModule::class])
+    abstract fun provideProductMyFragment(): ProductMyFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [AccountModule::class])
+    abstract fun provideProductMyAddActivity(): ProductMyAddActivity
 }

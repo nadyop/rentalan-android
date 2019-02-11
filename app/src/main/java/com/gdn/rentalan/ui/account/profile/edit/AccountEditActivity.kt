@@ -8,7 +8,6 @@ import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import com.gdn.rentalan.R
 import com.gdn.rentalan.api.request.UserVerifyRequest
@@ -109,7 +108,7 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
         }
     }
 
-    fun convertBitmapToFile(photo: Bitmap): File {
+    private fun convertBitmapToFile(photo: Bitmap): File {
         val file = File(this.cacheDir, UUID.randomUUID().toString() + ".jpg")
         val os: OutputStream
         try {
@@ -165,14 +164,13 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
     }
 
     override fun setData(details: AccountUiModel) {
-
         with(binding) {
-            etNik.setText(detail?.nik, TextView.BufferType.EDITABLE)
-            etGender.setText(detail?.gender, TextView.BufferType.EDITABLE)
-            etBirth.setText(detail?.birthDate, TextView.BufferType.EDITABLE)
-            etAddress.setText(detail?.email, TextView.BufferType.EDITABLE)
-            etCity.setText(detail?.city, TextView.BufferType.EDITABLE)
-            etProvince.setText(detail?.province, TextView.BufferType.EDITABLE)
+            etNik.setText(details.nik)
+            etGender.setText(details.gender)
+            etBirth.setText(details.birthDate)
+            etAddress.setText(details.address)
+            etCity.setText(details.city)
+            etProvince.setText(details.province)
         }
     }
 
