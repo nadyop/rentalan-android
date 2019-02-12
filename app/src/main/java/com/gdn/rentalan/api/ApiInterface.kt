@@ -102,7 +102,7 @@ interface ApiInterface {
 
 //    @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
-    @PUT("user/verification")
+    @POST("user/verification")
     fun verifByUser(
             @Query("userId") userId: String,
             @Part request: MultipartBody.Part,
