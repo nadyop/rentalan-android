@@ -33,16 +33,11 @@ class TransactionMyAdapter(
 
         holder.itemProductListBinding?.apply {
             with(product) {
-                tvTitle.text = status
-                tvDescription.text = endDate
+                tvTitle.text = name
+                tvDescription.text = status
 
                 container.setOnClickListener {
-//                    Router.gotoProductTransactionDetail(it.context, this)
-                    val intent = TransactionDetailActivity.newInstance(it.context, this)
-                    val bundle = Bundle()
-                    bundle.putString("data", "isOwner")
-                    intent.putExtras(bundle)
-                    context?.startActivity(intent)
+                    Router.gotoProductTransactionDetailOwner(it.context, this)
                 }
             }
         }

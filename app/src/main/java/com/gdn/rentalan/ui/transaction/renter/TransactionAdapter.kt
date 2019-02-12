@@ -1,6 +1,7 @@
 package com.gdn.rentalan.ui.transaction.renter
 
 import android.databinding.DataBindingUtil
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ItemSimpleBinding
 import com.gdn.rentalan.ui.base.BaseRecyclerViewListAdapter
+import com.gdn.rentalan.ui.transaction.detail.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.util.Router
 
@@ -35,7 +37,7 @@ class TransactionAdapter(
                 tvDescription.text = status
 
                 container.setOnClickListener {
-                    Router.gotoProductTransactionDetail(it.context, this)
+                    Router.gotoProductTransactionDetailRenter(it.context, this)
                 }
             }
         }

@@ -110,11 +110,20 @@ interface Router {
             context.startActivity(intent)
         }
 
-        fun gotoProductTransactionDetail(
+        fun gotoProductTransactionDetailRenter(
             context: Context, transactionUiModel: TransactionUiModel) {
             val intent = TransactionDetailActivity.newInstance(context, transactionUiModel)
             val bundle = Bundle()
             bundle.putString("data", "isRenter")
+            intent.putExtras(bundle)
+            context.startActivity(intent)
+        }
+
+        fun gotoProductTransactionDetailOwner(
+                context: Context, transactionUiModel: TransactionUiModel) {
+            val intent = TransactionDetailActivity.newInstance(context, transactionUiModel)
+            val bundle = Bundle()
+            bundle.putString("data", "isOwner")
             intent.putExtras(bundle)
             context.startActivity(intent)
         }
