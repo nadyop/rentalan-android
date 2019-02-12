@@ -13,6 +13,7 @@ import com.gdn.rentalan.databinding.ActivityUserDetailAdminBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
+import com.gdn.rentalan.util.Constants
 import com.gdn.rentalan.util.Constants.Companion.URL_KTP
 import com.gdn.rentalan.util.Constants.Companion.URL_SELF
 import com.gdn.rentalan.util.Router
@@ -50,13 +51,11 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
         Log.d("AAAAZ", detail.toString())
         detail?.id?.let {
             presenter.getData(it)
-            Log.d("AAAAZ", "ini tu ga null")
         }
         userAction()
     }
 
     private fun userAction(){
-        Log.d("AAAAZ", "userAction")
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -66,7 +65,7 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
           presenter.verification(
                 detail?.id.orEmpty()
             )
-            showToast("Barang telah diaktifkan", Toast.LENGTH_SHORT)
+            showToast("User telah diaktifkan", Toast.LENGTH_SHORT)
         })
 
         binding.buttonLeft.setOnClickListener {
@@ -74,7 +73,7 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
             presenter.verification(
                 detail?.id.orEmpty()
             )
-            showToast("Barang telah dikoreksi", Toast.LENGTH_SHORT)
+            showToast("User telah dikoreksi", Toast.LENGTH_SHORT)
         }
     }
 
@@ -87,6 +86,12 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
         Glide.with(this).load(URL_SELF + content.selfPhotoPath).fitCenter().into(binding.ivUserFace)
         Glide.with(this).load(URL_KTP + content.ktpPhotoPath).fitCenter().into(binding.ivUserKtp)
         with(binding) {
+            Glide.with(ivUserFace.context).load(Constants.URL_PRODUCT + content.selfPhotoPath).placeholder(
+                R.drawable.no_image_available
+            ).into(ivUserFace)
+            Glide.with(ivUserKtp.context).load(Constants.URL_PRODUCT + content.selfPhotoPath).placeholder(
+                R.drawable.no_image_available
+            ).into(ivUserKtp)
             tvSurename.text = content.sureName
             tvEmail.text = content.email
             tvPhone.text = content.phoneNumber
@@ -95,7 +100,6 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
             tvProvince.text = content.province
             tvCity.text = content.city
             tvAddress.text = content.address
-
         }
     }
 

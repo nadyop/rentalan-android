@@ -118,7 +118,7 @@ interface ApiInterface {
     fun getUserDetail(@Query("userId")
                       userId: String): Observable<RestSingleResponse<User>>
 
-    @GET("user?status=waiting")
+    @GET("user?status=not verify")
     fun getUserListWaiting(): Observable<RestListResponse<User>>
 
     @PUT("user")

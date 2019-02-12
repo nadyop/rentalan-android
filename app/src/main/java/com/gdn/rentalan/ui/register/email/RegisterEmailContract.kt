@@ -6,6 +6,7 @@ class RegisterEmailContract {
 
   interface View: BaseContract.View {
     fun getOtp(otp: String)
+    fun showToast()
   }
 
   interface Presenter: BaseContract.Presenter {

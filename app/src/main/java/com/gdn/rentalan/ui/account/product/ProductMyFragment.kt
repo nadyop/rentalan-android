@@ -25,6 +25,7 @@ class ProductMyFragment : BaseFragment(), ProductMyContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
+        retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +39,13 @@ class ProductMyFragment : BaseFragment(), ProductMyContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         initView()
-        binding.btSave.setOnClickListener { it ->
-            activity?.let { Router.goToProductAdd(it) }
-        }
     }
 
     private fun initView() {
-        presenter.fetchData()
+
+        binding.btSave.setOnClickListener { it ->
+            activity?.let { Router.goToProductAdd(it) }
+        }
 
         val layoutManager = LinearLayoutManager(context)
         binding.rvItems.layoutManager = layoutManager

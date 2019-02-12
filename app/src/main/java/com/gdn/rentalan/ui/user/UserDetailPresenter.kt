@@ -23,31 +23,28 @@ class UserDetailPresenter @Inject constructor(private val api: ApiInterface) :
       val subscribe = api.getUserDetail(userId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<User> ->
-                    Log.d("AAAAZ", "sukses nihh")
-                    Log.d("AAAAZgetData", response.data.toString())
                     response.data?.let {
                         val items = UserDetailUiModel(
-                            it.address,
-                            it.gender,
-                            it.city,
-                            it.birthDate,
-                            it.nik,
-                            it.phoneNumber,
-                            it.province,
-                            it.ktpPhotoPath,
-                            it.id,
-                            it.sureName,
-                            it.email,
-                            it.selfPhotoPath,
-                            it.username,
-                            it.status
+                            address = it.address,
+                            gender = it.gender,
+                            city = it.city,
+                            birthDate = it.birthDate,
+                            nik = it.nik,
+                            phoneNumber = it.phoneNumber,
+                            province = it.province,
+                            ktpPhotoPath = it.ktpPhotoPath,
+                            id = it.id,
+                            sureName = it.sureName,
+                            email = it.email,
+                            selfPhotoPath = it.selfPhotoPath,
+                            username = it.username,
+                            status = it.status
                         )
                         view.setData(items)
                     }
                     view.showProgress(false)
                 }, { error ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
                     view.showErrorMessage(error.localizedMessage)
                 })
         subscriptions.add(subscribe)
@@ -59,11 +56,8 @@ class UserDetailPresenter @Inject constructor(private val api: ApiInterface) :
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe({ list: RestCommonResponse ->
             view.showProgress(false)
-            Log.d("AAAAZ", "user success")
-            view.goToUserList()
           }, { error ->
             view.showProgress(false)
-            Log.d("AAAAZ", "user error + ${error.message} + ==== + ${error.cause}")
             view.showErrorMessage(error.localizedMessage)
           })
 

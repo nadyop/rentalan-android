@@ -19,7 +19,6 @@ class ProductFragment : BaseFragment(), ProductContract.View {
     @Inject
     lateinit var presenter: ProductContract.Presenter
     private lateinit var binding: FragmentProductBinding
-    private var refreshList: Boolean = true
     private var listAdapter: ProductListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,11 +30,6 @@ class ProductFragment : BaseFragment(), ProductContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        refreshList = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

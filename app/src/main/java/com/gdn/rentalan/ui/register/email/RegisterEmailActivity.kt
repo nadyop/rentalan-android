@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityRegisterBinding
 import com.gdn.rentalan.ui.base.BaseActivity
@@ -46,6 +47,10 @@ class RegisterEmailActivity : BaseActivity(), RegisterEmailContract.View {
     val intent = Intent(this@RegisterEmailActivity, RegisterOtpActivity::class.java)
     intent.putExtra("otp", otp)
     startActivity(intent)
+  }
+
+  override fun showToast() {
+    showToast("Email telah terdaftarkan", Toast.LENGTH_LONG)
   }
 
   private fun initView() {

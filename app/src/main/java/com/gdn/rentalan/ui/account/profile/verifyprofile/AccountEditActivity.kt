@@ -2,6 +2,7 @@ package com.gdn.rentalan.ui.account.profile.verifyprofile
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -124,6 +125,26 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
     }
 
     private fun userAction() {
+
+        binding.etBirth.setOnClickListener {
+            val c = Calendar.getInstance()
+            c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+            val mYear = c.get(Calendar.YEAR)
+            val mMonth = c.get(Calendar.MONTH)
+            val mDay = c.get(Calendar.DAY_OF_MONTH)
+
+            val mDatePickerDialog = DatePickerDialog(this,
+                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    binding.etBirth.setText(String.format("%02d-%02d-%04d", dayOfMonth, monthOfYear + 1,year))
+                    c.set(Calendar.YEAR, year)
+                    c.set(Calendar.MONTH, monthOfYear)
+                    c.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                }, mYear, mMonth, mDay)
+            c.set(Calendar.YEAR, 1980)
+            c.set(Calendar.MONTH, 0)
+            c.set(Calendar.DAY_OF_MONTH, 1)
+            mDatePickerDialog.show()
+        }
 
         binding.btUpload.setOnClickListener {
             this.valueKtp = "1"

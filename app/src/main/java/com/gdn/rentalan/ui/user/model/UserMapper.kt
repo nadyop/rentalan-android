@@ -6,20 +6,20 @@ interface UserMapper {
     companion object {
         fun mapToUserDetailUiModel(item: User): UserDetailUiModel {
             return UserDetailUiModel(
-                    item.address,
-                    item.gender,
-                    item.city,
-                    item.birthDate,
-                    item.nik,
-                    item.phoneNumber,
-                    item.province,
-                    item.ktpPhotoPath,
-                    item.id,
-                    item.sureName,
-                    item.email,
-                    item.selfPhotoPath,
-                    item.username,
-                    item.status
+                    address = item.address,
+                    gender = item.gender,
+                    city = item.city,
+                    birthDate = item.birthDate,
+                    nik = item.nik,
+                    phoneNumber = item.phoneNumber,
+                    province = item.province,
+                    ktpPhotoPath = item.ktpPhotoPath,
+                    id = item.id,
+                    sureName = item.sureName,
+                    email = item.email,
+                    selfPhotoPath = item.selfPhotoPath,
+                    username = item.username,
+                    status = item.status
             )
         }
     }

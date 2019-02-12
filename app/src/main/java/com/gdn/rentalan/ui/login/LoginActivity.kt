@@ -53,6 +53,11 @@ class LoginActivity : BaseActivity(), LoginContract.View , HasActivityInjector {
     initView()
   }
 
+  override fun onBackPressed() {
+    super.onBackPressed()
+    finish()
+  }
+
   override fun goToMainPage(role: String) {
     if(role == "admin") {
       Router.goToMain(this)

@@ -28,16 +28,10 @@ class AlarmReceiver : BroadcastReceiver() {
         val title = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) TYPE_ONE_TIME else TYPE_REPEATING
         val notifId = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
 
-        showToast(context, title, message)
-
+//        showToast(context, title, message)
+        showAlarmNotification(context, title, message, notifId)
         //Jika Anda ingin menampilkan dengan Notif anda bisa menghilangkan komentar pada baris dibawah ini.
         //showAlarmNotification(context, title, message, notifId);
-    }
-
-    // Gunakan metode ini untuk menampilkan toast
-
-    private fun showToast(context: Context, title: String, message: String) {
-        Toast.makeText(context, "$title : $message", Toast.LENGTH_LONG).show()
     }
 
     // Gunakan metode ini untuk menampilkan notifikasi
@@ -108,52 +102,6 @@ class AlarmReceiver : BroadcastReceiver() {
         alarmManager?.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent)
 
         Toast.makeText(context, "One time alarm set up", Toast.LENGTH_SHORT).show()
-    }
-
-    // Metode ini digunakan untuk menjalankan alarm repeating
-    fun setRepeatingAlarm(context: Context, type: String, time: String, message: String) {
-
-        // Validasi inputan waktu terlebih dahulu
-        if (isDateInvalid(time, TIME_FORMAT)) return
-
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        intent.putExtra(EXTRA_MESSAGE, message)
-        intent.putExtra(EXTRA_TYPE, type)
-
-        val timeArray = time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
-        calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
-        calendar.set(Calendar.SECOND, 0)
-
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
-        alarmManager?.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent)
-
-        Toast.makeText(context, "Repeating alarm set up", Toast.LENGTH_SHORT).show()
-    }
-
-
-    fun cancelAlarm(context: Context, type: String) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val requestCode = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
-        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
-        pendingIntent.cancel()
-
-        alarmManager?.cancel(pendingIntent)
-
-        Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show()
-    }
-
-
-    // Gunakan metode ini untuk mengecek apakah alarm tersebut sudah terdaftar di alarm manager
-    fun isAlarmSet(context: Context, type: String): Boolean {
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val requestCode = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
-
-        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null
     }
 
     // Metode ini digunakan untuk validasi date dan time

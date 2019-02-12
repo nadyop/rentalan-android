@@ -8,16 +8,18 @@ import com.gdn.rentalan.api.request.RentRequest
 import com.gdn.rentalan.api.response.Product
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
+import com.gdn.rentalan.util.LoginRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiInterface) :
+class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiInterface, loginRepository: LoginRepository) :
         BasePresenter(), ProductActivityCheckoutContract.Presenter {
 
     private lateinit var view: ProductActivityCheckoutContract.View
     private val subscriptions = CompositeDisposable()
+    private var userId = loginRepository.userId
 
     override fun getData(productId: String) {
         view.showProgress(true)
@@ -48,7 +50,7 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
     }
 
     override fun rent(productId: String, startDate: String, endDate: String, qty: Int) {
-        val subscribe = api.rentCheckout(productId, RentRequest(quantity = qty, startDate = startDate, endDate = endDate))
+        val subscribe = api.rentCheckout(userId, RentRequest(productId = productId, quantity = qty, startDate = startDate, endDate = endDate))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestCommonResponse ->

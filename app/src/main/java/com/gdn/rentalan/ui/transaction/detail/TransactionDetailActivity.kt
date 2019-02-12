@@ -75,12 +75,13 @@ class TransactionDetailActivity : BaseActivity(),
 
         val checkOwner = intent.extras.getString("data")
         val endDate = detail?.endDate
-        val endDateConvert: Date = SimpleDateFormat("dd/MM/yyyy").parse(endDate)
+//        val endDateConvert: Date = SimpleDateFormat("dd/MM/yyyy").parse(endDate)
         val alarmReceiver = AlarmReceiver()
 
 
         if (detail?.status == "waiting" && checkOwner == "isOwner") {
             binding.llButtonRent.visibility = View.VISIBLE
+            binding.buttonProgress.visibility = View.GONE
             binding.buttonRent.text = getString(R.string.product_confirm)
             binding.buttonRent.setOnClickListener {
                 detail?.id?.let { it1 -> presenter.rentAcceptByOwner(it1, true) }
@@ -98,21 +99,26 @@ class TransactionDetailActivity : BaseActivity(),
                 //  SET ALARM
                 endDate?.let { it1 ->
                     alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
-                            it1,"07:00","Test")
+                            it1,"21:40","Jangan lupa kembalikan barang ya kaka :3")
                 }
                 binding.buttonRent.isEnabled = false
                 binding.buttonRent.setBackgroundColor(resources.getColor(R.color.disabled_color))
                 showToast("Barang sedang dipinjam", Toast.LENGTH_SHORT)
+                binding.buttonProgress.isEnabled = false
+                binding.buttonProgress.setBackgroundColor(resources.getColor(R.color.disabled_color))
             }
         } else if (detail?.status == "on progress" && checkOwner == "isOwner") {
+            binding.buttonProgress.visibility = View.GONE
             binding.llButtonRent.visibility = View.VISIBLE
             binding.buttonRent.text = getString(R.string.product_return)
             binding.buttonRent.isEnabled = true
             binding.buttonRent.setBackgroundColor(resources.getColor(R.color.colorAccent))
             binding.buttonRent.setOnClickListener {
                 detail?.id?.let { it1 -> presenter.returnProduct(it1) }
+                binding.llButtonRent.visibility = View.GONE
             }
-//            showSnackbarAction()
+        } else {
+            binding.llButtonRent.visibility = View.GONE
         }
 
     }

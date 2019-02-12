@@ -23,28 +23,28 @@ class ProductMyPresenter @Inject constructor(private var api: ApiInterface, logi
     override fun fetchData() {
         view.showProgress(true)
         val subscribe = api.getAllProductByOwner(userId).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ list: RestListResponse<Product> ->
-                    view.showProgress(false)
-                    Log.d("getProductByOwner", "sukses nihh")
-                  list.let {
-                    val listItems: MutableList<ProductDetailUiModel> = ArrayList()
-                    list.data.forEach { contentElement ->
-                      listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
-                    }
-                    view.fetchDataSuccess(listItems)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ list: RestListResponse<Product> ->
+              view.showProgress(false)
+              Log.d("AAAAZ", "product list success")
+              list.data.let {
+                val listItems: MutableList<ProductDetailUiModel> = ArrayList()
+                list.data.forEach { contentElement ->
+                  listItems.add(ProductMapper.mapToProductDetailUiModel(contentElement))
+                }
+                view.fetchDataSuccess(listItems)
 
-                    if (list.data.isEmpty()) {
-                      view.showNoData()
-                    }
-                  }
-                }, { error ->
-                    view.showProgress(false)
-                    Log.d("getCategory", "error nihh + ==== + ${error.message} + ==== + ${error.cause}")
-                    view.showErrorMessage(error.localizedMessage)
-                })
+                if (list.data.isEmpty()) {
+                  view.showNoData()
+                }
+              }
+            }, { error ->
+              view.showProgress(false)
+              Log.d("AAAAZ", "product list error + ${error.message} + ==== + ${error.cause}")
+              view.showErrorMessage(error.localizedMessage)
+            })
 
-        subscriptions.add(subscribe)
+      subscriptions.add(subscribe)
     }
 
     override fun attachView(view: ProductMyContract.View) {

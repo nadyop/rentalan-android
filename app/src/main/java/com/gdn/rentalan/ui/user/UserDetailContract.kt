@@ -13,6 +13,6 @@ class UserDetailContract {
     interface Presenter: BaseContract.Presenter {
         fun getData(id: String)
         fun verification(userId: String)
-        fun attachView(view: UserDetailContract.View)
+        fun attachView(view: View)
     }
 }

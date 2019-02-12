@@ -14,6 +14,7 @@ import com.gdn.rentalan.ui.category.CategoryFragment
 import com.gdn.rentalan.ui.dashboard.DashboardFragment
 import com.gdn.rentalan.ui.main.admin.MainActivity
 import com.gdn.rentalan.ui.transaction.TransactionPagerFragment
+import com.gdn.rentalan.util.AlarmReceiver
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

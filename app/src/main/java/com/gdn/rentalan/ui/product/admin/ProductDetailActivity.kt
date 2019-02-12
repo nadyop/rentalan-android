@@ -28,8 +28,7 @@ class ProductDetailActivity : BaseActivity(),
         private const val DETAIL = "detail"
         fun newInstance(context: Context, detail: ProductDetailUiModel): Intent {
             val intent = Intent(context, ProductDetailActivity::class.java)
-            intent.putExtra(
-                    DETAIL, detail) //from @Parcelize
+            intent.putExtra(DETAIL, detail) //from @Parcelize
             return intent
         }
     }
@@ -53,7 +52,6 @@ class ProductDetailActivity : BaseActivity(),
         detail?.id?.let {
             presenter.getData(it)
         }
-        Log.d("aaazz", detail.toString())
 
         userAction()
     }
@@ -68,7 +66,6 @@ class ProductDetailActivity : BaseActivity(),
             presenter.verification(
                     detail?.id.orEmpty(), true.toString()
             )
-            goToProductList()
             showToast("Barang telah diaktifkan", Toast.LENGTH_SHORT)
         }
 
