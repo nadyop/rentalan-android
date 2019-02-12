@@ -31,8 +31,8 @@ class TransactionAdapter(
 
         holder.itemProductListBinding?.apply {
             with(product) {
-                tvTitle.text = status
-                tvDescription.text = endDate
+                tvTitle.text = name
+                tvDescription.text = status
 
                 container.setOnClickListener {
                     Router.gotoProductTransactionDetail(it.context, this)

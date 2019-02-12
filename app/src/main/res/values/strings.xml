@@ -37,7 +37,7 @@
     <!-- main menu admin-->
     <string name="category">Kategori</string>
     <string name="product">Barang</string>
-    <string name="my_product">Barangku</string>
+    <string name="my_product">Barang ku</string>
     <string name="user">Pengguna</string>
     <!-- main menu -->
     <string name="home">Beranda</string>
@@ -74,9 +74,9 @@
 
     <string name="category_detail">Detail Kategori</string>
 
-    <string name="product_is_rent">Barang Sedang Dipinjam</string>
+    <string name="product_confirm">Konfirmasi</string>
     <string name="product_rent">Barang Dipinjam</string>
-    <string name="product_return">Barang Dikembalikan</string>
+    <string name="product_return">Barang Kembali</string>
     <string name="product_detail">Detail Barang</string>
     <string name="product_name">Nama</string>
     <string name="product_description">Deskripsi Barang</string>

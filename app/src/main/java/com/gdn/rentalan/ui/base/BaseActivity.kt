@@ -1,6 +1,5 @@
 package com.gdn.rentalan.ui.base
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.gdn.rentalan.R
+
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
@@ -59,6 +59,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         val snackbar = Snackbar.make(findViewById(R.id.container), message, duration)
 
         return snackbar.show()
+    }
+
+    protected fun showSnackbarAction(message: String, duration: Int) {
+        val snackBar = Snackbar.make(findViewById(R.id.container), message, duration)
+
+        snackBar.setAction("Dismiss") { snackBar.dismiss() }
+        snackBar.show()
     }
 
     protected fun showToast(message: String, duration: Int) {

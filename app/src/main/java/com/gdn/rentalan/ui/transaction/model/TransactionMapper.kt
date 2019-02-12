@@ -6,16 +6,15 @@ interface TransactionMapper {
     companion object {
         fun mapToTransactionUiModel(item: Transaction): TransactionUiModel {
             return TransactionUiModel(
-
-                    item.id.orEmpty(),
-                    item.downPayment,
-                    item.endDate.orEmpty(),
-                    item.lateCharge,
-                    item.quantity,
-                    item.startDate,
-                    item.totalPayment,
-                    item.status,
-                    item.productId
+                    id = item.id.orEmpty(),
+                    downPayment = item.downPayment,
+                    endDate = item.endDate,
+                    lateCharge = item.lateCharge,
+                    quantity = item.quantity,
+                    startDate = item.startDate,
+                    totalPayment = item.totalPayment,
+                    status = item.status,
+                    name = item.product?.name
             )
         }
     }

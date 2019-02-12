@@ -3,6 +3,7 @@ package com.gdn.rentalan.ui.transaction.renter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ class TransactionFragment : BaseFragment(),
     lateinit var presenter: TransactionContract.Presenter
     private lateinit var binding: FragmentTransactionBinding
     private var listAdapter: TransactionAdapter? = null
-    private lateinit var transactionUiModel: TransactionUiModel
+//    private lateinit var transactionUiModel: TransactionUiModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

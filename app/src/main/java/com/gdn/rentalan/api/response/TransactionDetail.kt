@@ -29,37 +29,10 @@ data class TransactionDetail(
 	val id: String? = null,
 
 	@field:SerializedName("ownerId")
-	val ownerId: String? = null,
-
-	@field:SerializedName("ownerPhoneNumber")
-	val ownerPhoneNumber: String = "",
+	val ownerId: String = "",
 
 	@field:SerializedName("startDate")
 	val startDate: String = "",
-
-	@field:SerializedName("description")
-	val description: String = "",
-
-	@field:SerializedName("pricePerDay")
-	val pricePerDay: Int = 0,
-
-	@field:SerializedName("categoryName")
-	val categoryName: String = "",
-
-	@field:SerializedName("productImage")
-	val productImage: String = "",
-
-	@field:SerializedName("ownerName")
-	val ownerName: String = "",
-
-	@field:SerializedName("name")
-	val name: String = "",
-
-	@field:SerializedName("ownerCity")
-	val ownerCity: String = "",
-
-	@field:SerializedName("stock")
-	val stock: Int = 0,
 
 	@field:SerializedName("status")
 	val status: String = ""

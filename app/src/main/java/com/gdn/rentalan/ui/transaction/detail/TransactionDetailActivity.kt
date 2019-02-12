@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityTransactionDetailBinding
@@ -62,14 +63,39 @@ class TransactionDetailActivity : BaseActivity(),
             onBackPressed()
         }
 
-        sendDataListener(View.OnClickListener {
-            presenter.rentAcceptByOwner()
-        })
+        val checkOwner = intent.extras.getString("data")
+
+        if (detail?.status == "waiting" && checkOwner == "isOwner") {
+            binding.llButtonRent.visibility = View.VISIBLE
+            binding.buttonRent.text = getString(R.string.product_confirm)
+            binding.buttonRent.setOnClickListener {
+                detail?.id?.let { it1 -> presenter.rentAcceptByOwner(it1, true) }
+                binding.buttonRent.isEnabled = false
+                binding.buttonRent.setBackgroundColor(resources.getColor(R.color.disabled_color))
+                showToast("Konfirmasi peminjaman berhasil", Toast.LENGTH_SHORT)
+            }
+        } else if (detail?.status == "accept by owner" && checkOwner != "isOwner") {
+            binding.llButtonRent.visibility = View.VISIBLE
+            binding.buttonRent.text = getString(R.string.product_rent)
+            binding.buttonRent.setOnClickListener {
+                detail?.id?.let { it1 -> presenter.rentAcceptByOwner(it1, false) }
+                binding.buttonRent.isEnabled = false
+                binding.buttonRent.setBackgroundColor(resources.getColor(R.color.disabled_color))
+                showToast("Barang sedang dipinjam", Toast.LENGTH_SHORT)
+            }
+        } else if (detail?.status == "on progress" && checkOwner == "isOwner") {
+            binding.buttonRent.text = getString(R.string.product_return)
+            binding.buttonRent.isEnabled = true
+            binding.buttonRent.setBackgroundColor(resources.getColor(R.color.colorAccent))
+            binding.buttonRent.setOnClickListener {
+                detail?.id?.let { it1 -> presenter.returnProduct(it1) }
+            }
+        }
+
     }
 
-    private fun sendDataListener(listener: View.OnClickListener) {
-        this.actionButtonClickListener = listener
-        binding.buttonRent.setOnClickListener(listener)
+    override fun showLateCharge(lateCharge: Int) {
+        showSnackbarAction("Denda : "+lateCharge, Snackbar.LENGTH_LONG)
     }
 
     override fun showProgress(show: Boolean) {
@@ -83,8 +109,10 @@ class TransactionDetailActivity : BaseActivity(),
     }
 
     override fun setData(content: TransactionUiModel) {
-        Glide.with(this).load(Constants.URL_PRODUCT + content.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
+            Glide.with(ivProduct.context).load(Constants.URL_PRODUCT + content.productImage).placeholder(
+                    R.drawable.no_image_available
+            ).into(ivProduct)
             tvProductName.text = content.name
             tvProductPriceDay.text = Constants.formatRupiah.format(content.pricePerDay.toString().toInt()) + " /hari"
             tvUserName.text = content.ownerName
@@ -92,16 +120,14 @@ class TransactionDetailActivity : BaseActivity(),
             tvCity.text = content.ownerCity
             tvCategory.text = content.categoryName
             tvDescription.text = content.description
-            tvStock.text = content.stock.toString()
             tvDp.text = Constants.formatRupiah.format(content.downPayment.toString().toInt())
             tvLateCharge.text = content.lateCharge.toString()
-            tvStock.text = content.stock.toString()
             etStartDate.text = content.startDate
             etEndDate.text = content.endDate
             tvStockValue.text = content.quantity.toString()
             tvRenter.text = content.renterName
             tvRenterPhone.text = content.renterPhone
-            tvCity.text = content.renterCity
+            tvRenterCity.text = content.renterCity
         }
     }
 

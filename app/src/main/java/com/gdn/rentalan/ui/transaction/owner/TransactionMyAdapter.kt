@@ -1,6 +1,7 @@
 package com.gdn.rentalan.ui.transaction.owner
 
 import android.databinding.DataBindingUtil
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ItemSimpleBinding
 import com.gdn.rentalan.ui.base.BaseRecyclerViewListAdapter
+import com.gdn.rentalan.ui.transaction.detail.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.util.Router
 
@@ -35,7 +37,12 @@ class TransactionMyAdapter(
                 tvDescription.text = endDate
 
                 container.setOnClickListener {
-                    Router.gotoProductTransactionDetail(it.context, this)
+//                    Router.gotoProductTransactionDetail(it.context, this)
+                    val intent = TransactionDetailActivity.newInstance(it.context, this)
+                    val bundle = Bundle()
+                    bundle.putString("data", "isOwner")
+                    intent.putExtras(bundle)
+                    context?.startActivity(intent)
                 }
             }
         }

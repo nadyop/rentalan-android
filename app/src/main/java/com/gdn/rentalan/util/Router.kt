@@ -20,6 +20,12 @@ import com.gdn.rentalan.ui.transaction.detail.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel
+import android.content.Intent.getIntent
+import android.os.Bundle
+
+
+
+
 
 interface Router {
     companion object {
@@ -107,6 +113,9 @@ interface Router {
         fun gotoProductTransactionDetail(
             context: Context, transactionUiModel: TransactionUiModel) {
             val intent = TransactionDetailActivity.newInstance(context, transactionUiModel)
+            val bundle = Bundle()
+            bundle.putString("data", "isRenter")
+            intent.putExtras(bundle)
             context.startActivity(intent)
         }
 

@@ -3,10 +3,13 @@ package com.gdn.rentalan.ui.transaction.renter
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
 import com.gdn.rentalan.api.RestListResponse
+import com.gdn.rentalan.api.RestSingleResponse
 import com.gdn.rentalan.api.response.Transaction
+import com.gdn.rentalan.api.response.User
 import com.gdn.rentalan.ui.base.BasePresenter
 import com.gdn.rentalan.ui.transaction.model.TransactionMapper
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
+import com.gdn.rentalan.ui.user.model.UserDetailUiModel
 import com.gdn.rentalan.util.LoginRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,12 +25,12 @@ class TransactionPresenter @Inject constructor(private val api: ApiInterface,
 
     override fun fetchData() {
         view.showProgress(true)
-        val subscribe = api.getTransactionListOwner(loginRepository.userId.toString())
+        val subscribe = api.getTransactionListRenter(loginRepository.userId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestListResponse<Transaction> ->
                     view.showProgress(false)
-                    Log.d("AAAAZ", "sukses nihh")
+                    Log.d("List owner", list.data.toString())
 
                     var listItems: MutableList<TransactionUiModel> = ArrayList()
                     list.data.forEach { contentElement ->

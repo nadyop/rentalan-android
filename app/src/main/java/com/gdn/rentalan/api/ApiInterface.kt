@@ -85,7 +85,7 @@ interface ApiInterface {
 
     @PUT("rent/accept")
     fun acceptRentProduct(@Query("transactionId") transactionId: String,
-                          @Query("isOwner") isOwner: Boolean = true): Observable<RestCommonResponse>
+                          @Query("isOwner") isOwner: Boolean): Observable<RestCommonResponse>
 
     @PUT("rent/return")
     fun returnRentProduct(@Query("transactionId")
