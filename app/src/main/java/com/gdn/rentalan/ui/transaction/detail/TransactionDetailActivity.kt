@@ -14,20 +14,24 @@ import com.gdn.rentalan.databinding.ActivityTransactionDetailBinding
 import com.gdn.rentalan.ui.base.BaseActivity
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
+import com.gdn.rentalan.util.AlarmReceiver
 import com.gdn.rentalan.util.Constants
 import com.gdn.rentalan.util.Router
 import dagger.android.AndroidInjection
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
+
 class TransactionDetailActivity : BaseActivity(),
-    TransactionDetailContract.View {
+        TransactionDetailContract.View {
 
     companion object {
         private const val TRANSACTION = "detail"
         fun newInstance(context: Context, detail: TransactionUiModel): Intent {
             val intent = Intent(context, TransactionDetailActivity::class.java)
             intent.putExtra(
-                TRANSACTION, detail) //from @Parcelize
+                    TRANSACTION, detail) //from @Parcelize
             return intent
         }
     }
@@ -36,7 +40,7 @@ class TransactionDetailActivity : BaseActivity(),
     lateinit var presenter: TransactionDetailContract.Presenter
     private lateinit var binding: ActivityTransactionDetailBinding
     private var detail: TransactionUiModel? = null
-    private var actionButtonClickListener: View.OnClickListener? = null
+    private val TIME_PICKER_ONCE_TAG = "TimePickerOnce"
 
     override fun getPresenter(): BaseContract.Presenter? {
         return presenter
@@ -58,12 +62,22 @@ class TransactionDetailActivity : BaseActivity(),
         userAction()
     }
 
+    private fun showNotification() {
+        val date = detail?.endDate
+
+
+    }
+
     private fun userAction() {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
 
         val checkOwner = intent.extras.getString("data")
+        val endDate = detail?.endDate
+        val endDateConvert: Date = SimpleDateFormat("dd/MM/yyyy").parse(endDate)
+        val alarmReceiver = AlarmReceiver()
+
 
         if (detail?.status == "waiting" && checkOwner == "isOwner") {
             binding.llButtonRent.visibility = View.VISIBLE
@@ -74,11 +88,18 @@ class TransactionDetailActivity : BaseActivity(),
                 binding.buttonRent.setBackgroundColor(resources.getColor(R.color.disabled_color))
                 showToast("Konfirmasi peminjaman berhasil", Toast.LENGTH_SHORT)
             }
-        } else if (detail?.status == "accept by owner" && checkOwner != "isOwner") {
+        } else if (detail?.status == "accept by owner" && checkOwner != "isOwner") {    // on progress session
             binding.llButtonRent.visibility = View.VISIBLE
-            binding.buttonRent.text = getString(R.string.product_rent)
-            binding.buttonRent.setOnClickListener {
+            binding.buttonRent.visibility = View.GONE
+            binding.buttonProgress.text = getString(R.string.product_rent)
+            binding.buttonProgress.setOnClickListener {
                 detail?.id?.let { it1 -> presenter.rentAcceptByOwner(it1, false) }
+
+                //  SET ALARM
+                endDate?.let { it1 ->
+                    alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
+                            it1,"07:00","Test")
+                }
                 binding.buttonRent.isEnabled = false
                 binding.buttonRent.setBackgroundColor(resources.getColor(R.color.disabled_color))
                 showToast("Barang sedang dipinjam", Toast.LENGTH_SHORT)
@@ -91,12 +112,13 @@ class TransactionDetailActivity : BaseActivity(),
             binding.buttonRent.setOnClickListener {
                 detail?.id?.let { it1 -> presenter.returnProduct(it1) }
             }
+//            showSnackbarAction()
         }
 
     }
 
     override fun showLateCharge(lateCharge: Int) {
-        showSnackbarAction("Denda : "+lateCharge, Snackbar.LENGTH_LONG)
+        showToast("Denda : " + lateCharge, Snackbar.LENGTH_LONG)
     }
 
     override fun showProgress(show: Boolean) {
@@ -130,7 +152,7 @@ class TransactionDetailActivity : BaseActivity(),
     }
 
     override fun setDataRenter(content: TransactionUiModel) {
-        with(binding){
+        with(binding) {
             tvRenter.text = content.renterName
             tvRenterPhone.text = content.renterPhone
             tvRenterCity.text = content.renterCity

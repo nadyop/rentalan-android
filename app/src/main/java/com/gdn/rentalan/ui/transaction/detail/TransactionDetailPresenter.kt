@@ -22,7 +22,6 @@ class TransactionDetailPresenter @Inject constructor(private val api: ApiInterfa
     private val subscriptions = CompositeDisposable()
     private var renterId: String = ""
     private var ownerId: String = ""
-    private var userId = loginRepository.userId
 
     override fun getData(id: String) {
         view.showProgress(true)

@@ -444,7 +444,6 @@
 
                 <LinearLayout
                         android:id="@+id/ll_button_rent"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
@@ -457,6 +456,12 @@
                             android:layout_height="48dp"
                             android:text="@string/product_confirm"/>
 
+                    <Button
+                            android:id="@+id/button_progress"
+                            style="@style/Button.Action.Blue"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:text="@string/product_confirm"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
