@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.FragmentProfileBinding
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditActivity
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileActivity
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.ui.main.user.UserMainActivity

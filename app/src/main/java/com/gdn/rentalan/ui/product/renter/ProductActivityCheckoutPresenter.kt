@@ -24,8 +24,6 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
         val subscribe = api.getProductDetail(productId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<Product> ->
-                    Log.d("AAAAZ", "sukses nihh")
-                    Log.d("AAAAZgetData", response.data.toString())
                     response.data?.let {
                         val items = ProductDetailUiModel(
                                 it.id.orEmpty(),
@@ -38,7 +36,7 @@ class ProductActivityCheckoutPresenter @Inject constructor(private val api: ApiI
                                 it.categoryName.toString(),
                                 it.productImage
                         )
-                        view.setData(items)
+//                        view.setData(items)
                     }
                     view.showProgress(false)
                 }, { error ->

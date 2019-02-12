@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.account.profile.edit
+package com.gdn.rentalan.ui.account.profile.verifyprofile
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,6 +7,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.gdn.rentalan.R
@@ -43,8 +44,8 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
     private var valueKtp: String = "0"
     private var valueSelf: String = "0"
 
-    private var selfFile: File? = null
-    private var ktpFile: File? = null
+    private lateinit var selfFile: File
+    private lateinit var ktpFile: File
     private var ktpFileName: String? = null
     private var selfFileName: String? = null
 
@@ -60,8 +61,8 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_edit)
         presenter.attachView(this)
         presenter.getDetail()
-
         userAction()
+
     }
 
     private fun selectImage(context: Context) {
@@ -90,7 +91,7 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
                         val ktpImage = data.extras?.get("data") as Bitmap
                         binding.ivUserKtp.setImageBitmap(ktpImage)
                         ktpFile = convertBitmapToFile(ktpImage)
-                        ktpFileName = ktpFile?.name.toString()
+                        this.ktpFileName = ktpFile.name.toString()
                     }
                 }
             }
@@ -122,7 +123,6 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
         return file
     }
 
-
     private fun userAction() {
 
         binding.btUpload.setOnClickListener {
@@ -148,12 +148,13 @@ class AccountEditActivity : BaseActivity(), AccountEditContract.View {
                     binding.etCity.text.toString(),
                     binding.etProvince.text.toString()
             )
-
-            ktpFile?.let { ktp ->
-                selfFile?.let { self ->
-                    presenter.saveDetail(req, ktp, self)
-                }
-            }
+            presenter.saveDetail(req, ktpFile, selfFile)
+            Log.d("KKKKK", ktpFile.toString() + " " + selfFile.toString())
+//            ktpFile?.let { ktp ->
+//                selfFile?.let { self ->
+//                    presenter.saveDetail(req, ktp, self)
+//                }
+//            }
         }
     }
 

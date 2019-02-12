@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityProductDetailAdminBinding
@@ -46,8 +47,8 @@ class ProductDetailActivity : BaseActivity(),
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
-        presenter.attachView(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_admin)
+        presenter.attachView(this)
         detail = intent.getParcelableExtra(DETAIL)
         detail?.id?.let {
             presenter.getData(it)
@@ -68,6 +69,7 @@ class ProductDetailActivity : BaseActivity(),
                     detail?.id.orEmpty(), true.toString()
             )
             goToProductList()
+            showToast("Barang telah diaktifkan", Toast.LENGTH_SHORT)
         }
 
         binding.buttonLeft.setOnClickListener {
@@ -75,6 +77,7 @@ class ProductDetailActivity : BaseActivity(),
                     detail?.id.orEmpty(), false.toString()
             )
             goToProductList()
+            showToast("Barang telah dikoreksi", Toast.LENGTH_SHORT)
         }
     }
 
@@ -105,7 +108,7 @@ class ProductDetailActivity : BaseActivity(),
 
     override fun goToProductList() {
         Router.goToMain(this)
-        showSnackbar("Product activated", Snackbar.LENGTH_LONG)
+        showSnackbar("Produk telah diaktifkan", Snackbar.LENGTH_LONG)
         super.onBackPressed()
     }
 }

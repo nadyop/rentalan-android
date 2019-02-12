@@ -64,12 +64,12 @@
                 android:name=".ui.product.renter.ProductActivityCheckout"
                 android:screenOrientation="portrait"/>
         <activity
-                android:name=".ui.transaction.TransactionDetailActivity"
+                android:name=".ui.transaction.detail.TransactionDetailActivity"
                 android:screenOrientation="portrait"/>
         <activity
                 android:name=".ui.search.SearchActivity"
                 android:screenOrientation="portrait"/>
-        <activity android:name=".ui.account.profile.edit.AccountEditActivity"
+        <activity android:name=".ui.account.profile.verifyprofile.AccountEditActivity"
                   android:screenOrientation="portrait"/>
         <activity android:name=".ui.account.profile.editprofile.AccountEditProfileActivity"
                   android:screenOrientation="portrait"/>

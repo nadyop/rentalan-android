@@ -5,7 +5,7 @@ import android.content.Intent
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddActivity
 import com.gdn.rentalan.ui.account.product.update.ProductMyUpdateActivity
 import com.gdn.rentalan.ui.account.profile.AccountUiModel
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.login.LoginActivity
 import com.gdn.rentalan.ui.main.admin.MainActivity
@@ -16,7 +16,7 @@ import com.gdn.rentalan.ui.product.renter.ProductActivityCheckout
 import com.gdn.rentalan.ui.register.email.RegisterEmailActivity
 import com.gdn.rentalan.ui.register.otp.RegisterOtpActivity
 import com.gdn.rentalan.ui.register.profile.RegisterProfileActivity
-import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
+import com.gdn.rentalan.ui.transaction.detail.TransactionDetailActivity
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.model.UserDetailUiModel

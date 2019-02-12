@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.transaction
+package com.gdn.rentalan.ui.transaction.renter
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface

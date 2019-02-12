@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.account.profile.edit
+package com.gdn.rentalan.ui.account.profile.verifyprofile
 
 import android.util.Log
 import com.gdn.rentalan.api.ApiInterface
@@ -50,7 +50,6 @@ class AccountEditPresenter @Inject constructor(private var api: ApiInterface,
                                 it.status.orEmpty()
                         )
                         view.setData(items)
-                        Log.d("AAAAZ", items.toString())
                     }
                     view.showProgress(false)
                 }, { error ->
@@ -72,7 +71,12 @@ class AccountEditPresenter @Inject constructor(private var api: ApiInterface,
         val selfRequestBody = RequestBody.create(MediaType.parse("application/json"), selfFile)
         val selfRequestBodyPart = MultipartBody.Part.createFormData("selfImage", selfFile.name, selfRequestBody)
 
-        val subscribe = api.verifByUser(userId, userRequestBodyPart, ktpRequestBodyPart, selfRequestBodyPart)
+      Log.d("AKU", selfRequestBodyPart.toString())
+      Log.d("AKU", ktpRequestBodyPart.toString())
+      Log.d("AKU", userRequestBodyPart.toString())
+
+
+      val subscribe = api.verifByUser(userId, userRequestBodyPart, ktpRequestBodyPart, selfRequestBodyPart)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: RestCommonResponse ->

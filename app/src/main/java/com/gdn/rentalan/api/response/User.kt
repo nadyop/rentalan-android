@@ -11,7 +11,7 @@ data class User(
 	val gender: String? = null,
 
 	@field:SerializedName("city")
-	val city: String? = null,
+	val city: String = "",
 
 	@field:SerializedName("birthDate")
 	val birthDate: String? = null,
@@ -20,7 +20,7 @@ data class User(
 	val nik: String? = null,
 
 	@field:SerializedName("phoneNumber")
-	val phoneNumber: String? = null,
+	val phoneNumber: String = "",
 
 	@field:SerializedName("province")
 	val province: String? = null,
@@ -32,7 +32,7 @@ data class User(
 	val id: String? = null,
 
 	@field:SerializedName("sureName")
-	val sureName: String? = null,
+	val sureName: String = "",
 
 	@field:SerializedName("email")
 	val email: String? = null,

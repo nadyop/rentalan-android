@@ -13,9 +13,9 @@ import com.gdn.rentalan.ui.account.product.update.ProductMyUpdatePresenter
 import com.gdn.rentalan.ui.account.profile.AccountContract
 import com.gdn.rentalan.ui.account.profile.AccountFragment
 import com.gdn.rentalan.ui.account.profile.AccountPresenter
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditContract
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditPresenter
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditActivity
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditContract
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditPresenter
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileActivity
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileContract
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfilePresenter

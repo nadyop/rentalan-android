@@ -6,7 +6,7 @@ import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 class ProductActivityCheckoutContract {
 
     interface View : BaseContract.View {
-        fun setData(content: ProductDetailUiModel)
+        fun setData()
         fun goToDashboard()
     }
 

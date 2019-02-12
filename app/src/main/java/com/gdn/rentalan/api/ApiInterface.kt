@@ -32,13 +32,14 @@ interface ApiInterface {
             : Observable<RestCommonResponse>
 
     @Multipart
-    @PUT("product")
+    @POST("product")
     fun updateProductByOwner(
             @Query("ownerId") ownerId: String,
             @Query("productId") productId: String,
             @Part image: MultipartBody.Part,
             @Part request: MultipartBody.Part): Observable<RestCommonResponse>
 
+    @Headers("Accept: application/json", "Content-Type: application/json")
     @PUT("product/verification")
     fun verifProduct(@Query("productId") productId: String,
                      @Query("accept") accept: String): Observable<RestCommonResponse>
@@ -79,6 +80,9 @@ interface ApiInterface {
     fun getTransactionListRenter(@Query("userId") userId: String,
                                  @Query("isOwner") isOwner: Boolean = false): Observable<RestListResponse<Transaction>>
 
+    @GET("rent/transaction")
+    fun getTransactionDetail(@Query("transactionId") transactionId: String): Observable<RestSingleResponse<TransactionDetail>>
+
     @PUT("rent/accept")
     fun acceptRentProduct(@Query("transactionId") transactionId: String,
                           @Query("isOwner") isOwner: Boolean = true): Observable<RestCommonResponse>
@@ -92,10 +96,12 @@ interface ApiInterface {
     fun registerProfile(@Body
                         registerRequest: RegisterRequest): Observable<RestCommonResponse>
 
+    @Headers("Accept: application/json", "Content-Type: application/json")
     @PUT("user/verification")
     fun verifUser(@Query("userId")
                   userId: String): Observable<RestCommonResponse>
 
+//    @Headers("Accept: application/json", "Content-Type: multipart/form-data")
     @Multipart
     @PUT("user/verification")
     fun verifByUser(
@@ -104,6 +110,7 @@ interface ApiInterface {
             @Part ktpImage: MultipartBody.Part,
             @Part selfImage: MultipartBody.Part): Observable<RestCommonResponse>
 
+    @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("user/verification")
     fun registerEmail(@Body
                       registerEmailRequest: RegisterEmailRequest): Observable<RegisterEmailResponse>
@@ -133,8 +140,8 @@ interface ApiInterface {
     id: String): Observable<Image>
 
     //    @GET("product?ownerId=c54e79b6-2a69-437b-a9f0-67f153ede9b1")
-    @GET("product")
-    fun getTransactionDetail(@Query("ownerId")
-                             id: String = "c54e79b6-2a69-437b-a9f0-67f153ede9b1"): Observable<RestSingleResponse<Transaction>>
+//    @GET("product")
+//    fun getTransactionDetail(@Query("ownerId")
+//                             id: String = "c54e79b6-2a69-437b-a9f0-67f153ede9b1"): Observable<RestSingleResponse<Transaction>>
 
 }

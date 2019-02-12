@@ -1,9 +1,9 @@
-package com.gdn.rentalan.ui.transaction
+package com.gdn.rentalan.ui.transaction.renter
 
 import com.gdn.rentalan.ui.base.BaseContract
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 
-class TransactionMyContract {
+class TransactionContract {
 
     interface View:  BaseContract.View {
         fun fetchDataSuccess(list: MutableList<TransactionUiModel>)

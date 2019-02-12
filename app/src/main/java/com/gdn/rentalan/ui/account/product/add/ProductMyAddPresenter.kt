@@ -43,6 +43,9 @@ class ProductMyAddPresenter @Inject constructor(private val api: ApiInterface, l
         val imageRequestBody = RequestBody.create(MediaType.parse("application/json"), image)
         val imageRequestBodyPart = MultipartBody.Part.createFormData("image", image.name, imageRequestBody)
 
+        Log.d("AKU", productRequestBodyPart.toString())
+        Log.d("AKU", imageRequestBodyPart.toString())
+
         val subscribe = api.addProductByOwner(userId, imageRequestBodyPart, productRequestBodyPart)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

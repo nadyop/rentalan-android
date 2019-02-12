@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.transaction
+package com.gdn.rentalan.ui.transaction.owner
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -7,19 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdn.rentalan.R
-import com.gdn.rentalan.databinding.FragmentTransactionBinding
+import com.gdn.rentalan.databinding.FragmentMyTransactionBinding
 import com.gdn.rentalan.ui.base.BaseFragment
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_transaction.*
 import javax.inject.Inject
 
-class TransactionFragment : BaseFragment(), TransactionContract.View {
+class TransactionMyFragment : BaseFragment(),
+    TransactionMyContract.View {
 
     @Inject
-    lateinit var presenter: TransactionContract.Presenter
-    private lateinit var binding: FragmentTransactionBinding
-    private var listAdapter: TransactionAdapter? = null
+    lateinit var presenter: TransactionMyContract.Presenter
+    private lateinit var binding: FragmentMyTransactionBinding
+    private var listAdapter: TransactionMyAdapter? = null
     private lateinit var transactionUiModel: TransactionUiModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class TransactionFragment : BaseFragment(), TransactionContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_transaction, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_transaction, container, false)
         return binding.root
     }
 
@@ -43,7 +44,7 @@ class TransactionFragment : BaseFragment(), TransactionContract.View {
         binding.recyclerView.layoutManager = layoutManager
 
         if (listAdapter == null) {
-            listAdapter = TransactionAdapter(ArrayList())
+            listAdapter = TransactionMyAdapter(ArrayList())
         }
         binding.recyclerView.adapter = listAdapter
         presenter.fetchData()
@@ -51,11 +52,11 @@ class TransactionFragment : BaseFragment(), TransactionContract.View {
 
     override fun showProgress(show: Boolean) {
         if (show) {
+            binding.container.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
-            binding.recyclerView.visibility = View.GONE
         } else {
+            binding.container.visibility = View.VISIBLE
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.visibility = View.VISIBLE
         }
     }
 

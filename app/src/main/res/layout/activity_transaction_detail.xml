@@ -221,14 +221,14 @@
                                 android:padding="@dimen/spacing_normal">
 
                             <TextView
-                                    android:id="@+id/tv_late_charge_label"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_column="0"
-                                    android:layout_weight="1"
-                                    android:gravity="start"
-                                    android:singleLine="true"
-                                    android:text="@string/description"/>
+                                android:id="@+id/tv_late_charge_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="@string/product_late_charge"/>
 
                             <TextView
                                     android:id="@+id/tv_late_charge"

@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ActivityUserDetailAdminBinding
@@ -65,6 +66,7 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
           presenter.verification(
                 detail?.id.orEmpty()
             )
+            showToast("Barang telah diaktifkan", Toast.LENGTH_SHORT)
         })
 
         binding.buttonLeft.setOnClickListener {
@@ -72,6 +74,7 @@ class UserDetailActivity : BaseActivity(), UserDetailContract.View {
             presenter.verification(
                 detail?.id.orEmpty()
             )
+            showToast("Barang telah dikoreksi", Toast.LENGTH_SHORT)
         }
     }
 

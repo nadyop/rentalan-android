@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.account.profile.edit
+package com.gdn.rentalan.ui.account.profile.verifyprofile
 
 import com.gdn.rentalan.api.request.UserVerifyRequest
 import com.gdn.rentalan.ui.account.profile.AccountUiModel

@@ -1,4 +1,4 @@
-package com.gdn.rentalan.ui.transaction
+package com.gdn.rentalan.ui.transaction.owner
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import com.gdn.rentalan.R
 import com.gdn.rentalan.databinding.ItemSimpleBinding
 import com.gdn.rentalan.ui.base.BaseRecyclerViewListAdapter
-import com.gdn.rentalan.ui.product.model.ProductDetailUiModel
 import com.gdn.rentalan.ui.transaction.model.TransactionUiModel
 import com.gdn.rentalan.util.Router
 
-class TransactionAdapter(
+class TransactionMyAdapter(
         transactionUiModels: MutableList<TransactionUiModel>)
-    : BaseRecyclerViewListAdapter<TransactionUiModel, TransactionAdapter.ViewHolder>(transactionUiModels) {
+    : BaseRecyclerViewListAdapter<TransactionUiModel, TransactionMyAdapter.ViewHolder>(transactionUiModels) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemProductListBinding = DataBindingUtil.bind<ItemSimpleBinding>(itemView)

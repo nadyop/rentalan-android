@@ -54,17 +54,15 @@ class ProductActivityCheckout : BaseActivity(),
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_checkout)
         presenter.attachView(this)
-        detail = intent.getParcelableExtra(
-            CHECKOUT)
-        Log.d("AAAAZ", detail.toString())
+        detail = intent.getParcelableExtra(CHECKOUT)
         detail.id.let {
           presenter.getData(it)
+            setData()
         }
         userAction()
     }
 
     private fun userAction() {
-        setData(detail)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -141,7 +139,6 @@ class ProductActivityCheckout : BaseActivity(),
               binding.etEndDate.text.toString(),
               binding.etCount.text.toString().toInt()
           )
-          Log.d("AAAAK", detail.toString())
       }
     }
 
@@ -150,18 +147,18 @@ class ProductActivityCheckout : BaseActivity(),
         binding.btOne.setOnClickListener(listener)
     }
 
-    override fun setData(content: ProductDetailUiModel) {
-        Glide.with(this).load(URL_PRODUCT + content.productImage).fitCenter().into(binding.ivProduct)
+    override fun setData() {
+        Glide.with(this).load(URL_PRODUCT + detail.productImage).fitCenter().into(binding.ivProduct)
         with(binding) {
-            tvProductName.text = content.name.capitalize()
-            tvProductPriceDay.text = formatRupiah.format(content.pricePerDay.toString().toInt()) + "/hari"
-            tvUserName.text = content.ownerName
-            tvPhone.text = content.ownerPhone
-            tvCity.text = content.ownerCity
-            tvCategory.text = content.categoryName
-            tvDescription.text = content.description
-            tvStock.text = content.stock.toString()
-            tvDp.text = formatRupiah.format(content.downPayment.toString().toInt())
+            tvProductName.text = detail.name.capitalize()
+            tvProductPriceDay.text = formatRupiah.format(detail.pricePerDay.toString().toInt()) + "/hari"
+            tvUserName.text = detail.ownerName
+            tvPhone.text = detail.ownerPhone
+            tvCity.text = detail.ownerCity
+            tvCategory.text = detail.categoryName
+            tvDescription.text = detail.description
+            tvStock.text = detail.stock.toString()
+            tvDp.text = formatRupiah.format(detail.downPayment.toString().toInt())
         }
     }
 

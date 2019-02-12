@@ -6,7 +6,7 @@ import com.gdn.rentalan.ui.account.product.ProductMyFragment
 import com.gdn.rentalan.ui.account.product.add.ProductMyAddActivity
 import com.gdn.rentalan.ui.account.product.update.ProductMyUpdateActivity
 import com.gdn.rentalan.ui.account.profile.AccountFragment
-import com.gdn.rentalan.ui.account.profile.edit.AccountEditActivity
+import com.gdn.rentalan.ui.account.profile.verifyprofile.AccountEditActivity
 import com.gdn.rentalan.ui.account.profile.editprofile.AccountEditProfileActivity
 import com.gdn.rentalan.ui.category.CategoryAddActivity
 import com.gdn.rentalan.ui.category.CategoryFragment
@@ -20,9 +20,9 @@ import com.gdn.rentalan.ui.product.admin.ProductFragment
 import com.gdn.rentalan.ui.register.email.RegisterEmailActivity
 import com.gdn.rentalan.ui.register.profile.RegisterProfileActivity
 import com.gdn.rentalan.ui.search.SearchActivity
-import com.gdn.rentalan.ui.transaction.TransactionDetailActivity
-import com.gdn.rentalan.ui.transaction.TransactionFragment
-import com.gdn.rentalan.ui.transaction.TransactionMyFragment
+import com.gdn.rentalan.ui.transaction.detail.TransactionDetailActivity
+import com.gdn.rentalan.ui.transaction.renter.TransactionFragment
+import com.gdn.rentalan.ui.transaction.owner.TransactionMyFragment
 import com.gdn.rentalan.ui.user.UserDetailActivity
 import com.gdn.rentalan.ui.user.UserFragment
 import dagger.Module
