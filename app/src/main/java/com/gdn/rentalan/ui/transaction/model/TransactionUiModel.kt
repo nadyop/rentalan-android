@@ -24,6 +24,6 @@ data class TransactionUiModel(
         val name: String? = null,
         val ownerCity: String? = null,
         val renterName: String = "",
-        val renterPhone: String = "",
-        val renterCity: String = ""
+        val renterPhone: String? = "",
+        val renterCity: String? = ""
     ) : Parcelable

@@ -88,8 +88,7 @@ interface ApiInterface {
                           @Query("isOwner") isOwner: Boolean): Observable<RestCommonResponse>
 
     @PUT("rent/return")
-    fun returnRentProduct(@Query("transactionId")
-                          transactionId: String): Observable<RestSingleResponse<Latecharge>>
+    fun returnRentProduct(@Query("transactionId") transactionId: String): Observable<RestSingleResponse<Latecharge>>
 
     //    user
     @POST("user/register")

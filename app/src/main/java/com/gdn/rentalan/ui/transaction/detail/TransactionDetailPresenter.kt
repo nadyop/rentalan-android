@@ -67,17 +67,17 @@ class TransactionDetailPresenter @Inject constructor(private val api: ApiInterfa
         subscriptions.add(subscribe)
     }
 
-    private fun getRenterDetail(renterId: String) {
+    override fun getRenterDetail(renterId: String) {
         val subscribe = api.getUserDetail(renterId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: RestSingleResponse<User> ->
                     response.data?.let {
                         val items = TransactionUiModel(
-                                renterName = it.sureName.toString(),
-                                renterPhone = it.phoneNumber.toString(),
-                                renterCity = it.city.toString()
+                                renterName = it.sureName,
+                                renterPhone = it.phoneNumber,
+                                renterCity = it.city
                         )
-                        view.setData(items)
+                        view.setDataRenter(items)
                         Log.d("renter detail", items.toString())
                     }
                     view.showProgress(false)

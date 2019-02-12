@@ -84,6 +84,7 @@ class TransactionDetailActivity : BaseActivity(),
                 showToast("Barang sedang dipinjam", Toast.LENGTH_SHORT)
             }
         } else if (detail?.status == "on progress" && checkOwner == "isOwner") {
+            binding.llButtonRent.visibility = View.VISIBLE
             binding.buttonRent.text = getString(R.string.product_return)
             binding.buttonRent.isEnabled = true
             binding.buttonRent.setBackgroundColor(resources.getColor(R.color.colorAccent))
@@ -125,6 +126,11 @@ class TransactionDetailActivity : BaseActivity(),
             etStartDate.text = content.startDate
             etEndDate.text = content.endDate
             tvStockValue.text = content.quantity.toString()
+        }
+    }
+
+    override fun setDataRenter(content: TransactionUiModel) {
+        with(binding){
             tvRenter.text = content.renterName
             tvRenterPhone.text = content.renterPhone
             tvRenterCity.text = content.renterCity
